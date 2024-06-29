@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">ChistanGame</string>
+
+    <string name="txt_about_us">درباره ما</string>
+    <string name="txt_contact_support">ارتباط با پشتیبانی</string>
+    <string name="txt_exit">خروج</string>
+    <string name="txt_description_exit">خسته شدم ، بعدا دوباره میام</string>
+    <string name="txt_register_a_comment">ثبت نظر</string>
+    <string name="txt_setting">تنظیمات</string>
+    <string name="txt_music">موسیقی</string>
+    <string name="txt_volume">صدای دکمه</string>
+    <string name="txt_cansel">انصراف</string>
+    <string name="txt_ok">تایید</string>
+    <string name="txt_increase_ruby">افزایش یاقوت</string>
+    <string name="txt_ruby_is_not_enough">متاسفانه یاقوت کافی نداری.</string>
+    <string name="txt_restart">شروع دوباره</string>
+    <string name="txt_description_restart">تمام مراحل پاک شده و بازی از ابتدا شروع می شود.</string>
+    <string name="txt_description_delete_database_1">تمامی اطلاعات و یاقوت های شما از بین می رود و بازی به حالت اولیه بر می گردد.</string>
+    <string name="txt_description_delete_database_2">آیا مطمئن هستید؟</string>
+    <string name="txt_felicitation">تبریک</string>
+    <string name="txt_description_felicitation">شما به مرحله بعد راه یافتید</string>
+    <string name="txt_get_more_rubies_by_viewing_ad">با مشاهده تبلیغ 12 یاقوت بیشتر دریافت کنید.</string>
+    <string name="txt_viewing_ad">دیدن تبلیغ</string>
+    <string name="txt_next_level">مرحله بعد</string>
+</resources>

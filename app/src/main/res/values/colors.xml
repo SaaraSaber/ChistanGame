@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
+
+
+    <color name="planter">#3B9900</color>
+    <color name="gardenGlow">#7AC993</color>
+    <color name="samphireGreen">#4DAF55</color>
+    <color name="brightMango">#FF802E</color>
+    <color name="exoticFlower">#FFA248</color>
+    <color name="vibrantHoney">#FEC130</color>
+    <color name="fluorescentRed">#FE5157</color>
+    <color name="coconutPulp">#FCFCE4</color>
+    <color name="buttonBlue">#2796F0</color>
+</resources>
