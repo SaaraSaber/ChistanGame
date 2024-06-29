@@ -3,53 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
     android:layout_margin="@dimen/_15sdp"
-    android:background="@color/transparent">
+    android:background="@color/transparent"
+    android:gravity="center">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/_10sdp"
+        android:background="@drawable/simple_shape_background_dialog"
+        android:orientation="vertical"
+        android:padding="@dimen/_25sdp">
 
-
-        <LinearLayout
+        <TextView
+            style="@style/text_orange_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@string/txt_ruby_is_not_enough"
+            android:textSize="@dimen/_20sdp" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/text_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/simple_shape_background_dialog"
-            android:orientation="vertical"
-            android:padding="@dimen/_25sdp">
+            android:layout_marginTop="@dimen/size_margin_top"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:background="@drawable/background_btn_orange"
+            android:text="@string/txt_increase_ruby"
+            app:backgroundTint="@null" />
 
-            <TextView
-                style="@style/text_orange_dialog"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/txt_ruby_is_not_enough"
-                android:textSize="@dimen/_20sdp" />
+    </LinearLayout>
 
-            <com.google.android.material.button.MaterialButton
-                style="@style/text_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/size_margin_top"
-                android:layout_marginEnd="@dimen/_2sdp"
-                android:background="@drawable/background_btn_orange"
-                android:text="@string/txt_increase_ruby"
-                app:backgroundTint="@null" />
-
-        </LinearLayout>
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:layout_width="@dimen/_36sdp"
-            android:layout_height="@dimen/_36sdp"
-            android:layout_gravity="start|top"
-            android:background="@drawable/vector_close" />
-
-
-    </RelativeLayout>
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
+        android:layout_gravity="start|top"
+        android:background="@drawable/vector_close" />
 
 
 </RelativeLayout>
+
+
