@@ -22,5 +22,7 @@
     <string name="txt_description_felicitation">شما به مرحله بعد راه یافتید</string>
     <string name="txt_get_more_rubies_by_viewing_ad">با مشاهده تبلیغ 12 یاقوت بیشتر دریافت کنید.</string>
     <string name="txt_viewing_ad">دیدن تبلیغ</string>
+    <string name="txt_ad">تبلیغات</string>
     <string name="txt_next_level">مرحله بعد</string>
+    <string name="txt_shop">فروشگاه</string>
 </resources>

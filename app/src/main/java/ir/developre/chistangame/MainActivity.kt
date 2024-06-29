@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         val dialog = Dialog(this)
 //        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.layout_dialog_about_us)
+        dialog.setContentView(R.layout.layout_dialog_shop)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window!!.setGravity(Gravity.CENTER)
         dialog.window!!.setLayout(
