@@ -17,6 +17,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -50,4 +54,6 @@ dependencies {
     implementation(libs.ssp.android)
     implementation(libs.calligraphy)
     implementation(libs.viewpump)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
 }
