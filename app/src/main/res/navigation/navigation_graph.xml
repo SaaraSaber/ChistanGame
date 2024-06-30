@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="ir.developre.chistangame.GameFragment"
+        android:label="GameFragment"
+        tools:layout="@layout/fragment_game" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ir.developre.chistangame.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_levelsFragment"
+            app:destination="@id/levelsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/levelsFragment"
+        android:name="ir.developre.chistangame.LevelsFragment"
+        android:label="LevelsFragment"
+        tools:layout="@layout/fragment_levels">
+        <action
+            android:id="@+id/action_levelsFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+    </fragment>
+</navigation>
