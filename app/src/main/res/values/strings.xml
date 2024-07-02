@@ -26,4 +26,6 @@
     <string name="txt_next_level">مرحله بعد</string>
     <string name="txt_shop">فروشگاه</string>
     <string name="txt_start">شروع</string>
+    <string name="txt_help">راهنما</string>
+    <string name="txt_levels">مراحل</string>
 </resources>
