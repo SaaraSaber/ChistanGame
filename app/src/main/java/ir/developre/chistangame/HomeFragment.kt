@@ -1,6 +1,7 @@
 package ir.developre.chistangame
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -68,18 +69,32 @@ class HomeFragment : Fragment() {
             if (Utils.playMusic) {
                 btnMusic.setImageResource(R.drawable.vector_no_music)
                 Utils.playMusic = false
+                requireActivity().stopService(
+                    Intent(
+                        requireActivity(),
+                        PlayMusicService::class.java
+                    )
+                )
             } else {
                 btnMusic.setImageResource(R.drawable.vector_music)
                 Utils.playMusic = true
+                requireActivity().startService(
+                    Intent(
+                        requireActivity(),
+                        PlayMusicService::class.java
+                    )
+                )
             }
         }
 
         btnVolume.setOnClickListener {
             if (Utils.playVolume) {
                 btnVolume.setImageResource(R.drawable.vector_no_volume)
+
                 Utils.playVolume = false
             } else {
                 btnVolume.setImageResource(R.drawable.vector_volume)
+
                 Utils.playVolume = true
             }
         }
@@ -144,6 +159,5 @@ class HomeFragment : Fragment() {
         )
         dialog.show()
     }
-
 
 }

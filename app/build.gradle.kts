@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
+    id("kotlin-kapt")
+//    id("com.google.devtools.ksp")
 }
 
 android {
@@ -56,4 +59,6 @@ dependencies {
     implementation(libs.viewpump)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
 }

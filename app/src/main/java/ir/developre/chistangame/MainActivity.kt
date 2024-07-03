@@ -1,6 +1,7 @@
 package ir.developre.chistangame
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -10,11 +11,15 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
+import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.ActivityMainBinding
+import ir.developre.chistangame.model.SettingModel
+import ir.developre.chistangame.sharedPref.SharedPreferencesGame
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var dataBase: AppDataBase
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
@@ -37,38 +42,63 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.friendlyFrost)
 
 
+        if (!checkEnterToAppForFirst()) {
+            saveEnterToAppForFirst()
+        }
 
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//
-//            when (destination.id) {
-//                R.id.splashFragment -> {
-//                    window.statusBarColor =
-//                        ContextCompat.getColor(this, R.color.background_main)
-//                    window.navigationBarColor =
-//                        ContextCompat.getColor(this, R.color.background_main)
-//                }
-//
-//                else -> {
-//                    window.statusBarColor =
-//                        ContextCompat.getColor(this, R.color.background_main)
-//                    window.navigationBarColor =
-//                        ContextCompat.getColor(this, R.color.background_main)
-//                }
-//            }
-//
-//        }
+    }
 
+    private lateinit var sharedPreferencesGame: SharedPreferencesGame
+    private fun saveEnterToAppForFirst() {
+        sharedPreferencesGame = SharedPreferencesGame(this)
+        sharedPreferencesGame.saveStatusFirst(true)
+        insertDbSetting()
+    }
 
-//        val dialog = Dialog(this)
-////        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-//        dialog.setContentView(R.layout.layout_dialog_shop)
-//        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-//        dialog.window!!.setGravity(Gravity.CENTER)
-//        dialog.window!!.setLayout(
-//            ViewGroup.LayoutParams.MATCH_PARENT,
-//            ViewGroup.LayoutParams.WRAP_CONTENT,
-//        )
-//        dialog.show()
+    private fun insertDbSetting() {
+        dataBase = AppDataBase.getDatabase(this)
+        dataBase.setting().saveDataSetting(SettingModel(1, true, true))
+    }
+
+    private fun checkEnterToAppForFirst(): Boolean {
+        sharedPreferencesGame = SharedPreferencesGame(this)
+        val result = sharedPreferencesGame.readStatusFirst()
+        return result
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        dataBase = AppDataBase.getDatabase(this)
+        val readSetting = dataBase.setting().readDataSetting()
+
+        if (readSetting.playMusic) {
+
+            stopService(
+                Intent(
+                    this,
+                    PlayMusicService::class.java
+                )
+            )
+        }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        dataBase = AppDataBase.getDatabase(this)
+        val readSetting = dataBase.setting().readDataSetting()
+
+        if (readSetting == null || readSetting.playMusic) {
+
+            startService(
+                Intent(
+                    this,
+                    PlayMusicService::class.java
+                )
+            )
+        }
 
     }
 }
