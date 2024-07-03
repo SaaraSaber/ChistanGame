@@ -12,11 +12,14 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.FragmentHomeBinding
+import ir.developre.chistangame.model.SettingModel
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var dialog: Dialog
+    private lateinit var dataBase: AppDataBase
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +32,8 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        dataBase = AppDataBase.getDatabase(requireActivity())
 
         clickBtnStartGame()
         clickBtnSetting()
@@ -49,6 +54,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun dialogSetting() {
+        readDataBaseSetting()
         dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.layout_dialog_setting)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -64,6 +70,18 @@ class HomeFragment : Fragment() {
         val btnMusic = dialog.findViewById<AppCompatImageButton>(R.id.btn_music)
         val btnVolume = dialog.findViewById<AppCompatImageButton>(R.id.btn_volume)
         val btnRestart = dialog.findViewById<View>(R.id.layout_restart)
+
+        if (Utils.playMusic) {
+            btnMusic.setImageResource(R.drawable.vector_music)
+        } else {
+            btnMusic.setImageResource(R.drawable.vector_no_music)
+        }
+
+        if (Utils.playVolume) {
+            btnVolume.setImageResource(R.drawable.vector_volume)
+        } else {
+            btnVolume.setImageResource(R.drawable.vector_no_volume)
+        }
 
         btnMusic.setOnClickListener {
             if (Utils.playMusic) {
@@ -105,10 +123,33 @@ class HomeFragment : Fragment() {
 
         btnClose.setOnClickListener {
             dialog.dismiss()
+            updateDataBaseSetting()
+        }
+
+        dialog.setOnDismissListener {
+            updateDataBaseSetting()
         }
 
 
         dialog.show()
+    }
+
+    private fun readDataBaseSetting() {
+
+        val playMusic = dataBase.setting().readDataSetting().playMusic
+        val playVolume = dataBase.setting().readDataSetting().playVolume
+        Utils.playMusic = playMusic
+        Utils.playVolume = playVolume
+    }
+
+    private fun updateDataBaseSetting() {
+        dataBase.setting().updateDataSetting(
+            SettingModel(
+                1,
+                Utils.playMusic,
+                Utils.playVolume
+            )
+        )
     }
 
     private fun dialogRestart() {
