@@ -184,6 +184,11 @@ class HomeFragment : Fragment() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
         )
+        val btnClose = dialog.findViewById<View>(R.id.btn_close)
+        btnClose.setOnClickListener {
+            dialog.dismiss()
+            updateDataBaseSetting()
+        }
         dialog.show()
     }
 
@@ -201,7 +206,11 @@ class HomeFragment : Fragment() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
         )
-
+        val btnClose = dialog.findViewById<View>(R.id.btn_close)
+        btnClose.setOnClickListener {
+            dialog.dismiss()
+            updateDataBaseSetting()
+        }
         val btnEmail = dialog.findViewById<View>(R.id.btn_email)
 
         btnEmail.setOnClickListener {
