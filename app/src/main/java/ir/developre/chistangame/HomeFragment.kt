@@ -1,9 +1,12 @@
 package ir.developre.chistangame
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -198,7 +201,36 @@ class HomeFragment : Fragment() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
         )
+
+        val btnEmail = dialog.findViewById<View>(R.id.btn_email)
+
+        btnEmail.setOnClickListener {
+            sendProblemWithEmail()
+        }
+
         dialog.show()
+    }
+
+    @SuppressLint("IntentReset")
+    private fun sendProblemWithEmail() {
+        val deviceModel = Build.MODEL
+        val deviceMANUFACTURER = Build.MANUFACTURER
+        val deviceSdk = Build.VERSION.SDK_INT
+        val deviceBrand = Build.BRAND
+        val deviceVersionCode = Build.VERSION.RELEASE
+
+        val emailAddress = requireContext().getString(R.string.address_email)
+        val emailSubject = requireContext().getString(R.string.problem_in_game)
+        val emailText =
+            "مشکل خود را در این قسمت توضیح دهید\n\nمدل گوشی: $deviceModel\nبرند گوشی: $deviceMANUFACTURER\nسازنده گوشی: $deviceBrand\nSDK: $deviceSdk\nVersionCode: $deviceVersionCode\n\n"
+
+        val emailIntent = Intent(Intent.ACTION_SEND)
+        emailIntent.data = Uri.parse("mailto:")
+        emailIntent.setType("text/plain")
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(emailAddress))
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject)
+        emailIntent.putExtra(Intent.EXTRA_TEXT, emailText)
+        startActivity(Intent.createChooser(emailIntent, "Send email..."))
     }
 
 }
