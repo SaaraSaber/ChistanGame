@@ -7,7 +7,7 @@
     >
 
     <include
-        android:id="@+id/layout_increase_ruby"
+        android:id="@+id/layout_increase_ruby_home"
         layout="@layout/layout_ruby"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
