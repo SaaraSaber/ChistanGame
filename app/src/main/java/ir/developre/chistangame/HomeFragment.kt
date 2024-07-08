@@ -22,6 +22,7 @@ import ir.developre.chistangame.model.SettingModel
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var dialog: Dialog
+    private lateinit var dialogSetting: Dialog
     private lateinit var dataBase: AppDataBase
 
     override fun onCreateView(
@@ -64,21 +65,19 @@ class HomeFragment : Fragment() {
 
     private fun dialogSetting() {
         readDataBaseSetting()
-        dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.layout_dialog_setting)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.setGravity(Gravity.CENTER)
-        dialog.window!!.setLayout(
+        dialogSetting = Dialog(requireContext())
+        dialogSetting.setContentView(R.layout.layout_dialog_setting)
+        dialogSetting.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogSetting.window!!.setGravity(Gravity.CENTER)
+        dialogSetting.window!!.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
         )
 
-//        val layoutMusic = dialog.findViewById<View>(R.id.layout_music)
-//        val layoutVolume = dialog.findViewById<View>(R.id.layout_volume)
-        val btnClose = dialog.findViewById<View>(R.id.btn_close)
-        val btnMusic = dialog.findViewById<AppCompatImageButton>(R.id.btn_music)
-        val btnVolume = dialog.findViewById<AppCompatImageButton>(R.id.btn_volume)
-        val btnRestart = dialog.findViewById<View>(R.id.layout_restart)
+        val btnClose = dialogSetting.findViewById<View>(R.id.btn_close)
+        val btnMusic = dialogSetting.findViewById<AppCompatImageButton>(R.id.btn_music)
+        val btnVolume = dialogSetting.findViewById<AppCompatImageButton>(R.id.btn_volume)
+        val btnRestart = dialogSetting.findViewById<View>(R.id.layout_restart)
 
         if (Utils.playMusic) {
             btnMusic.setImageResource(R.drawable.vector_music)
@@ -131,16 +130,16 @@ class HomeFragment : Fragment() {
         }
 
         btnClose.setOnClickListener {
-            dialog.dismiss()
+            dialogSetting.dismiss()
             updateDataBaseSetting()
         }
 
-        dialog.setOnDismissListener {
+        dialogSetting.setOnDismissListener {
             updateDataBaseSetting()
         }
 
 
-        dialog.show()
+        dialogSetting.show()
     }
 
     private fun readDataBaseSetting() {
