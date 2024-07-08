@@ -38,14 +38,14 @@ class HomeFragment : Fragment() {
 
         dataBase = AppDataBase.getDatabase(requireActivity())
 
-        buyRuby()
+        clickOnLayoutIncludeIncreaseRuby()
         clickBtnStartGame()
         clickBtnSetting()
         clickBtnShop()
         clickBtnAboutUs()
     }
 
-    private fun buyRuby() {
+    private fun clickOnLayoutIncludeIncreaseRuby() {
         binding.layoutIncreaseRubyHome.btnBuyRuby.setOnClickListener { dialogShop() }
         binding.layoutIncreaseRubyHome.layoutBuyRuby.setOnClickListener { dialogShop() }
     }
