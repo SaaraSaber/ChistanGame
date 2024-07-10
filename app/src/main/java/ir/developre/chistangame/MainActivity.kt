@@ -3,6 +3,7 @@ package ir.developre.chistangame
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -13,6 +14,7 @@ import androidx.navigation.findNavController
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.ActivityMainBinding
+import ir.developre.chistangame.model.LevelModel
 import ir.developre.chistangame.model.SettingModel
 import ir.developre.chistangame.sharedPref.SharedPreferencesGame
 
@@ -41,7 +43,6 @@ class MainActivity : AppCompatActivity() {
         window.navigationBarColor = ContextCompat.getColor(this, R.color.Watery)
         window.statusBarColor = ContextCompat.getColor(this, R.color.friendlyFrost)
 
-
         if (!checkEnterToAppForFirst()) {
             saveEnterToAppForFirst()
         }
@@ -52,12 +53,31 @@ class MainActivity : AppCompatActivity() {
     private fun saveEnterToAppForFirst() {
         sharedPreferencesGame = SharedPreferencesGame(this)
         sharedPreferencesGame.saveStatusFirst(true)
-        insertDbSetting()
+
+        insertDataToDbSetting()
+        insertDataToDbLevels()
+
     }
 
-    private fun insertDbSetting() {
+    private fun insertDataToDbLevels() {
         dataBase = AppDataBase.getDatabase(this)
-        dataBase.setting().saveDataSetting(SettingModel(1, true, true))
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 1,
+                titleLevel = 1,
+                isLockLevel = true,
+                question = "Sample question?",
+                answer = arrayListOf('a', 'b', 'c'),
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e')
+                )
+        )
+
+        Log.i("readDataLevel", "insertDataToDbLevels: ${dataBase.levels().readDataLevel()}")
+    }
+
+    private fun insertDataToDbSetting() {
+        dataBase = AppDataBase.getDatabase(this)
+        dataBase.setting().saveDataSetting(SettingModel(1, playMusic = true, playVolume = true))
     }
 
     private fun checkEnterToAppForFirst(): Boolean {
@@ -73,7 +93,6 @@ class MainActivity : AppCompatActivity() {
         val readSetting = dataBase.setting().readDataSetting()
 
         if (readSetting.playMusic) {
-
             stopService(
                 Intent(
                     this,

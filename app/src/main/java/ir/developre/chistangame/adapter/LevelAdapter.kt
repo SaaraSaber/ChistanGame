@@ -40,7 +40,7 @@ class LevelAdapter(
         holder.layoutLevel.layoutParams.width = itemWith
         holder.layoutLevel.layoutParams.height = itemWith
         holder.layoutLevel
-        if (item.imageLock) {
+        if (item.isLockLevel) {
             holder.imageLock.visibility = View.VISIBLE
             holder.textLevel.visibility = View.GONE
         } else {
@@ -48,12 +48,12 @@ class LevelAdapter(
             holder.textLevel.visibility = View.VISIBLE
         }
 
-        holder.textLevel.text = item.textNum.toString()
+        holder.textLevel.text = item.titleLevel.toString()
 
         holder.layoutLevel.setOnClickListener {
             clickOnLevel.clickOnLevel(
                 position,
-                item.imageLock
+                item.isLockLevel
             )
         }
 
