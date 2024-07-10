@@ -76,12 +76,12 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
-    override fun clickOnLetter(index: Int) {
-        Toast.makeText(requireContext(), index.toString(), Toast.LENGTH_SHORT).show()
+    override fun clickOnLetter(index: Int, letter: Char) {
+        Toast.makeText(requireContext(), "$letter $index", Toast.LENGTH_SHORT).show()
     }
 
-    override fun clickOnAnswer(index: Int) {
-        Toast.makeText(requireContext(), index.toString(), Toast.LENGTH_SHORT).show()
+    override fun clickOnAnswer(index: Int, letter: Char) {
+        Toast.makeText(requireContext(), "$letter $index", Toast.LENGTH_SHORT).show()
     }
 
 }

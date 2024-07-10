@@ -1,10 +1,11 @@
 package ir.developre.chistangame.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ir.developre.chistangame.my_interface.on_click.ClickOnLetter
 import ir.developre.chistangame.databinding.LayoutRecyclerViewSelectLettersBinding
+import ir.developre.chistangame.my_interface.on_click.ClickOnLetter
 
 class LetterAdapter(
     private val listLetter: ArrayList<Char>,
@@ -35,6 +36,13 @@ class LetterAdapter(
         val item = listLetter[holder.adapterPosition]
 
         holder.title.text = item.toString()
-        holder.layout.setOnClickListener { clickOnLetter.clickOnLetter(holder.adapterPosition) }
+        holder.layout.setOnClickListener {
+            clickOnLetter.clickOnLetter(
+                holder.adapterPosition,
+                item
+            )
+            holder.layout.visibility = View.INVISIBLE
+        }
+
     }
 }

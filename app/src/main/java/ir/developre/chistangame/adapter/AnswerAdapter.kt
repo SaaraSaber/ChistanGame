@@ -3,8 +3,8 @@ package ir.developre.chistangame.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ir.developre.chistangame.my_interface.on_click.ClickOnAnswer
 import ir.developre.chistangame.databinding.LayoutRecyclerViewEnterLetterBinding
+import ir.developre.chistangame.my_interface.on_click.ClickOnAnswer
 
 class AnswerAdapter(
     private val listAnswer: ArrayList<Char>,
@@ -34,7 +34,12 @@ class AnswerAdapter(
     override fun onBindViewHolder(holder: ViewHolderLevel, position: Int) {
         val item = listAnswer[holder.adapterPosition]
 
-        holder.title.text = item.toString()
-        holder.layout.setOnClickListener { clickOnAnswer.clickOnAnswer(holder.adapterPosition) }
+//        holder.title.text = item.toString()
+        holder.layout.setOnClickListener {
+            clickOnAnswer.clickOnAnswer(
+                holder.adapterPosition,
+                item
+            )
+        }
     }
 }
