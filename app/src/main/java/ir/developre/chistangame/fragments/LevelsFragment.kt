@@ -1,4 +1,4 @@
-package ir.developre.chistangame
+package ir.developre.chistangame.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,10 +8,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import ir.developre.chistangame.R
 import ir.developre.chistangame.adapter.LevelAdapter
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.FragmentLevelsBinding
 import ir.developre.chistangame.model.LevelModel
+import ir.developre.chistangame.my_interface.on_click.ClickOnLevel
 
 class LevelsFragment : Fragment(), ClickOnLevel {
     private lateinit var binding: FragmentLevelsBinding
@@ -71,8 +73,9 @@ class LevelsFragment : Fragment(), ClickOnLevel {
 
     override fun clickOnLevel(index: Int, lockItemSelected: Boolean) {
         if (!lockItemSelected) {
-            Toast.makeText(requireContext(), index.toString(), Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_levelsFragment_to_gameFragment)
+            val bundle = Bundle()
+            bundle.putInt("level", index + 1)
+            findNavController().navigate(R.id.action_levelsFragment_to_gameFragment, bundle)
         } else {
             Toast.makeText(requireContext(), "section is lock", Toast.LENGTH_SHORT).show()
         }

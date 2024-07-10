@@ -1,4 +1,4 @@
-package ir.developre.chistangame
+package ir.developre.chistangame.global
 
 import android.app.Application
 import android.content.Context

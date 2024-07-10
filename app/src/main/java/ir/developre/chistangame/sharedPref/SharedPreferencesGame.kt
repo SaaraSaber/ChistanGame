@@ -2,7 +2,7 @@ package ir.developre.chistangame.sharedPref
 
 import android.content.Context
 import android.content.SharedPreferences
-import ir.developre.chistangame.Utils
+import ir.developre.chistangame.global.Utils
 
 class SharedPreferencesGame(private val context: Context) {
     private lateinit var sharedPreferences: SharedPreferences

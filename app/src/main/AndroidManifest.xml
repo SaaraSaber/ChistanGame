@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:name=".AppController"
+        android:name=".global.AppController"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -25,7 +25,7 @@
         </activity>
 
         <service
-            android:name=".PlayMusicService"
+            android:name=".global.PlayMusicService"
             android:exported="false"
             android:foregroundServiceType="mediaPlayback">
             <intent-filter>

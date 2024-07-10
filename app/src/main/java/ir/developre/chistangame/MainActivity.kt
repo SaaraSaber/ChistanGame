@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.ActivityMainBinding
+import ir.developre.chistangame.global.PlayMusicService
 import ir.developre.chistangame.model.LevelModel
 import ir.developre.chistangame.model.SettingModel
 import ir.developre.chistangame.sharedPref.SharedPreferencesGame
@@ -65,10 +66,10 @@ class MainActivity : AppCompatActivity() {
                 id = 1,
                 titleLevel = 1,
                 isLockLevel = false,
-                question = "Sample question?",
-                answer = arrayListOf('a', 'b', 'c'),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e')
-                )
+                question = "آن کیست که در ابتدا چهار پا دارد سپس دو پا و در نهایت سه پا",
+                answer = arrayListOf('ا', 'ن', 'س', 'ا', 'ن'),
+                letters = arrayListOf('ا', 'ح', 'ن', 'گ', 'ص','ن', 'ت', 'س', 'د', 'ا', 'ش', 'ث')
+            )
         )
         dataBase.levels().saveDataLevel(
             LevelModel(
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 isLockLevel = true,
                 question = "Sample question?",
                 answer = arrayListOf('a', 'b', 'c'),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e')
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e','a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -87,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 isLockLevel = true,
                 question = "Sample question?",
                 answer = arrayListOf('a', 'b', 'c'),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e')
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e','a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -97,7 +98,7 @@ class MainActivity : AppCompatActivity() {
                 isLockLevel = true,
                 question = "Sample question?",
                 answer = arrayListOf('a', 'b', 'c'),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e')
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e','a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -107,7 +108,7 @@ class MainActivity : AppCompatActivity() {
                 isLockLevel = true,
                 question = "Sample question?",
                 answer = arrayListOf('a', 'b', 'c'),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e')
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e','a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )
     }

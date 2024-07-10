@@ -1,4 +1,4 @@
-package ir.developre.chistangame
+package ir.developre.chistangame.global
 
 object Utils {
     var playMusic = true

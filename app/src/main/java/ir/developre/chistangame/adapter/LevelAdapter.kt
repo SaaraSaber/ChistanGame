@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ir.developre.chistangame.ClickOnLevel
+import ir.developre.chistangame.my_interface.on_click.ClickOnLevel
 import ir.developre.chistangame.databinding.LayoutRecycleViewLevelsBinding
 import ir.developre.chistangame.model.LevelModel
 

@@ -8,9 +8,11 @@
     android:background="@drawable/simple_shape_background_recycler_view_letter"
     android:gravity="center"
     android:orientation="vertical"
+    android:id="@+id/layout_letter"
     android:padding="@dimen/_10sdp">
 
     <TextView
+        android:id="@+id/text_letter"
         style="@style/text_recycler_view_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package ir.developre.chistangame
+package ir.developre.chistangame.fragments
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -15,8 +15,11 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import ir.developre.chistangame.R
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.FragmentHomeBinding
+import ir.developre.chistangame.global.PlayMusicService
+import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.model.SettingModel
 
 class HomeFragment : Fragment() {
