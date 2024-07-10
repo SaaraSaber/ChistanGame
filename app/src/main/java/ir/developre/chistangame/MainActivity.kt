@@ -3,7 +3,6 @@ package ir.developre.chistangame
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -65,14 +64,52 @@ class MainActivity : AppCompatActivity() {
             LevelModel(
                 id = 1,
                 titleLevel = 1,
-                isLockLevel = true,
+                isLockLevel = false,
                 question = "Sample question?",
                 answer = arrayListOf('a', 'b', 'c'),
                 letters = arrayListOf('a', 'b', 'c', 'd', 'e')
                 )
         )
-
-        Log.i("readDataLevel", "insertDataToDbLevels: ${dataBase.levels().readDataLevel()}")
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 2,
+                titleLevel = 2,
+                isLockLevel = true,
+                question = "Sample question?",
+                answer = arrayListOf('a', 'b', 'c'),
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 3,
+                titleLevel = 3,
+                isLockLevel = true,
+                question = "Sample question?",
+                answer = arrayListOf('a', 'b', 'c'),
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 4,
+                titleLevel = 4,
+                isLockLevel = true,
+                question = "Sample question?",
+                answer = arrayListOf('a', 'b', 'c'),
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 5,
+                titleLevel = 5,
+                isLockLevel = true,
+                question = "Sample question?",
+                answer = arrayListOf('a', 'b', 'c'),
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e')
+            )
+        )
     }
 
     private fun insertDataToDbSetting() {
