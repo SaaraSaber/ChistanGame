@@ -81,6 +81,7 @@ class GameFragment : Fragment(), ClickOnLetter {
             editText.setBackgroundResource(R.drawable.simple_shape_background_recycler_view_enter_letter)
             editText.maxLines = 1
             editText.typeface = typeface
+            editText.textSize = 28f
             editText.isFocusableInTouchMode = false
             editText.isAllCaps = true
             editText.isCursorVisible = false
