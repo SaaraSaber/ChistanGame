@@ -12,7 +12,7 @@ import ir.developre.chistangame.model.SettingModel
 @Database(
     entities = [
         SettingModel::class, LevelModel::class],
-    version = 4,
+    version = 1,
     exportSchema = true
 )
 

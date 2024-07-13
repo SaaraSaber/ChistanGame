@@ -13,7 +13,8 @@ data class LevelModel(
     val titleLevel: Int,
     val isLockLevel: Boolean,
     val question: String,
-    val answer: ArrayList<Char>,
+    val answer: String,
+    val sizeAnswer: Int,
     val letters: ArrayList<Char>
 )
 

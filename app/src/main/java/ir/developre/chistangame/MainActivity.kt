@@ -67,8 +67,9 @@ class MainActivity : AppCompatActivity() {
                 titleLevel = 1,
                 isLockLevel = false,
                 question = "آن کیست که در ابتدا چهار پا دارد سپس دو پا و در نهایت سه پا",
-                answer = arrayListOf('ا', 'ن', 'س', 'ا', 'ن'),
-                letters = arrayListOf('ا', 'ح', 'ن', 'گ', 'ص','ن', 'ت', 'س', 'د', 'ا', 'ش', 'ث')
+                answer = "انسان",
+                sizeAnswer = 5,
+                letters = arrayListOf('ا', 'ح', 'ن', 'گ', 'ص', 'ن', 'ت', 'س', 'د', 'ا', 'ش', 'ث')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -77,8 +78,9 @@ class MainActivity : AppCompatActivity() {
                 titleLevel = 2,
                 isLockLevel = true,
                 question = "Sample question?",
-                answer = arrayListOf('a', 'b', 'c'),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e','a', 'b', 'c', 'd', 'e', 'd', 'e')
+                answer = "انسان",
+                sizeAnswer = 5,
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -87,8 +89,9 @@ class MainActivity : AppCompatActivity() {
                 titleLevel = 3,
                 isLockLevel = true,
                 question = "Sample question?",
-                answer = arrayListOf('a', 'b', 'c'),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e','a', 'b', 'c', 'd', 'e', 'd', 'e')
+                answer = "انسان",
+                sizeAnswer = 5,
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -97,8 +100,9 @@ class MainActivity : AppCompatActivity() {
                 titleLevel = 4,
                 isLockLevel = true,
                 question = "Sample question?",
-                answer = arrayListOf('a', 'b', 'c'),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e','a', 'b', 'c', 'd', 'e', 'd', 'e')
+                answer = "انسان",
+                sizeAnswer = 5,
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -107,8 +111,9 @@ class MainActivity : AppCompatActivity() {
                 titleLevel = 5,
                 isLockLevel = true,
                 question = "Sample question?",
-                answer = arrayListOf('a', 'b', 'c'),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e','a', 'b', 'c', 'd', 'e', 'd', 'e')
+                answer = "انسان",
+                sizeAnswer = 5,
+                letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )
     }
