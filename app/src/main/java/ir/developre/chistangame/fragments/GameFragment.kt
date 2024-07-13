@@ -1,28 +1,34 @@
 package ir.developre.chistangame.fragments
 
+import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.view.ViewGroup.LayoutParams
+import android.widget.EditText
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import ir.developre.chistangame.adapter.AnswerAdapter
+import ir.developre.chistangame.R
 import ir.developre.chistangame.adapter.LetterAdapter
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.FragmentGameBinding
+import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.model.LevelModel
-import ir.developre.chistangame.my_interface.on_click.ClickOnAnswer
 import ir.developre.chistangame.my_interface.on_click.ClickOnLetter
 
-class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
+
+class GameFragment : Fragment(), ClickOnLetter {
     private lateinit var binding: FragmentGameBinding
     private lateinit var dataBase: AppDataBase
     private lateinit var readData: List<LevelModel>
     private lateinit var listAnswer: ArrayList<Char>
     private lateinit var listLetter: ArrayList<Char>
-    private lateinit var answerAdapter: AnswerAdapter
+    private var currentEditTextIndex = 0
+    private val editTexts = mutableListOf<EditText>()
     private lateinit var adapterLetter: LetterAdapter
 
     override fun onCreateView(
@@ -38,6 +44,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         super.onViewCreated(view, savedInstanceState)
 
         val level = requireArguments().getInt("level")
+        Utils.isAllEditTextsFilled = false
 
         binding.textViewLevel.text = "مرحله $level"
 
@@ -53,10 +60,44 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
-        setDataToRecyclerViewAnswer()
+
+        val numberOfEditTexts = listAnswer.size
+        createDynamicEditText(numberOfEditTexts)
+        currentEditTextIndex = numberOfEditTexts - 1
+
         setDataToRecyclerViewLetter()
 
     }
+
+
+    private fun createDynamicEditText(count: Int) {
+        val typeface =
+            Typeface.createFromAsset(requireActivity().assets, "fonts/lalezar_regular.ttf")
+
+        for (i in 1..count) {
+            val editText = EditText(requireContext())
+            editText.layoutParams =
+                LayoutParams(170, 170)
+            editText.setBackgroundResource(R.drawable.simple_shape_background_recycler_view_enter_letter)
+            editText.maxLines = 1
+            editText.typeface = typeface
+            editText.isFocusableInTouchMode = false
+            editText.isAllCaps = true
+            editText.isCursorVisible = false
+            editText.gravity = Gravity.CENTER
+            editText.setTextColor(requireContext().getColor(R.color.brightMango))
+            editText.setPadding(4, 0, 4, 0)
+
+            binding.recyclerViewAnswer.addView(editText)
+
+            editTexts.add(editText)
+
+            val margin: ViewGroup.MarginLayoutParams =
+                editText.layoutParams as ViewGroup.MarginLayoutParams
+            margin.setMargins(4, 0, 4, 0)
+        }
+    }
+
 
     private fun setDataToRecyclerViewLetter() {
         adapterLetter = LetterAdapter(listLetter, this)
@@ -67,21 +108,16 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
-    private fun setDataToRecyclerViewAnswer() {
-        answerAdapter = AnswerAdapter(listAnswer, this)
-        binding.recyclerViewAnswer.apply {
-            layoutManager =
-                GridLayoutManager(requireContext(), 6, GridLayoutManager.VERTICAL, false)
-            adapter = answerAdapter
+    override fun clickOnLetter(index: Int, letter: Char, linearLayout: LinearLayout) {
+
+        if (currentEditTextIndex >= 0) {
+
+            editTexts[currentEditTextIndex].setText(letter.toString())
+            if (currentEditTextIndex == 0) {
+                Utils.isAllEditTextsFilled = true
+            }
+            currentEditTextIndex--
         }
-    }
-
-    override fun clickOnLetter(index: Int, letter: Char) {
-        Toast.makeText(requireContext(), "$letter $index", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun clickOnAnswer(index: Int, letter: Char) {
-        Toast.makeText(requireContext(), "$letter $index", Toast.LENGTH_SHORT).show()
     }
 
 }

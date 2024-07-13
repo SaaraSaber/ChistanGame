@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ir.developre.chistangame.databinding.LayoutRecyclerViewSelectLettersBinding
+import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.my_interface.on_click.ClickOnLetter
 
 class LetterAdapter(
@@ -39,9 +40,10 @@ class LetterAdapter(
         holder.layout.setOnClickListener {
             clickOnLetter.clickOnLetter(
                 holder.adapterPosition,
-                item
+                item, holder.layout
             )
-            holder.layout.visibility = View.INVISIBLE
+            if (!Utils.isAllEditTextsFilled){
+            holder.layout.visibility = View.INVISIBLE}
         }
 
     }

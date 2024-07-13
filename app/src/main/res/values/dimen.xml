@@ -2,4 +2,5 @@
 <resources>
     <dimen name="size_margin_top">@dimen/_15sdp</dimen>
     <dimen name="padding_all_screen">@dimen/_15sdp</dimen>
+
 </resources>
