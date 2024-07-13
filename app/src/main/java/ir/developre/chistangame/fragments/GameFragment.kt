@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -25,7 +26,8 @@ class GameFragment : Fragment(), ClickOnLetter {
     private lateinit var binding: FragmentGameBinding
     private lateinit var dataBase: AppDataBase
     private lateinit var readData: List<LevelModel>
-    private lateinit var listAnswer: ArrayList<Char>
+    private lateinit var answer: String
+    private var sizeAnswer: Int = 0
     private lateinit var listLetter: ArrayList<Char>
     private var currentEditTextIndex = 0
     private val editTexts = mutableListOf<EditText>()
@@ -54,14 +56,15 @@ class GameFragment : Fragment(), ClickOnLetter {
         readData.forEach {
             if (level == it.titleLevel) {
                 binding.textQuestion.text = it.question
-                listAnswer = it.answer
+                answer = it.answer
+                sizeAnswer = it.sizeAnswer
                 listLetter = it.letters
             }
         }
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
 
-        val numberOfEditTexts = listAnswer.size
+        val numberOfEditTexts = sizeAnswer
         createDynamicEditText(numberOfEditTexts)
         currentEditTextIndex = numberOfEditTexts - 1
 
@@ -82,6 +85,8 @@ class GameFragment : Fragment(), ClickOnLetter {
             editText.maxLines = 1
             editText.typeface = typeface
             editText.textSize = 28f
+            editText.layoutDirection = View.LAYOUT_DIRECTION_RTL
+            editText.textDirection = View.TEXT_DIRECTION_RTL
             editText.isFocusableInTouchMode = false
             editText.isAllCaps = true
             editText.isCursorVisible = false
@@ -116,9 +121,21 @@ class GameFragment : Fragment(), ClickOnLetter {
             editTexts[currentEditTextIndex].setText(letter.toString())
             if (currentEditTextIndex == 0) {
                 Utils.isAllEditTextsFilled = true
+                checkAnswer()
             }
             currentEditTextIndex--
         }
+    }
+
+    private fun checkAnswer() {
+        val allText = StringBuilder()
+        for (editText in editTexts) {
+            allText.append(editText.text.toString())
+        }
+        Toast.makeText(requireContext(), allText.reverse().toString(), Toast.LENGTH_LONG).show()
+//        if (answer=="انسان"){
+//
+//        }
     }
 
 }
