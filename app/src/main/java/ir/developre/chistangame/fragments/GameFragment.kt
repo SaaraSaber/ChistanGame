@@ -132,10 +132,15 @@ class GameFragment : Fragment(), ClickOnLetter {
         for (editText in editTexts) {
             allText.append(editText.text.toString())
         }
-        Toast.makeText(requireContext(), allText.reverse().toString(), Toast.LENGTH_LONG).show()
-//        if (answer=="انسان"){
-//
-//        }
+
+        val answerUser = allText.reverse().toString()
+        Toast.makeText(requireContext(), answerUser, Toast.LENGTH_SHORT).show()
+
+        if (answer == answerUser) {
+            Toast.makeText(requireContext(), "آفرین!", Toast.LENGTH_SHORT).show()
+        }else{
+            Toast.makeText(requireContext(), "اشتباه!", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
