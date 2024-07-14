@@ -5,11 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ir.developre.chistangame.databinding.LayoutRecyclerViewSelectLettersBinding
-import ir.developre.chistangame.global.Utils
+import ir.developre.chistangame.model.LetterModel
 import ir.developre.chistangame.my_interface.on_click.ClickOnLetter
 
 class LetterAdapter(
-    private val listLetter: ArrayList<Char>,
+    private val listLetter: ArrayList<LetterModel>,
     private val clickOnLetter: ClickOnLetter,
 ) :
     RecyclerView.Adapter<LetterAdapter.ViewHolderLevel>() {
@@ -36,15 +36,36 @@ class LetterAdapter(
 
         val item = listLetter[holder.adapterPosition]
 
-        holder.title.text = item.toString()
-        holder.layout.setOnClickListener {
+        holder.title.text = item.letter.toString()
+
+        if (!item.isShow) {
+            holder.layout.visibility = View.INVISIBLE
+        } else {
+            holder.layout.visibility = View.VISIBLE
+        }
+
+        holder.itemView.setOnClickListener {
+
             clickOnLetter.clickOnLetter(
                 holder.adapterPosition,
-                item, holder.layout
+                item.letter, holder.layout
             )
-            if (!Utils.isAllEditTextsFilled){
-            holder.layout.visibility = View.INVISIBLE}
+
+//            if (!Utils.isAllEditTextsFilled) {
+//                holder.layout.visibility = View.INVISIBLE
+//            }
         }
 
     }
+
+    fun showLetter(letter: Char) {
+
+    }
 }
+
+
+//        val position = listLetter.indexOf(letter)
+//        if (position >= 0) {
+//            binding.layoutLetter.visibility = View.VISIBLE
+//            notifyItemChanged(position)
+//        }

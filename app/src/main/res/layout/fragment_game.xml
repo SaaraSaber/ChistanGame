@@ -110,7 +110,7 @@
             <!--                tools:listitem="@layout/layout_recycler_view_enter_letter" />-->
 
             <LinearLayout
-                android:id="@+id/recyclerView_answer"
+                android:id="@+id/layout_answer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/padding_all_screen"
@@ -134,7 +134,7 @@
                 android:padding="@dimen/_5sdp"
                 app:layout_constraintBottom_toTopOf="@+id/recyclerView_letter"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView_answer">
+                app:layout_constraintTop_toBottomOf="@+id/layout_answer">
 
                 <TextView
                     style="@style/text_orange_dialog"

@@ -2,6 +2,7 @@ package ir.developre.chistangame.fragments
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import ir.developre.chistangame.adapter.LetterAdapter
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.FragmentGameBinding
 import ir.developre.chistangame.global.Utils
+import ir.developre.chistangame.model.LetterModel
 import ir.developre.chistangame.model.LevelModel
 import ir.developre.chistangame.my_interface.on_click.ClickOnLetter
 
@@ -28,6 +30,7 @@ class GameFragment : Fragment(), ClickOnLetter {
     private lateinit var readData: List<LevelModel>
     private lateinit var answer: String
     private var sizeAnswer: Int = 0
+    private lateinit var listLetterAdapter: ArrayList<LetterModel>
     private lateinit var listLetter: ArrayList<Char>
     private var currentEditTextIndex = 0
     private val editTexts = mutableListOf<EditText>()
@@ -59,15 +62,34 @@ class GameFragment : Fragment(), ClickOnLetter {
                 answer = it.answer
                 sizeAnswer = it.sizeAnswer
                 listLetter = it.letters
+
             }
         }
+
+        listLetterAdapter = ArrayList()
+        var id = 1
+        var position = 0
+        Log.i("listLetter", "onViewCreated: $listLetter")
+        listLetter.forEach {
+            listLetterAdapter.add(
+                LetterModel(
+                    id = id,
+                    index = position,
+                    it,
+                    isShow = true
+                )
+            )
+            id++
+            position++
+        }
+
+        Log.i("listLetter", "onViewCreated2: $listLetterAdapter")
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
 
         val numberOfEditTexts = sizeAnswer
         createDynamicEditText(numberOfEditTexts)
         currentEditTextIndex = numberOfEditTexts - 1
-
         setDataToRecyclerViewLetter()
 
     }
@@ -94,10 +116,21 @@ class GameFragment : Fragment(), ClickOnLetter {
             editText.setTextColor(requireContext().getColor(R.color.brightMango))
             editText.setPadding(4, 0, 4, 0)
 
-            binding.recyclerViewAnswer.addView(editText)
+            editText.setOnClickListener {
+                if (i - 1 == currentEditTextIndex + 1) {
+                    val removedLetter = editText.text.toString().firstOrNull()
+                    editText.setText("")
+                    currentEditTextIndex++
+                    adapterLetter.showLetter(removedLetter!!)
+                }
+            }
+
+            //set edittext in linearlayout
+            binding.layoutAnswer.addView(editText)
 
             editTexts.add(editText)
 
+            //set margin
             val margin: ViewGroup.MarginLayoutParams =
                 editText.layoutParams as ViewGroup.MarginLayoutParams
             margin.setMargins(4, 0, 4, 0)
@@ -106,7 +139,7 @@ class GameFragment : Fragment(), ClickOnLetter {
 
 
     private fun setDataToRecyclerViewLetter() {
-        adapterLetter = LetterAdapter(listLetter, this)
+        adapterLetter = LetterAdapter(listLetterAdapter, this)
         binding.recyclerViewLetter.apply {
             layoutManager =
                 GridLayoutManager(requireContext(), 6, GridLayoutManager.VERTICAL, false)
@@ -114,17 +147,25 @@ class GameFragment : Fragment(), ClickOnLetter {
         }
     }
 
+
     override fun clickOnLetter(index: Int, letter: Char, linearLayout: LinearLayout) {
-
         if (currentEditTextIndex >= 0) {
-
             editTexts[currentEditTextIndex].setText(letter.toString())
             if (currentEditTextIndex == 0) {
                 Utils.isAllEditTextsFilled = true
                 checkAnswer()
             }
             currentEditTextIndex--
+            changeOnRecyclerViewAnswer(index)
         }
+    }
+
+
+    private fun changeOnRecyclerViewAnswer(index: Int) {
+        listLetterAdapter.find { it.index == index }?.isShow = false
+
+        adapterLetter.notifyItemChanged(index)
+
     }
 
     private fun checkAnswer() {
@@ -138,7 +179,7 @@ class GameFragment : Fragment(), ClickOnLetter {
 
         if (answer == answerUser) {
             Toast.makeText(requireContext(), "آفرین!", Toast.LENGTH_SHORT).show()
-        }else{
+        } else {
             Toast.makeText(requireContext(), "اشتباه!", Toast.LENGTH_SHORT).show()
         }
     }
