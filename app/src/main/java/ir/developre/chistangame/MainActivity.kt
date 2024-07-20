@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
                 question = "آن کیست که در ابتدا چهار پا دارد سپس دو پا و در نهایت سه پا",
                 answer = "انسان",
                 sizeAnswer = 5,
+                listAnswer = arrayListOf('ا', 'ن', 'س', 'ا', 'ن'),
                 letters = arrayListOf('ا', 'ح', 'ن', 'گ', 'ص', 'ن', 'ت', 'س', 'د', 'ا', 'ش', 'ث')
             )
         )
@@ -80,6 +81,20 @@ class MainActivity : AppCompatActivity() {
                 question = "Sample question?",
                 answer = "انسان",
                 sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'ا',
+                    'ح',
+                    'ن',
+                    'گ',
+                    'ص',
+                    'ن',
+                    'ت',
+                    'س',
+                    'د',
+                    'ا',
+                    'ش',
+                    'ث'
+                ),
                 letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )
@@ -91,6 +106,20 @@ class MainActivity : AppCompatActivity() {
                 question = "Sample question?",
                 answer = "انسان",
                 sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'ا',
+                    'ح',
+                    'ن',
+                    'گ',
+                    'ص',
+                    'ن',
+                    'ت',
+                    'س',
+                    'د',
+                    'ا',
+                    'ش',
+                    'ث'
+                ),
                 letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )
@@ -102,6 +131,20 @@ class MainActivity : AppCompatActivity() {
                 question = "Sample question?",
                 answer = "انسان",
                 sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'ا',
+                    'ح',
+                    'ن',
+                    'گ',
+                    'ص',
+                    'ن',
+                    'ت',
+                    'س',
+                    'د',
+                    'ا',
+                    'ش',
+                    'ث'
+                ),
                 letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )
@@ -113,6 +156,20 @@ class MainActivity : AppCompatActivity() {
                 question = "Sample question?",
                 answer = "انسان",
                 sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'ا',
+                    'ح',
+                    'ن',
+                    'گ',
+                    'ص',
+                    'ن',
+                    'ت',
+                    'س',
+                    'د',
+                    'ا',
+                    'ش',
+                    'ث'
+                ),
                 letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
             )
         )

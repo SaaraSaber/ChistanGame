@@ -15,6 +15,7 @@ data class LevelModel(
     val question: String,
     val answer: String,
     val sizeAnswer: Int,
+    val listAnswer: ArrayList<Char>,
     val letters: ArrayList<Char>
 )
 
