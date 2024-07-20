@@ -1,16 +1,20 @@
 package ir.developre.chistangame.fragments
 
 import android.annotation.SuppressLint
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import ir.developre.chistangame.R
 import ir.developre.chistangame.adapter.AnswerAdapter
 import ir.developre.chistangame.adapter.LetterAdapter
 import ir.developre.chistangame.database.AppDataBase
@@ -19,7 +23,6 @@ import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.model.AnswerModel
 import ir.developre.chistangame.model.LetterModel
 import ir.developre.chistangame.model.LevelModel
-import ir.developre.chistangame.model.SelectedLetter
 import ir.developre.chistangame.my_interface.on_click.ClickOnAnswer
 import ir.developre.chistangame.my_interface.on_click.ClickOnLetter
 
@@ -34,9 +37,9 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private lateinit var listAnswerAdapter: ArrayList<AnswerModel>
     private lateinit var listLetter: ArrayList<Char>
     private lateinit var listAnswer: ArrayList<Char>
+    private val listAnswerUser by lazy { ArrayList<Char>() }
     private var currentEditTextIndex = 0
     private var level = 0
-    private val editTexts = mutableListOf<EditText>()
     private lateinit var adapterLetter: LetterAdapter
     private lateinit var adapterAnswer: AnswerAdapter
 
@@ -67,10 +70,8 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
         binding.btnBack.setOnClickListener { findNavController().popBackStack() }
 
-//        val numberOfEditTexts = sizeAnswer
         createDynamicEditText()
-//        currentEditTextIndex = numberOfEditTexts - 1
-//        currentEditTextIndex = sizeAnswer
+
         setDataToRecyclerViewLetter()
 
     }
@@ -148,7 +149,6 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
-    private val listSelectedLetter by lazy { ArrayList<SelectedLetter>() }
 
     private fun changeOnRecyclerViewAnswer(index: Int) {
         listLetterAdapter.find { it.index == index }?.isShow = false
@@ -157,21 +157,57 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
     }
 
+    private lateinit var dialogWin: Dialog
     private fun checkAnswer() {
-        val allText = StringBuilder()
-        for (editText in editTexts) {
-            allText.append(editText.text.toString())
-        }
+        val answerUser = listAnswerUser.joinToString("")
 
-        val answerUser = allText.reverse().toString()
         Toast.makeText(requireContext(), answerUser, Toast.LENGTH_SHORT).show()
 
         if (answer == answerUser) {
             Toast.makeText(requireContext(), "آفرین!", Toast.LENGTH_SHORT).show()
+
+            showDialogWin()
+
         } else {
             Toast.makeText(requireContext(), "اشتباه!", Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun showDialogWin() {
+        dialogWin = Dialog(requireContext())
+        dialogWin.setContentView(R.layout.layout_dialog_win_stage)
+        dialogWin.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogWin.window!!.setGravity(Gravity.CENTER)
+        dialogWin.window!!.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT,
+        )
+        val lp = dialogWin.window!!.attributes
+        lp.dimAmount = 0.7f
+        dialogWin.setCancelable(false)
+
+        val btnNextLevel = dialogWin.findViewById<View>(R.id.btn_next_level)
+        val btnSeeAd = dialogWin.findViewById<View>(R.id.btn_see_ad)
+
+        btnSeeAd.setOnClickListener {
+            Toast.makeText(
+                requireContext(),
+                "در دست ساخت..!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        btnNextLevel.setOnClickListener {
+            Toast.makeText(
+                requireContext(),
+                "در دست ساخت..!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        dialogWin.show()
+    }
+
 
     override fun clickOnAnswer(index: Int, letter: Char, positionLetter: Int) {
 
@@ -182,21 +218,20 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             adapterAnswer.notifyItemChanged(index)
             currentEditTextIndex--
 
-            listSelectedLetter.forEach { selectedLetter ->
-                if (selectedLetter.position == positionLetter) {
-                    listLetterAdapter.find { it.index == selectedLetter.position && it.letter == letter }?.isShow = true
-                    adapterLetter.notifyItemChanged(selectedLetter.position)
-                }
-            }
+            listLetterAdapter.find { it.index == positionLetter && it.letter == letter }?.isShow =
+                true
+            adapterLetter.notifyItemChanged(positionLetter)
+
+            listAnswerUser.removeAt(index)
         }
     }
 
     override fun clickOnLetter(index: Int, letter: Char, linearLayout: LinearLayout) {
         if (currentEditTextIndex <= sizeAnswer) {
-//            editTexts[currentEditTextIndex].setText(letter.toString())
+            listAnswerUser.add(letter)
             if (currentEditTextIndex == sizeAnswer) {
                 Utils.isAllEditTextsFilled = true
-//                checkAnswer()
+                checkAnswer()
             }
 
             listAnswerAdapter.find { it.index == currentEditTextIndex }?.letter = letter
@@ -204,64 +239,10 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             listAnswerAdapter.find { it.index == currentEditTextIndex }?.isShow = true
             adapterAnswer.notifyItemChanged(currentEditTextIndex)
 
-
             currentEditTextIndex++
             changeOnRecyclerViewAnswer(index)
-
-            listSelectedLetter.add(SelectedLetter(position = index, letter = letter))
 
         }
     }
 
 }
-
-
-//    private fun createDynamicEditText(count: Int) {
-//        val typeface =
-//            Typeface.createFromAsset(requireActivity().assets, "fonts/lalezar_regular.ttf")
-//
-//        for (i in 1..count) {
-//            val editText = EditText(requireContext())
-//            editText.layoutParams =
-//                LayoutParams(170, 170)
-//            editText.setBackgroundResource(R.drawable.simple_shape_background_recycler_view_enter_letter)
-//            editText.maxLines = 1
-//            editText.typeface = typeface
-//            editText.textSize = 28f
-//            editText.layoutDirection = View.LAYOUT_DIRECTION_RTL
-//            editText.textDirection = View.TEXT_DIRECTION_RTL
-//            editText.isFocusableInTouchMode = false
-//            editText.isAllCaps = true
-//            editText.isCursorVisible = false
-//            editText.gravity = Gravity.CENTER
-//            editText.setTextColor(requireContext().getColor(R.color.brightMango))
-//            editText.setPadding(4, 0, 4, 0)
-//
-//            editText.setOnClickListener {
-//                if (i - 1 == currentEditTextIndex + 1) {
-//                    val removedLetter = editText.text.toString().firstOrNull()
-//                    editText.setText("")
-//                    currentEditTextIndex++
-//
-//
-//                    listSelectedLetter.forEachIndexed { index, selectedLetter ->
-//
-//                    }
-//                    listLetterAdapter.find { it.letter == removedLetter }?.isShow = true
-//
-////                    adapterLetter.notifyItemChanged (index)
-//
-//                }
-//            }
-//
-//            //set edittext in linearlayout
-//            binding.layoutAnswer.addView(editText)
-//
-//            editTexts.add(editText)
-//
-//            //set margin
-//            val margin: ViewGroup.MarginLayoutParams =
-//                editText.layoutParams as ViewGroup.MarginLayoutParams
-//            margin.setMargins(4, 0, 4, 0)
-//        }
-//    }
