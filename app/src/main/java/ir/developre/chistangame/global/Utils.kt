@@ -5,4 +5,5 @@ object Utils {
     var playVolume = true
     const val statusLogin = "statusLogin"
     var isAllEditTextsFilled = false
+    var currentLevel = 0
 }

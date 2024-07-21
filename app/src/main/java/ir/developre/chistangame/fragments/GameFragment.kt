@@ -39,7 +39,8 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private lateinit var listAnswer: ArrayList<Char>
     private val listAnswerUser by lazy { ArrayList<Char>() }
     private var currentEditTextIndex = 0
-    private var level = 0
+
+    //    private var level = 0
     private lateinit var adapterLetter: LetterAdapter
     private lateinit var adapterAnswer: AnswerAdapter
 
@@ -56,11 +57,11 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        level = requireArguments().getInt("level")
+//        level = requireArguments().getInt("level")
 
         Utils.isAllEditTextsFilled = false
 
-        binding.textViewLevel.text = "مرحله $level"
+        binding.textViewLevel.text = "مرحله ${Utils.currentLevel}"
 
         readDataFromDatabaseAndFillFilds()
 
@@ -100,7 +101,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         readData = dataBase.levels().readDataLevel()
 
         readData.forEach {
-            if (level == it.titleLevel) {
+            if (Utils.currentLevel == it.titleLevel) {
                 binding.textQuestion.text = it.question
                 answer = it.answer
                 sizeAnswer = it.sizeAnswer
@@ -161,10 +162,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private fun checkAnswer() {
         val answerUser = listAnswerUser.joinToString("")
 
-        Toast.makeText(requireContext(), answerUser, Toast.LENGTH_SHORT).show()
-
         if (answer == answerUser) {
-            Toast.makeText(requireContext(), "آفرین!", Toast.LENGTH_SHORT).show()
 
             showDialogWin()
 
@@ -188,6 +186,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
         val btnNextLevel = dialogWin.findViewById<View>(R.id.btn_next_level)
         val btnSeeAd = dialogWin.findViewById<View>(R.id.btn_see_ad)
+        val btnClose = dialogWin.findViewById<View>(R.id.btn_close_win)
 
         btnSeeAd.setOnClickListener {
             Toast.makeText(
@@ -198,14 +197,46 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
 
         btnNextLevel.setOnClickListener {
-            Toast.makeText(
-                requireContext(),
-                "در دست ساخت..!",
-                Toast.LENGTH_SHORT
-            ).show()
+            refreshFragment()
+            dialogWin.dismiss()
+        }
+
+        btnClose.setOnClickListener {
+            dialogWin.dismiss()
+            findNavController().popBackStack()
         }
 
         dialogWin.show()
+    }
+
+    private fun refreshFragment() {
+
+        updateData()
+
+        val id = findNavController().currentDestination?.id
+        findNavController().popBackStack(id!!, true)
+        findNavController().navigate(id)
+    }
+
+    private fun updateData() {
+        Utils.currentLevel += 1
+        //update database
+        readData.forEach {
+            if (it.id == Utils.currentLevel) {
+                dataBase.levels().updateDataLevel(
+                    LevelModel(
+                        id = it.id,
+                        titleLevel = it.titleLevel,
+                        isLockLevel = false,
+                        question = it.question,
+                        answer = it.answer,
+                        sizeAnswer = it.sizeAnswer,
+                        listAnswer = it.listAnswer,
+                        letters = it.letters
+                    )
+                )
+            }
+        }
     }
 
 
