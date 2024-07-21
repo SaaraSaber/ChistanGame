@@ -6,13 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import ir.developre.chistangame.database.dao.LevelsDao
 import ir.developre.chistangame.database.dao.SettingDao
+import ir.developre.chistangame.database.dao.UserDao
 import ir.developre.chistangame.model.LevelModel
 import ir.developre.chistangame.model.SettingModel
+import ir.developre.chistangame.model.UserModel
 
 @Database(
     entities = [
-        SettingModel::class, LevelModel::class],
-    version = 2,
+        SettingModel::class, LevelModel::class, UserModel::class],
+    version = 3,
     exportSchema = true
 )
 
@@ -20,6 +22,7 @@ abstract class AppDataBase : RoomDatabase() {
 
     abstract fun setting(): SettingDao
     abstract fun levels(): LevelsDao
+    abstract fun user(): UserDao
 
     companion object {
         @Volatile

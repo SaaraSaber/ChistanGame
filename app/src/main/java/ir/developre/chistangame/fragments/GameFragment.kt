@@ -58,6 +58,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         super.onViewCreated(view, savedInstanceState)
 
 //        level = requireArguments().getInt("level")
+        dataBase = AppDataBase.getDatabase(requireActivity())
 
         Utils.isAllEditTextsFilled = false
 
@@ -76,6 +77,8 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         setDataToRecyclerViewLetter()
 
     }
+
+
 
     private fun fillListLetterAdapter() {
         listLetterAdapter = ArrayList()
@@ -97,7 +100,6 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     }
 
     private fun readDataFromDatabaseAndFillFilds() {
-        dataBase = AppDataBase.getDatabase(requireActivity())
         readData = dataBase.levels().readDataLevel()
 
         readData.forEach {
@@ -202,6 +204,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
 
         btnClose.setOnClickListener {
+            updateData()
             dialogWin.dismiss()
             findNavController().popBackStack()
         }

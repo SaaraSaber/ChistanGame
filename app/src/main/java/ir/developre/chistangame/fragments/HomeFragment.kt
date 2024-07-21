@@ -42,12 +42,19 @@ class HomeFragment : Fragment() {
 
         dataBase = AppDataBase.getDatabase(requireActivity())
 
+        getCoinFromDatabase()
         clickOnLayoutIncludeIncreaseRuby()
         clickBtnStartGame()
         clickBtnSetting()
         clickBtnShop()
         clickBtnAboutUs()
     }
+
+    private fun getCoinFromDatabase() {
+        val dataUser = dataBase.user().readDataUser()
+        binding.layoutIncreaseRubyHome.textCoin.text = dataUser.coin.toString()
+    }
+
 
     private fun clickOnLayoutIncludeIncreaseRuby() {
         binding.layoutIncreaseRubyHome.btnBuyRuby.setOnClickListener { dialogShop() }
@@ -192,6 +199,7 @@ class HomeFragment : Fragment() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
         )
+        dialog.setCancelable(false)
         val btnClose = dialog.findViewById<View>(R.id.btn_close)
         btnClose.setOnClickListener {
             dialog.dismiss()

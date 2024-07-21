@@ -16,6 +16,7 @@ import ir.developre.chistangame.databinding.ActivityMainBinding
 import ir.developre.chistangame.global.PlayMusicService
 import ir.developre.chistangame.model.LevelModel
 import ir.developre.chistangame.model.SettingModel
+import ir.developre.chistangame.model.UserModel
 import ir.developre.chistangame.sharedPref.SharedPreferencesGame
 
 class MainActivity : AppCompatActivity() {
@@ -54,13 +55,24 @@ class MainActivity : AppCompatActivity() {
         sharedPreferencesGame = SharedPreferencesGame(this)
         sharedPreferencesGame.saveStatusFirst(true)
 
+        dataBase = AppDataBase.getDatabase(this)
         insertDataToDbSetting()
         insertDataToDbLevels()
+        insertDataToDbUser()
 
     }
 
+    private fun insertDataToDbUser() {
+        dataBase.user().saveDataUser(
+            UserModel(
+                id = 1,
+                coin = 50
+            )
+        )
+    }
+
     private fun insertDataToDbLevels() {
-        dataBase = AppDataBase.getDatabase(this)
+//        dataBase = AppDataBase.getDatabase(this)
         dataBase.levels().saveDataLevel(
             LevelModel(
                 id = 1,
@@ -78,24 +90,17 @@ class MainActivity : AppCompatActivity() {
                 id = 2,
                 titleLevel = 2,
                 isLockLevel = true,
-                question = "Sample question?",
-                answer = "انسان",
+                question = "آن چیست که پر از سوراخ است اما هنوز آب را نگه می دارد؟",
+                answer = "اسفنج",
                 sizeAnswer = 5,
                 listAnswer = arrayListOf(
                     'ا',
-                    'ح',
-                    'ن',
-                    'گ',
-                    'ص',
-                    'ن',
-                    'ت',
                     'س',
-                    'د',
-                    'ا',
-                    'ش',
-                    'ث'
+                    'ف',
+                    'ن',
+                    'ج',
                 ),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
+                letters = arrayListOf('ل', 'ی', 'ب', 'ف', 'خ', 'ن', 'ا', 'ب', 'پ', 'س', 'چ', 'ج')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -103,24 +108,15 @@ class MainActivity : AppCompatActivity() {
                 id = 3,
                 titleLevel = 3,
                 isLockLevel = true,
-                question = "Sample question?",
-                answer = "انسان",
-                sizeAnswer = 5,
+                question = "من در جوانی قد بلندم و در پیری کوتاه قد هستم. من چی هستم؟",
+                answer = "شمع",
+                sizeAnswer = 3,
                 listAnswer = arrayListOf(
-                    'ا',
-                    'ح',
-                    'ن',
-                    'گ',
-                    'ص',
-                    'ن',
-                    'ت',
-                    'س',
-                    'د',
-                    'ا',
                     'ش',
-                    'ث'
+                    'م',
+                    'ع',
                 ),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
+                letters = arrayListOf('ه', 'ب', 'ر', 'گ', 'ی', 'پ', 'د', 'م', 'ش', 'ج', 'آ', 'ع')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -128,24 +124,15 @@ class MainActivity : AppCompatActivity() {
                 id = 4,
                 titleLevel = 4,
                 isLockLevel = true,
-                question = "Sample question?",
-                answer = "انسان",
-                sizeAnswer = 5,
+                question = "مامان کیت سه فرزند دارد ، اسنپ، کراکر و ...؟ ",
+                answer = "کیت",
+                sizeAnswer = 3,
                 listAnswer = arrayListOf(
-                    'ا',
-                    'ح',
-                    'ن',
-                    'گ',
-                    'ص',
-                    'ن',
+                    'ک',
+                    'ی',
                     'ت',
-                    'س',
-                    'د',
-                    'ا',
-                    'ش',
-                    'ث'
                 ),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
+                letters = arrayListOf('ی', 'م', 'د', 'آ', 'ت', 'پ', 'ن', 'ک', 'س', 'ا', 'ح', 'ک')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -153,30 +140,21 @@ class MainActivity : AppCompatActivity() {
                 id = 5,
                 titleLevel = 5,
                 isLockLevel = true,
-                question = "Sample question?",
-                answer = "انسان",
-                sizeAnswer = 5,
+                question = "فکر کن که داری مسابقه دو میدی، در لحظه آخر از نفر دوم جلو میزنی الان نفر چندمی؟",
+                answer = "دوم",
+                sizeAnswer = 3,
                 listAnswer = arrayListOf(
-                    'ا',
-                    'ح',
-                    'ن',
-                    'گ',
-                    'ص',
-                    'ن',
-                    'ت',
-                    'س',
                     'د',
-                    'ا',
-                    'ش',
-                    'ث'
+                    'و',
+                    'م',
                 ),
-                letters = arrayListOf('a', 'b', 'c', 'd', 'e', 'a', 'b', 'c', 'd', 'e', 'd', 'e')
+                letters = arrayListOf('چ', 'م', 'س', 'ه', 'د', 'پ', 'ن', 'ف', 'و', 'ش', 'آ', 'ش')
             )
         )
     }
 
     private fun insertDataToDbSetting() {
-        dataBase = AppDataBase.getDatabase(this)
+
         dataBase.setting().saveDataSetting(SettingModel(1, playMusic = true, playVolume = true))
     }
 
