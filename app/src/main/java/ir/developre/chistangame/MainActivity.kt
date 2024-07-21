@@ -39,15 +39,15 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        navController = findNavController(R.id.my_nav_host_fragment)
-
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.Watery)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.friendlyFrost)
-
         if (!checkEnterToAppForFirst()) {
             saveEnterToAppForFirst()
         }
 
+
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.Watery)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.friendlyFrost)
+
+        navController = findNavController(R.id.my_nav_host_fragment)
     }
 
     private lateinit var sharedPreferencesGame: SharedPreferencesGame
@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         sharedPreferencesGame = SharedPreferencesGame(this)
         sharedPreferencesGame.saveStatusFirst(true)
 
-        dataBase = AppDataBase.getDatabase(this)
         insertDataToDbSetting()
         insertDataToDbLevels()
         insertDataToDbUser()
@@ -63,6 +62,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun insertDataToDbUser() {
+        dataBase = AppDataBase.getDatabase(this)
         dataBase.user().saveDataUser(
             UserModel(
                 id = 1,
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun insertDataToDbLevels() {
-//        dataBase = AppDataBase.getDatabase(this)
+        dataBase = AppDataBase.getDatabase(this)
         dataBase.levels().saveDataLevel(
             LevelModel(
                 id = 1,
@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun insertDataToDbSetting() {
-
+        dataBase = AppDataBase.getDatabase(this)
         dataBase.setting().saveDataSetting(SettingModel(1, playMusic = true, playVolume = true))
     }
 

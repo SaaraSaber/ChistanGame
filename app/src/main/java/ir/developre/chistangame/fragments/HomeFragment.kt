@@ -8,6 +8,8 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -51,8 +53,13 @@ class HomeFragment : Fragment() {
     }
 
     private fun getCoinFromDatabase() {
-        val dataUser = dataBase.user().readDataUser()
-        binding.layoutIncreaseRubyHome.textCoin.text = dataUser.coin.toString()
+        Handler(Looper.getMainLooper()).postDelayed({
+
+            val dataUser = dataBase.user().readDataUser()
+
+            binding.layoutIncreaseRubyHome.textCoin.text = dataUser.coin.toString()
+
+        }, 50)
     }
 
 
