@@ -65,7 +65,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         binding.textViewLevel.text = "مرحله ${Utils.currentLevel}"
 
         readDataFromDatabaseAndFillFilds()
-
+        getCoinFromDatabase()
         fillListAnswer()
 
         fillListLetterAdapter()
@@ -78,7 +78,10 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
     }
 
-
+    private fun getCoinFromDatabase() {
+        val dataUser = dataBase.user().readDataUser()
+        binding.layoutIncreaseRuby.textCoin.text = dataUser.coin.toString()
+    }
 
     private fun fillListLetterAdapter() {
         listLetterAdapter = ArrayList()

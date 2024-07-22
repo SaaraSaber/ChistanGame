@@ -39,9 +39,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        if (!checkEnterToAppForFirst()) {
-            saveEnterToAppForFirst()
-        }
+//        if (!checkEnterToAppForFirst()) {
+//            saveEnterToAppForFirst()
+//        }
 
 
         window.navigationBarColor = ContextCompat.getColor(this, R.color.Watery)
