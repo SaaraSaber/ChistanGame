@@ -5,5 +5,7 @@ data class AnswerModel(
     val index: Int,
     var letter: Char? = null,
     var positionLetter: Int? = null,
-    var isShow: Boolean
+    var isShow: Boolean,
+    var isHelp: Boolean = false,
+    var characterHelp: Char
 )

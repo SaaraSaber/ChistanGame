@@ -36,7 +36,11 @@ class AnswerAdapter(
 
         val item = listLetter[holder.adapterPosition]
 
-        holder.title.text = item.letter.toString()
+        if (item.isHelp) {
+            holder.title.text = item.characterHelp.toString()
+        } else {
+            holder.title.text = item.letter.toString()
+        }
 
         if (!item.isShow) {
             holder.title.visibility = View.INVISIBLE
@@ -44,29 +48,25 @@ class AnswerAdapter(
             holder.title.visibility = View.VISIBLE
         }
 
-        holder.itemView.setOnClickListener {
 
-            clickOnLetter.clickOnAnswer(
-                holder.adapterPosition,
-                item.letter!!,
-                item.positionLetter!!
-            )
-
-//            if (!Utils.isAllEditTextsFilled) {
-//                holder.layout.visibility = View.INVISIBLE
-//            }
+        if (item.isHelp) {
+            holder.layout.setOnClickListener {
+                clickOnLetter.clickOnHelp(
+                    holder.adapterPosition,
+                    item.isHelp
+                )
+            }
+        } else {
+            holder.layout.setOnClickListener {
+                clickOnLetter.clickOnAnswer(
+                    holder.adapterPosition,
+                    item.letter!!,
+                    item.positionLetter!!,
+                    item.isHelp
+                )
+            }
         }
 
-    }
-
-    fun showLetter(letter: Char) {
 
     }
 }
-
-
-//        val position = listLetter.indexOf(letter)
-//        if (position >= 0) {
-//            binding.layoutLetter.visibility = View.VISIBLE
-//            notifyItemChanged(position)
-//        }

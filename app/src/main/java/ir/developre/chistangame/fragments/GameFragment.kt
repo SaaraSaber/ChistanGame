@@ -19,6 +19,7 @@ import ir.developre.chistangame.adapter.AnswerAdapter
 import ir.developre.chistangame.adapter.LetterAdapter
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.FragmentGameBinding
+import ir.developre.chistangame.global.CustomToast
 import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.model.AnswerModel
 import ir.developre.chistangame.model.LetterModel
@@ -38,11 +39,10 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private lateinit var listLetter: ArrayList<Char>
     private lateinit var listAnswer: ArrayList<Char>
     private val listAnswerUser by lazy { ArrayList<Char>() }
-    private var currentEditTextIndex = 0
-
-    //    private var level = 0
+    private var currentTextIndex = 0
     private lateinit var adapterLetter: LetterAdapter
     private lateinit var adapterAnswer: AnswerAdapter
+    private val customToast by lazy { CustomToast(requireActivity()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,25 +57,21 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        level = requireArguments().getInt("level")
         dataBase = AppDataBase.getDatabase(requireActivity())
 
         Utils.isAllEditTextsFilled = false
 
         binding.textViewLevel.text = "مرحله ${Utils.currentLevel}"
 
+        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+
         readDataFromDatabaseAndFillFilds()
         getCoinFromDatabase()
         fillListAnswer()
-
         fillListLetterAdapter()
-
-        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
-
-        createDynamicEditText()
-
+        createRecyclerViewAnswer()
         setDataToRecyclerViewLetter()
-
+        help()
     }
 
     private fun getCoinFromDatabase() {
@@ -122,20 +118,19 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private fun fillListAnswer() {
         listAnswerAdapter = ArrayList()
 
-        listAnswer.forEachIndexed { index, _ ->
+        listAnswer.forEachIndexed { index, answer ->
             listAnswerAdapter.add(
                 AnswerModel(
                     id = index,
                     index = index,
-                    letter = null,
-                    isShow = false
+                    isShow = false,
+                    characterHelp = answer
                 )
             )
         }
     }
 
-
-    private fun createDynamicEditText() {
+    private fun createRecyclerViewAnswer() {
 
         adapterAnswer = AnswerAdapter(listAnswerAdapter, this)
         binding.layoutAnswer.apply {
@@ -144,7 +139,6 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             adapter = adapterAnswer
         }
     }
-
 
     private fun setDataToRecyclerViewLetter() {
         adapterLetter = LetterAdapter(listLetterAdapter, this)
@@ -155,12 +149,10 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
-
     private fun changeOnRecyclerViewAnswer(index: Int) {
         listLetterAdapter.find { it.index == index }?.isShow = false
 
         adapterLetter.notifyItemChanged(index)
-
     }
 
     private lateinit var dialogWin: Dialog
@@ -172,7 +164,17 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             showDialogWin()
 
         } else {
-            Toast.makeText(requireContext(), "اشتباه!", Toast.LENGTH_SHORT).show()
+
+            customToast.customToast(
+                R.drawable.simple_shape_background_toast_error,
+                R.drawable.vector_close_circle,
+                requireContext().getString(R.string.wrong_answer)
+            )
+
+            //refresh fragment
+            val id = findNavController().currentDestination?.id
+            findNavController().popBackStack(id!!, true)
+            findNavController().navigate(id)
         }
     }
 
@@ -245,38 +247,68 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
+    private fun help() {
+        binding.layoutHelp.setOnClickListener {
 
-    override fun clickOnAnswer(index: Int, letter: Char, positionLetter: Int) {
+            listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = true
+            listAnswerAdapter.find { it.index == currentTextIndex }?.isShow = true
+            adapterAnswer.notifyItemChanged(currentTextIndex)
+            listAnswerAdapter.forEach {
+                if (it.index == currentTextIndex)
+                    listAnswerUser.add(it.characterHelp)
+            }
+            currentTextIndex++
 
-        if (index == currentEditTextIndex - 1) {
-            listAnswerAdapter.find { it.index == index }?.letter = null
-            listAnswerAdapter.find { it.index == index }?.positionLetter = null
+            if (currentTextIndex == sizeAnswer + 1) {
+                Utils.isAllEditTextsFilled = true
+                checkAnswer()
+
+            }
+        }
+    }
+
+    override fun clickOnAnswer(index: Int, letter: Char?, positionLetter: Int?, isHelp: Boolean) {
+        if (!isHelp) {
+            if (index == currentTextIndex - 1) {
+                listAnswerAdapter.find { it.index == index }?.letter = null
+                listAnswerAdapter.find { it.index == index }?.positionLetter = null
+                listAnswerAdapter.find { it.index == index }?.isShow = false
+                adapterAnswer.notifyItemChanged(index)
+                currentTextIndex--
+
+                listLetterAdapter.find { it.index == positionLetter && it.letter == letter }?.isShow =
+                    true
+                adapterLetter.notifyItemChanged(positionLetter!!)
+
+                listAnswerUser.removeAt(index)
+            }
+        }
+    }
+
+    override fun clickOnHelp(index: Int, isHelp: Boolean) {
+        if (isHelp) {
+            currentTextIndex--
+            listAnswerUser.removeAt(index)
+            listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = false
             listAnswerAdapter.find { it.index == index }?.isShow = false
             adapterAnswer.notifyItemChanged(index)
-            currentEditTextIndex--
-
-            listLetterAdapter.find { it.index == positionLetter && it.letter == letter }?.isShow =
-                true
-            adapterLetter.notifyItemChanged(positionLetter)
-
-            listAnswerUser.removeAt(index)
         }
     }
 
     override fun clickOnLetter(index: Int, letter: Char, linearLayout: LinearLayout) {
-        if (currentEditTextIndex <= sizeAnswer) {
+        if (currentTextIndex <= sizeAnswer) {
             listAnswerUser.add(letter)
-            if (currentEditTextIndex == sizeAnswer) {
+            if (currentTextIndex == sizeAnswer) {
                 Utils.isAllEditTextsFilled = true
                 checkAnswer()
             }
 
-            listAnswerAdapter.find { it.index == currentEditTextIndex }?.letter = letter
-            listAnswerAdapter.find { it.index == currentEditTextIndex }?.positionLetter = index
-            listAnswerAdapter.find { it.index == currentEditTextIndex }?.isShow = true
-            adapterAnswer.notifyItemChanged(currentEditTextIndex)
+            listAnswerAdapter.find { it.index == currentTextIndex }?.letter = letter
+            listAnswerAdapter.find { it.index == currentTextIndex }?.positionLetter = index
+            listAnswerAdapter.find { it.index == currentTextIndex }?.isShow = true
+            adapterAnswer.notifyItemChanged(currentTextIndex)
 
-            currentEditTextIndex++
+            currentTextIndex++
             changeOnRecyclerViewAnswer(index)
 
         }
