@@ -132,7 +132,14 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
     private fun createRecyclerViewAnswer() {
 
-        adapterAnswer = AnswerAdapter(listAnswerAdapter, this)
+        val displayMetrics = resources.displayMetrics
+        val screenWith =
+            displayMetrics.widthPixels - (resources.getDimension(com.intuit.sdp.R.dimen._15sdp) * 2) - (resources.getDimension(
+                com.intuit.sdp.R.dimen._8sdp
+            ) * 2)
+        val itemWith = (screenWith / 6).toInt()
+
+        adapterAnswer = AnswerAdapter(listAnswerAdapter, this, itemWith = itemWith)
         binding.layoutAnswer.apply {
             layoutManager =
                 GridLayoutManager(requireContext(), 6, GridLayoutManager.VERTICAL, false)
@@ -141,12 +148,20 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     }
 
     private fun setDataToRecyclerViewLetter() {
-        adapterLetter = LetterAdapter(listLetterAdapter, this)
+        val displayMetrics = resources.displayMetrics
+        val screenWith =
+            displayMetrics.widthPixels - (resources.getDimension(com.intuit.sdp.R.dimen._15sdp) * 2) - (resources.getDimension(
+                com.intuit.sdp.R.dimen._8sdp
+            ) * 2)
+        val itemWith = (screenWith / 6).toInt()
+
+        adapterLetter = LetterAdapter(listLetterAdapter, this, itemWith = itemWith)
         binding.recyclerViewLetter.apply {
             layoutManager =
                 GridLayoutManager(requireContext(), 6, GridLayoutManager.VERTICAL, false)
             adapter = adapterLetter
         }
+
     }
 
     private fun changeOnRecyclerViewAnswer(index: Int) {
@@ -218,7 +233,6 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     }
 
     private fun refreshFragment() {
-
         updateData()
 
         val id = findNavController().currentDestination?.id

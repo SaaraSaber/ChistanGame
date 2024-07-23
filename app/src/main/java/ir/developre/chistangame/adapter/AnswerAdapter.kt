@@ -11,6 +11,7 @@ import ir.developre.chistangame.my_interface.on_click.ClickOnAnswer
 class AnswerAdapter(
     private val listLetter: ArrayList<AnswerModel>,
     private val clickOnLetter: ClickOnAnswer,
+    private val itemWith: Int
 ) :
     RecyclerView.Adapter<AnswerAdapter.ViewHolderLevel>() {
 
@@ -35,6 +36,9 @@ class AnswerAdapter(
     override fun onBindViewHolder(holder: ViewHolderLevel, position: Int) {
 
         val item = listLetter[holder.adapterPosition]
+
+        holder.layout.layoutParams.width = itemWith
+        holder.layout.layoutParams.height = itemWith
 
         if (item.isHelp) {
             holder.title.text = item.characterHelp.toString()

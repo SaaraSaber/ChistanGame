@@ -11,6 +11,7 @@ import ir.developre.chistangame.my_interface.on_click.ClickOnLetter
 class LetterAdapter(
     private val listLetter: ArrayList<LetterModel>,
     private val clickOnLetter: ClickOnLetter,
+    private val itemWith: Int
 ) :
     RecyclerView.Adapter<LetterAdapter.ViewHolderLevel>() {
 
@@ -35,6 +36,9 @@ class LetterAdapter(
     override fun onBindViewHolder(holder: ViewHolderLevel, position: Int) {
 
         val item = listLetter[holder.adapterPosition]
+
+        holder.layout.layoutParams.width = itemWith
+        holder.layout.layoutParams.height = itemWith
 
         holder.title.text = item.letter.toString()
 

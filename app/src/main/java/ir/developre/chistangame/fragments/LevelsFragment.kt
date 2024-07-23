@@ -64,7 +64,7 @@ class LevelsFragment : Fragment(), ClickOnLevel {
             ) * 2)
         val itemWith = (screenWith / 3).toInt()
 
-        adapterLevel = LevelAdapter(listLevel, this, itemWith)
+        adapterLevel = LevelAdapter(listLevel, this, itemWith = itemWith)
         binding.recyclerViewLevels.apply {
             layoutManager =
                 GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)
