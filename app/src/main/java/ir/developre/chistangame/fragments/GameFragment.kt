@@ -3,7 +3,6 @@ package ir.developre.chistangame.fragments
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
-import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
@@ -15,7 +14,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import ir.developre.chistangame.R
 import ir.developre.chistangame.adapter.AnswerAdapter
 import ir.developre.chistangame.adapter.LetterAdapter
@@ -131,7 +129,6 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             )
         }
     }
-    
 
     private fun createRecyclerViewAnswer() {
 
@@ -144,8 +141,17 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
         adapterAnswer = AnswerAdapter(listAnswerAdapter, this, itemWith = itemWidth)
         binding.layoutAnswer.apply {
-            layoutManager =
+            if (sizeAnswer + 1 < 6) {
+                layoutManager =
+                    GridLayoutManager(
+                        requireContext(),
+                        sizeAnswer + 1,
+                        GridLayoutManager.VERTICAL,
+                        false
+                    )
+            } else {
                 GridLayoutManager(requireContext(), 6, GridLayoutManager.VERTICAL, false)
+            }
             adapter = adapterAnswer
         }
     }
@@ -284,6 +290,13 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
+    private fun playBeepSound() {
+//        val sound = MediaActionSound()
+//        sound.play(MediaActionSound.FOCUS_COMPLETE)
+        requireView().playSoundEffect(android.view.SoundEffectConstants.CLICK)
+
+    }
+
     override fun clickOnAnswer(index: Int, letter: Char?, positionLetter: Int?, isHelp: Boolean) {
         if (!isHelp) {
             if (index == currentTextIndex - 1) {
@@ -314,6 +327,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
     override fun clickOnLetter(index: Int, letter: Char, linearLayout: LinearLayout) {
         if (currentTextIndex <= sizeAnswer) {
+            playBeepSound()
             listAnswerUser.add(letter)
             if (currentTextIndex == sizeAnswer) {
                 Utils.isAllEditTextsFilled = true
@@ -331,26 +345,4 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
-}
-
-
-class GridSpacingItemDecoration(private val spanCount: Int, private val spacing: Int) :
-    RecyclerView.ItemDecoration() {
-    override fun getItemOffsets(
-        outRect: Rect,
-        view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State
-    ) {
-        val position = parent.getChildAdapterPosition(view) // item position
-        val column = position % spanCount // item column
-
-        outRect.left = spacing - column * spacing / spanCount
-        outRect.right = (column + 1) * spacing / spanCount
-
-        if (position < spanCount) { // top edge
-            outRect.top = spacing
-        }
-        outRect.bottom = spacing // item bottom
-    }
 }
