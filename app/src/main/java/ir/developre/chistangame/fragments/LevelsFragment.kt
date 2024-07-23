@@ -37,6 +37,7 @@ class LevelsFragment : Fragment(), ClickOnLevel {
 
         readDataFromDb()
         getCoinFromDatabase()
+        binding.layoutIncreaseRubyHome.btnBack.setOnClickListener { findNavController().popBackStack() }
 
     }
 

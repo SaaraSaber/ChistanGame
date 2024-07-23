@@ -60,7 +60,7 @@ class AnswerAdapter(
                     item.isHelp
                 )
             }
-        } else {
+        } else if (!item.isHelp && item.letter != null) {
             holder.layout.setOnClickListener {
                 clickOnLetter.clickOnAnswer(
                     holder.adapterPosition,

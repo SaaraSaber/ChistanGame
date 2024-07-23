@@ -3,6 +3,7 @@ package ir.developre.chistangame.fragments
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
@@ -14,6 +15,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ir.developre.chistangame.R
 import ir.developre.chistangame.adapter.AnswerAdapter
 import ir.developre.chistangame.adapter.LetterAdapter
@@ -129,23 +131,23 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             )
         }
     }
+    
 
     private fun createRecyclerViewAnswer() {
 
         val displayMetrics = resources.displayMetrics
         val screenWith =
             displayMetrics.widthPixels - (resources.getDimension(com.intuit.sdp.R.dimen._15sdp) * 2) - (resources.getDimension(
-                com.intuit.sdp.R.dimen._8sdp
+                com.intuit.sdp.R.dimen._15sdp
             ) * 2)
-        val itemWith = (screenWith / 6).toInt()
+        val itemWidth = (screenWith / 6).toInt()
 
-        adapterAnswer = AnswerAdapter(listAnswerAdapter, this, itemWith = itemWith)
+        adapterAnswer = AnswerAdapter(listAnswerAdapter, this, itemWith = itemWidth)
         binding.layoutAnswer.apply {
             layoutManager =
                 GridLayoutManager(requireContext(), 6, GridLayoutManager.VERTICAL, false)
             adapter = adapterAnswer
         }
-
     }
 
     private fun setDataToRecyclerViewLetter() {
@@ -329,4 +331,26 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
+}
+
+
+class GridSpacingItemDecoration(private val spanCount: Int, private val spacing: Int) :
+    RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        val position = parent.getChildAdapterPosition(view) // item position
+        val column = position % spanCount // item column
+
+        outRect.left = spacing - column * spacing / spanCount
+        outRect.right = (column + 1) * spacing / spanCount
+
+        if (position < spanCount) { // top edge
+            outRect.top = spacing
+        }
+        outRect.bottom = spacing // item bottom
+    }
 }
