@@ -36,7 +36,13 @@ class LevelsFragment : Fragment(), ClickOnLevel {
         super.onViewCreated(view, savedInstanceState)
 
         readDataFromDb()
+        getCoinFromDatabase()
 
+    }
+
+    private fun getCoinFromDatabase() {
+        val dataUser = dataBaseLevel.user().readDataUser()
+        binding.layoutIncreaseRubyHome.textCoin.text = dataUser.coin.toString()
     }
 
 

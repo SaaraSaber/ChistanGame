@@ -42,6 +42,8 @@ class HomeFragment : Fragment() {
 
         dataBase = AppDataBase.getDatabase(requireActivity())
 
+        binding.layoutIncreaseRubyHome.btnBack.visibility = View.INVISIBLE
+
         getCoinFromDatabase()
         clickOnLayoutIncludeIncreaseRuby()
         clickBtnStartGame()

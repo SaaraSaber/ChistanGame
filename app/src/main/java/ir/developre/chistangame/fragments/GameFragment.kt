@@ -63,7 +63,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
         binding.textViewLevel.text = "مرحله ${Utils.currentLevel}"
 
-        binding.btnBack.setOnClickListener { findNavController().popBackStack() }
+        binding.layoutIncreaseRuby.btnBack.setOnClickListener { findNavController().popBackStack() }
 
         readDataFromDatabaseAndFillFilds()
         getCoinFromDatabase()
@@ -145,6 +145,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
                 GridLayoutManager(requireContext(), 6, GridLayoutManager.VERTICAL, false)
             adapter = adapterAnswer
         }
+
     }
 
     private fun setDataToRecyclerViewLetter() {
