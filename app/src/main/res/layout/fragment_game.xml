@@ -103,7 +103,6 @@
                 android:layout_margin="@dimen/padding_all_screen"
                 android:layoutDirection="rtl"
                 android:overScrollMode="never"
-                android:background="@color/white"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
