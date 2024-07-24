@@ -22,6 +22,7 @@ import ir.developre.chistangame.adapter.LetterAdapter
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.FragmentGameBinding
 import ir.developre.chistangame.global.CustomToast
+import ir.developre.chistangame.global.DialogShop
 import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.model.AnswerModel
 import ir.developre.chistangame.model.LetterModel
@@ -66,6 +67,8 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         binding.textViewLevel.text = "مرحله ${Utils.currentLevel}"
 
         binding.layoutIncreaseRuby.btnBack.setOnClickListener { findNavController().popBackStack() }
+        binding.layoutIncreaseRuby.btnBuyRuby.setOnClickListener { dialogShop() }
+        binding.layoutIncreaseRuby.layoutBuyRuby.setOnClickListener { dialogShop() }
 
         readDataFromDatabaseAndFillFilds()
         getCoinFromDatabase()
@@ -77,6 +80,14 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
         soundPool = SoundPool(6, AudioManager.STREAM_MUSIC, 0)
         soundPool!!.load(requireContext(), R.raw.sound_effect, 1)
+    }
+
+    private lateinit var dialogShop: DialogShop
+
+    private fun dialogShop() {
+
+        dialogShop = DialogShop(requireActivity())
+        dialogShop.showDialog()
     }
 
     private fun getCoinFromDatabase() {
@@ -190,7 +201,10 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
         if (answer == answerUser) {
 
-            showDialogWin()
+            if (Utils.currentLevel != Utils.LAST_LEVEL)
+                showDialogWin()
+            else
+                showDialogFinalWin()
 
         } else {
 
@@ -205,6 +219,22 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             findNavController().popBackStack(id!!, true)
             findNavController().navigate(id)
         }
+    }
+
+    private fun showDialogFinalWin() {
+        dialogWin = Dialog(requireContext())
+        dialogWin.setContentView(R.layout.layout_dialog_win_stage)
+        dialogWin.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogWin.window!!.setGravity(Gravity.CENTER)
+        dialogWin.window!!.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT,
+        )
+        val lp = dialogWin.window!!.attributes
+        lp.dimAmount = 0.7f
+        dialogWin.setCancelable(false)
+
+
     }
 
     private fun showDialogWin() {
@@ -301,7 +331,6 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private fun playBeepSound() {
         if (Utils.playVolume)
             soundPool?.play(soundId, 1F, 1F, 0, 0, 1F)
-
     }
 
     override fun clickOnAnswer(index: Int, letter: Char?, positionLetter: Int?, isHelp: Boolean) {

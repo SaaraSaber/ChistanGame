@@ -64,7 +64,7 @@ class AppController: Application() {
         dataBase.user().saveDataUser(
             UserModel(
                 id = 1,
-                coin = 50
+                coin = Utils.BASE_COIN
             )
         )
     }

@@ -13,7 +13,7 @@ class SharedPreferencesGame(private val context: Context) {
             Context.MODE_PRIVATE
         )
         val edSharedPreferences = sharedPreferences.edit()
-        edSharedPreferences.putBoolean(Utils.statusLogin, status)
+        edSharedPreferences.putBoolean(Utils.STATUS_LOGIN, status)
         edSharedPreferences.apply()
     }
 
@@ -22,6 +22,6 @@ class SharedPreferencesGame(private val context: Context) {
             "SaveStatusFirst",
             Context.MODE_PRIVATE
         )
-        return sharedPreferences.getBoolean(Utils.statusLogin, false)
+        return sharedPreferences.getBoolean(Utils.STATUS_LOGIN, false)
     }
 }

@@ -62,4 +62,5 @@ dependencies {
     implementation(libs.room.runtime)
     kapt(libs.room.compiler)
     implementation(libs.lottie)
+    implementation(libs.tapsell)
 }

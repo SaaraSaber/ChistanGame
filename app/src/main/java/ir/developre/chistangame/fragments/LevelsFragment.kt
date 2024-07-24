@@ -12,6 +12,7 @@ import ir.developre.chistangame.R
 import ir.developre.chistangame.adapter.LevelAdapter
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.FragmentLevelsBinding
+import ir.developre.chistangame.global.DialogShop
 import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.model.LevelModel
 import ir.developre.chistangame.my_interface.on_click.ClickOnLevel
@@ -38,8 +39,19 @@ class LevelsFragment : Fragment(), ClickOnLevel {
         readDataFromDb()
         getCoinFromDatabase()
         binding.layoutIncreaseRubyHome.btnBack.setOnClickListener { findNavController().popBackStack() }
+        binding.layoutIncreaseRubyHome.btnBuyRuby.setOnClickListener { dialogShop() }
+        binding.layoutIncreaseRubyHome.layoutBuyRuby.setOnClickListener { dialogShop() }
 
     }
+
+    private lateinit var dialogShop: DialogShop
+
+    private fun dialogShop() {
+
+        dialogShop = DialogShop(requireActivity())
+        dialogShop.showDialog()
+    }
+
 
     private fun getCoinFromDatabase() {
         val dataUser = dataBaseLevel.user().readDataUser()

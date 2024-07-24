@@ -21,6 +21,7 @@ import ir.developre.chistangame.R
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.FragmentHomeBinding
 import ir.developre.chistangame.global.AnimationLoadingWaiting
+import ir.developre.chistangame.global.DialogShop
 import ir.developre.chistangame.global.PlayMusicService
 import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.model.LevelModel
@@ -157,7 +158,6 @@ class HomeFragment : Fragment() {
             updateDataBaseSetting()
         }
 
-
         dialogSetting.show()
     }
 
@@ -208,6 +208,7 @@ class HomeFragment : Fragment() {
 
             Handler(Looper.getMainLooper()).postDelayed({
                 animationLoadingWaiting.dismissLoading()
+                binding.layoutIncreaseRubyHome.textCoin.text = Utils.BASE_COIN.toString()
                 requireActivity().startService(
                     Intent(
                         requireActivity(),
@@ -220,9 +221,8 @@ class HomeFragment : Fragment() {
         dialog.show()
     }
 
-
     private fun deleteDatabase() {
-        dataBase.user().updateDataUser(UserModel(id = 1, coin = 50))
+        dataBase.user().updateDataUser(UserModel(id = 1, coin = Utils.BASE_COIN))
         dataBase.setting()
             .updateDataSetting(SettingModel(id = 1, playMusic = true, playVolume = true))
         val level = dataBase.levels().readDataLevel()
@@ -249,23 +249,11 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private lateinit var dialogShop: DialogShop
+
     private fun dialogShop() {
-        dialog = Dialog(requireContext())
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.layout_dialog_shop)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.setGravity(Gravity.CENTER)
-        dialog.window!!.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-        )
-        dialog.setCancelable(false)
-        val btnClose = dialog.findViewById<View>(R.id.btn_close)
-        btnClose.setOnClickListener {
-            dialog.dismiss()
-            updateDataBaseSetting()
-        }
-        dialog.show()
+        dialogShop = DialogShop(requireActivity())
+        dialogShop.showDialog()
     }
 
     private fun clickBtnAboutUs() {
@@ -285,7 +273,6 @@ class HomeFragment : Fragment() {
         val btnClose = dialog.findViewById<View>(R.id.btn_close)
         btnClose.setOnClickListener {
             dialog.dismiss()
-            updateDataBaseSetting()
         }
         val btnEmail = dialog.findViewById<View>(R.id.btn_email)
 
@@ -317,5 +304,6 @@ class HomeFragment : Fragment() {
         emailIntent.putExtra(Intent.EXTRA_TEXT, emailText)
         startActivity(Intent.createChooser(emailIntent, "Send email..."))
     }
+
 
 }
