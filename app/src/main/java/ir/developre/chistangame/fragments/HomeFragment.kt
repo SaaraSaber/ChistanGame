@@ -8,6 +8,8 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -18,15 +20,21 @@ import androidx.navigation.fragment.findNavController
 import ir.developre.chistangame.R
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.FragmentHomeBinding
+import ir.developre.chistangame.global.AnimationLoadingWaiting
 import ir.developre.chistangame.global.PlayMusicService
 import ir.developre.chistangame.global.Utils
+import ir.developre.chistangame.model.LevelModel
 import ir.developre.chistangame.model.SettingModel
+import ir.developre.chistangame.model.UserModel
+
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var dialog: Dialog
     private lateinit var dialogSetting: Dialog
     private lateinit var dataBase: AppDataBase
+    private lateinit var animationLoadingWaiting: AnimationLoadingWaiting
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,7 +64,6 @@ class HomeFragment : Fragment() {
         val dataUser = dataBase.user().readDataUser()
         binding.layoutIncreaseRubyHome.textCoin.text = dataUser.coin.toString()
     }
-
 
     private fun clickOnLayoutIncludeIncreaseRuby() {
         binding.layoutIncreaseRubyHome.btnBuyRuby.setOnClickListener { dialogShop() }
@@ -138,7 +145,7 @@ class HomeFragment : Fragment() {
         }
 
         btnRestart.setOnClickListener {
-            dialogRestart()
+            dialogRestart(dialogSetting)
         }
 
         btnClose.setOnClickListener {
@@ -172,7 +179,7 @@ class HomeFragment : Fragment() {
         )
     }
 
-    private fun dialogRestart() {
+    private fun dialogRestart(dialogSetting: Dialog) {
         dialog = Dialog(requireContext())
 //        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.layout_dialog_question)
@@ -182,7 +189,51 @@ class HomeFragment : Fragment() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT,
         )
+
+        val btnOk = dialog.findViewById<View>(R.id.btn_ok)
+        val btnCansel = dialog.findViewById<View>(R.id.btn_cansel)
+        val btnClose = dialog.findViewById<View>(R.id.btn_close_question)
+
+        btnCansel.setOnClickListener { dialog.dismiss() }
+
+        btnClose.setOnClickListener { dialog.dismiss() }
+
+        btnOk.setOnClickListener {
+            animationLoadingWaiting = AnimationLoadingWaiting(requireActivity())
+            deleteDatabase()
+            dialog.dismiss()
+            dialogSetting.dismiss()
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                animationLoadingWaiting.dismissLoading()
+            }, 3000)
+
+        }
+
         dialog.show()
+    }
+
+
+    private fun deleteDatabase() {
+        dataBase.user().updateDataUser(UserModel(id = 1, coin = 50))
+        dataBase.setting()
+            .updateDataSetting(SettingModel(id = 1, playMusic = true, playVolume = true))
+        val level = dataBase.levels().readDataLevel()
+        level.forEach {
+            if (it.id != 1)
+                dataBase.levels().updateDataLevel(
+                    LevelModel(
+                        id = it.id,
+                        titleLevel = it.titleLevel,
+                        isLockLevel = true,
+                        question = it.question,
+                        answer = it.answer,
+                        sizeAnswer = it.sizeAnswer,
+                        listAnswer = it.listAnswer,
+                        letters = it.letters
+                    )
+                )
+        }
     }
 
     private fun clickBtnShop() {

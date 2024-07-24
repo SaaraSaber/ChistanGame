@@ -61,4 +61,5 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(libs.room.runtime)
     kapt(libs.room.compiler)
+    implementation(libs.lottie)
 }
