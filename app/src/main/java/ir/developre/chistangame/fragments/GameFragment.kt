@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.AudioManager
+import android.media.SoundPool
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -72,6 +74,9 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         createRecyclerViewAnswer()
         setDataToRecyclerViewLetter()
         help()
+
+        soundPool = SoundPool(6, AudioManager.STREAM_MUSIC, 0)
+        soundPool!!.load(requireContext(), R.raw.sound_effect, 1)
     }
 
     private fun getCoinFromDatabase() {
@@ -272,6 +277,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
     private fun help() {
         binding.layoutHelp.setOnClickListener {
+            playBeepSound()
 
             listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = true
             listAnswerAdapter.find { it.index == currentTextIndex }?.isShow = true
@@ -290,16 +296,17 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
+    private var soundPool: SoundPool? = null
+    private val soundId = 1
     private fun playBeepSound() {
-//        val sound = MediaActionSound()
-//        sound.play(MediaActionSound.FOCUS_COMPLETE)
-        requireView().playSoundEffect(android.view.SoundEffectConstants.CLICK)
+        soundPool?.play(soundId, 1F, 1F, 0, 0, 1F)
 
     }
 
     override fun clickOnAnswer(index: Int, letter: Char?, positionLetter: Int?, isHelp: Boolean) {
         if (!isHelp) {
             if (index == currentTextIndex - 1) {
+                playBeepSound()
                 listAnswerAdapter.find { it.index == index }?.letter = null
                 listAnswerAdapter.find { it.index == index }?.positionLetter = null
                 listAnswerAdapter.find { it.index == index }?.isShow = false
@@ -317,6 +324,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
     override fun clickOnHelp(index: Int, isHelp: Boolean) {
         if (isHelp) {
+            playBeepSound()
             currentTextIndex--
             listAnswerUser.removeAt(index)
             listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = false
