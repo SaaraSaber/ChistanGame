@@ -299,7 +299,8 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private var soundPool: SoundPool? = null
     private val soundId = 1
     private fun playBeepSound() {
-        soundPool?.play(soundId, 1F, 1F, 0, 0, 1F)
+        if (Utils.playVolume)
+            soundPool?.play(soundId, 1F, 1F, 0, 0, 1F)
 
     }
 

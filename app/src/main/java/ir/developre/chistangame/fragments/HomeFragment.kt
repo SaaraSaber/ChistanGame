@@ -181,7 +181,6 @@ class HomeFragment : Fragment() {
 
     private fun dialogRestart(dialogSetting: Dialog) {
         dialog = Dialog(requireContext())
-//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.layout_dialog_question)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window!!.setGravity(Gravity.CENTER)
@@ -200,14 +199,22 @@ class HomeFragment : Fragment() {
 
         btnOk.setOnClickListener {
             animationLoadingWaiting = AnimationLoadingWaiting(requireActivity())
+
             deleteDatabase()
             dialog.dismiss()
             dialogSetting.dismiss()
+            Utils.playMusic = true
+            Utils.playVolume = true
 
             Handler(Looper.getMainLooper()).postDelayed({
                 animationLoadingWaiting.dismissLoading()
+                requireActivity().startService(
+                    Intent(
+                        requireActivity(),
+                        PlayMusicService::class.java
+                    )
+                )
             }, 3000)
-
         }
 
         dialog.show()
