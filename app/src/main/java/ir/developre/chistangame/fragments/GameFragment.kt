@@ -7,12 +7,12 @@ import android.graphics.drawable.ColorDrawable
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -21,8 +21,10 @@ import ir.developre.chistangame.adapter.AnswerAdapter
 import ir.developre.chistangame.adapter.LetterAdapter
 import ir.developre.chistangame.database.AppDataBase
 import ir.developre.chistangame.databinding.FragmentGameBinding
+import ir.developre.chistangame.global.CheckNetworkConnection
 import ir.developre.chistangame.global.CustomToast
 import ir.developre.chistangame.global.DialogShop
+import ir.developre.chistangame.global.TapsellWinStage
 import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.model.AnswerModel
 import ir.developre.chistangame.model.LetterModel
@@ -46,6 +48,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private lateinit var adapterLetter: LetterAdapter
     private lateinit var adapterAnswer: AnswerAdapter
     private val customToast by lazy { CustomToast(requireActivity()) }
+    private lateinit var tapsellWinStage: TapsellWinStage
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -201,6 +204,9 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
         if (answer.trim() == answerUser) {
 
+            Log.i("LAST_LEVEL", "Utils.currentLevel: ${Utils.currentLevel}")
+            Log.i("LAST_LEVEL", "Utils.LAST_LEVEL: ${Utils.LAST_LEVEL}")
+
             if (Utils.currentLevel != Utils.LAST_LEVEL)
                 showDialogWin()
             else
@@ -223,7 +229,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
     private fun showDialogFinalWin() {
         dialogWin = Dialog(requireContext())
-        dialogWin.setContentView(R.layout.layout_dialog_win_stage)
+        dialogWin.setContentView(R.layout.layout_dialog_final_win)
         dialogWin.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialogWin.window!!.setGravity(Gravity.CENTER)
         dialogWin.window!!.setLayout(
@@ -231,10 +237,16 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             ViewGroup.LayoutParams.MATCH_PARENT,
         )
         val lp = dialogWin.window!!.attributes
-        lp.dimAmount = 0.7f
+        lp.dimAmount = 0.8f
         dialogWin.setCancelable(false)
 
+        val btnClose = dialogWin.findViewById<View>(R.id.btn_close)
 
+        btnClose.setOnClickListener {
+            dialogWin.dismiss()
+            findNavController().popBackStack()
+        }
+        dialogWin.show()
     }
 
     private fun showDialogWin() {
@@ -255,11 +267,18 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         val btnClose = dialogWin.findViewById<View>(R.id.btn_close_win)
 
         btnSeeAd.setOnClickListener {
-            Toast.makeText(
-                requireContext(),
-                "در دست ساخت..!",
-                Toast.LENGTH_SHORT
-            ).show()
+            if (CheckNetworkConnection.isOnline(requireActivity())) {
+                tapsellWinStage = TapsellWinStage(requireActivity())
+                tapsellWinStage.connectToTapsell()
+                tapsellWinStage.requestAdGift()
+
+            } else {
+                customToast.customToast(
+                    colorBackground = R.drawable.simple_shape_background_toast_error,
+                    img = R.drawable.vector_close_circle,
+                    message = requireContext().getString(R.string.w_no_access_to_internet)
+                )
+            }
         }
 
         btnNextLevel.setOnClickListener {
