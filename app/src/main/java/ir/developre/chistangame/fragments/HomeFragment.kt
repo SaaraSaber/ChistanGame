@@ -10,11 +10,14 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.Gravity
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.app.ActivityCompat.finishAfterTransition
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ir.developre.chistangame.R
@@ -303,6 +306,86 @@ class HomeFragment : Fragment() {
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject)
         emailIntent.putExtra(Intent.EXTRA_TEXT, emailText)
         startActivity(Intent.createChooser(emailIntent, "Send email..."))
+    }
+
+    private lateinit var dialogExitApp: Dialog
+    private fun dialogExitApp() {
+        dialogExitApp = Dialog(requireActivity())
+        dialogExitApp.setContentView(R.layout.layout_dialog_exit)
+        dialogExitApp.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogExitApp.window!!.setGravity(Gravity.CENTER)
+        dialogExitApp.window!!.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+        )
+        val lp = dialogExitApp.window!!.attributes
+        lp.dimAmount = 0.7f
+
+        val btnClose = dialogExitApp.findViewById<View>(R.id.btn_close)!!
+        val btnExit = dialogExitApp.findViewById<View>(R.id.btn_exit)!!
+        val btnScoring = dialogExitApp.findViewById<View>(R.id.btn_scoring)!!
+
+        btnClose.setOnClickListener { dialogExitApp.dismiss() }
+
+        btnExit.setOnClickListener {
+            dialogExitApp.dismiss()
+            exitApp()
+        }
+
+
+        btnScoring.setOnClickListener { btnScoringApp() }
+
+        dialogExitApp.show()
+    }
+
+    private fun exitApp() {
+        Log.i("exitApp", "exitApp33: ")
+        requireActivity().overridePendingTransition(
+            R.anim.exit_anim,
+            0
+        ) // Disable default activity transition
+        finishAfterTransition(requireActivity()) // Finish activity with exit animation
+    }
+
+    private fun btnScoringApp() {
+        val intent = Intent(Intent.ACTION_EDIT)
+        intent.setData(Uri.parse("bazaar://details?id=" + Utils.PACKAGE_NAME))
+        intent.setPackage("com.farsitel.bazaar")
+        startActivity(intent)
+    }
+
+    private var doubleBackToExitPressedOnce = false
+    override fun onResume() {
+        super.onResume()
+
+        if (view == null) {
+            return
+        }
+        requireView().isFocusableInTouchMode = true
+        requireView().requestFocus()
+        requireView().setOnKeyListener { _, keyCode, event ->
+            if (event.action === KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                // handle back button's click listener
+
+                if (doubleBackToExitPressedOnce) {
+//                    exitProcess(0)
+                    exitApp()
+                    return@setOnKeyListener true
+                }
+
+                doubleBackToExitPressedOnce = true
+
+                dialogExitApp()
+
+                Handler(Looper.getMainLooper()).postDelayed(Runnable {
+                    doubleBackToExitPressedOnce = false
+                }, 2000)
+
+                true
+
+            } else false
+        }
+
     }
 
 

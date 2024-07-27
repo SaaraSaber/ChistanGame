@@ -13,7 +13,7 @@ import ir.developre.chistangame.R
 class DialogShop(val context: Context) {
 
     private lateinit var dialog: Dialog
-    private lateinit var tapsellGame: TapsellGame
+    private lateinit var tapsellShop: TapsellShop
     private val customToast by lazy { CustomToast(context) }
 
     fun showDialog() {
@@ -36,15 +36,15 @@ class DialogShop(val context: Context) {
 
         btnSeeAds.setOnClickListener {
             if (CheckNetworkConnection.isOnline(context)) {
-                tapsellGame = TapsellGame(context as Activity)
-                tapsellGame.connectToTapsell()
-                tapsellGame.requestAdGift()
+                tapsellShop = TapsellShop(context as Activity)
+                tapsellShop.connectToTapsell()
+                tapsellShop.requestAdGift()
 
             } else {
                 customToast.customToast(
                     colorBackground = R.drawable.simple_shape_background_toast_error,
                     img = R.drawable.vector_close_circle,
-                    context.getString(R.string.w_no_access_to_internet)
+                    message = context.getString(R.string.w_no_access_to_internet)
                 )
             }
         }
