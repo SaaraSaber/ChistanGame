@@ -199,7 +199,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private fun checkAnswer() {
         val answerUser = listAnswerUser.joinToString("")
 
-        if (answer == answerUser) {
+        if (answer.trim() == answerUser) {
 
             if (Utils.currentLevel != Utils.LAST_LEVEL)
                 showDialogWin()
