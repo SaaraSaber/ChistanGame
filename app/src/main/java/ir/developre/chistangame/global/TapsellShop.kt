@@ -17,7 +17,7 @@ import ir.tapsell.plus.model.TapsellPlusAdModel
 import ir.tapsell.plus.model.TapsellPlusErrorModel
 
 
-class TapsellGame(val context: Activity) {
+class TapsellShop(val context: Activity) {
 
     private val dataBase by lazy { AppDataBase.getDatabase(context) }
     private val customToastGame by lazy { CustomToast(context) }
@@ -137,7 +137,7 @@ class TapsellGame(val context: Activity) {
 
     private fun updateTableUser() {
         //سکه جدید کاربر
-        val newCreditUser = numberCoin + Utils.EXTRA_COINS_BY_SEEING_ADS
+        val newCreditUser = numberCoin + Utils.EXTRA_COINS_BY_SEEING_ADS_TO_SHOP
 
         txtCoinHeader = context.findViewById(R.id.text_coin)
         txtCoinHeader.text = newCreditUser.toString()

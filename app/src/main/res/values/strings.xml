@@ -32,6 +32,7 @@
     <string name="address_email">saraaasaber77@gmail.com</string>
     <string name="wrong_answer">جواب اشتباه می باشد :(</string>
     <string name="please_waiting">لطفا منتظر بمانید...</string>
+    <string name="text_final_win">تبریک می‌گم! شما با موفقیت همه مراحل رو تموم کردید. عالی بودید!</string>
     <string name="not_ad">متاسفانه تبلیغاتی موجود نیس!</string>
     <string name="w_see_end_Ad">لطفا تبلیغات را تا آخر ببنید</string>
     <string name="w_no_access_to_internet">لطفا اینترنت خود را روشن کنید.</string>
