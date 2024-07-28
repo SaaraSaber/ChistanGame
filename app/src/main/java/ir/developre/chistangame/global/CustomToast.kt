@@ -1,6 +1,5 @@
 package ir.developre.chistangame.global
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -13,14 +12,7 @@ import ir.developre.chistangame.R
 
 class CustomToast(val context: Context) : Toast(context) {
 
-    @SuppressLint("InflateParams")
-    fun toast(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-    }
-
     fun customToast(colorBackground: Int, img: Int, message: String) {
-
-
         val toast = Toast(context)
 
         val view: View = LayoutInflater.from(context).inflate(R.layout.layout_custom_toast, null)

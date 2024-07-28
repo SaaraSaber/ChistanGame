@@ -25,11 +25,11 @@ object Utils {
     const val NUMBER_OF_COIN_FOR_HELP = 3
 
     const val NUMBER_OF_COINS_FOR_SEEING_ADS_TO_SHOP = 10
-    const val NUMBER_BUY_COIN_SHOP_1 = 10
-    const val NUMBER_BUY_COIN_SHOP_2 = 10
-    const val NUMBER_BUY_COIN_SHOP_3 = 10
-    const val NUMBER_BUY_COIN_SHOP_4 = 10
-    const val NUMBER_BUY_COIN_SHOP_5 = 10
+    const val NUMBER_BUY_COIN_SHOP_1 = 50
+    const val NUMBER_BUY_COIN_SHOP_2 = 80
+    const val NUMBER_BUY_COIN_SHOP_3 = 100
+    const val NUMBER_BUY_COIN_SHOP_4 = 120
+    const val NUMBER_BUY_COIN_SHOP_5 = 150
 
 
     //................tapsell.................

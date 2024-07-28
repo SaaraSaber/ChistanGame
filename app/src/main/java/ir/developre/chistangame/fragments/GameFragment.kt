@@ -47,7 +47,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private var currentTextIndex = 0
     private lateinit var adapterLetter: LetterAdapter
     private lateinit var adapterAnswer: AnswerAdapter
-    private val customToast by lazy { CustomToast(requireActivity()) }
+    private val customToast by lazy { CustomToast(requireContext()) }
     private lateinit var tapsellWinStage: TapsellWinStage
 
     override fun onCreateView(
