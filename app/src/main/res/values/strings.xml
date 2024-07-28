@@ -26,13 +26,15 @@
     <string name="txt_next_level">مرحله بعد</string>
     <string name="txt_shop">فروشگاه</string>
     <string name="txt_start">شروع</string>
+    <string name="txt_finish">پایان</string>
     <string name="txt_help">راهنما</string>
     <string name="txt_levels">مراحل</string>
     <string name="problem_in_game">مشکل در بازی چیستان</string>
     <string name="address_email">saraaasaber77@gmail.com</string>
     <string name="wrong_answer">جواب اشتباه می باشد :(</string>
     <string name="please_waiting">لطفا منتظر بمانید...</string>
-    <string name="text_final_win">تبریک می‌گم! شما با موفقیت همه مراحل رو تموم کردید. عالی بودید!</string>
+<!--    <string name="text_final_win">تبریک می‌گم! شما با موفقیت همه مراحل رو تموم کردید. عالی بودید!</string>-->
+    <string name="text_final_win">تبریک، شما با موفقیت تمامی مراحل رو به پایان رساندید.منتظر مراحل جدید باشید.</string>
     <string name="not_ad">متاسفانه تبلیغاتی موجود نیس!</string>
     <string name="w_see_end_Ad">لطفا تبلیغات را تا آخر ببنید</string>
     <string name="w_no_access_to_internet">لطفا اینترنت خود را روشن کنید.</string>

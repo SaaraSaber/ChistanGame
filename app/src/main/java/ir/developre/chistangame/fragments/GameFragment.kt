@@ -241,6 +241,12 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         dialogWin.setCancelable(false)
 
         val btnClose = dialogWin.findViewById<View>(R.id.btn_close)
+        val btnFinish = dialogWin.findViewById<View>(R.id.btn_finish)
+
+        btnFinish.setOnClickListener {
+            dialogWin.dismiss()
+            findNavController().popBackStack()
+        }
 
         btnClose.setOnClickListener {
             dialogWin.dismiss()
