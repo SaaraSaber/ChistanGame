@@ -6,6 +6,7 @@ object Utils {
     const val STATUS_LOGIN = "statusLogin"
     var isAllEditTextsFilled = false
     const val PACKAGE_NAME = "ir.developre.chistangame"
+    const val LINK_SHARED_APP = "https://cafebazaar.ir/app/ir.arinaco.mafiagames"
 
     /*currentLevel:
     این زمانی پر میشه که کاربر روی لول مورد نظر کلیک کنه و زمانی که لول مورد نظر رو درست بره

@@ -2,6 +2,7 @@
     <string name="app_name">ChistanGame</string>
 
     <string name="txt_about_us">درباره ما</string>
+    <string name="txt_share_app">اشتراک گذاری</string>
     <string name="txt_description_about_us">به بازی چیستان خوش آمدید!\nهدف ما سرگرم کردن و به چالش کشیدن ذهن شما با چیستان‌های جذاب و متنوع است.\nاز شما دعوت می‌کنیم تا نظرات و پیشنهادات خود را با ما به اشتراک بگذارید و در این مسیر با ما همراه باشید.\nمنتظر دریافت بازخوردهای ارزشمند شما هستیم!</string>
     <string name="txt_contact_support">ارتباط با پشتیبانی</string>
     <string name="txt_exit">خروج</string>

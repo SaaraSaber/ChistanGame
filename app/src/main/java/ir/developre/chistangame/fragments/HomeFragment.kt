@@ -62,6 +62,21 @@ class HomeFragment : Fragment() {
         clickBtnSetting()
         clickBtnShop()
         clickBtnAboutUs()
+        clickBtnShareApp()
+    }
+
+    private fun clickBtnShareApp() {
+            // متنی که می‌خواهید ارسال کنید
+            val messageText = "${Utils.LINK_SHARED_APP}"
+
+            // ایجاد Intent برای ارسال متن
+            val intent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, messageText)
+            }
+
+            // اجرای Intent
+            startActivity(Intent.createChooser(intent, "ارسال به:"))
     }
 
     private fun getCoinFromDatabase() {
