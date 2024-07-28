@@ -25,6 +25,7 @@
             android:textSize="@dimen/_20sdp" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_buy_coin"
             style="@style/text_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,6 +39,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_close"
         android:layout_width="@dimen/_36sdp"
         android:layout_height="@dimen/_36sdp"
         android:layout_gravity="start|top"

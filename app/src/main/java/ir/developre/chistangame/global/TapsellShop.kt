@@ -108,7 +108,7 @@ class TapsellShop(val context: Activity) {
                     } else {
                         customToastGame.customToast(
                             R.drawable.simple_shape_background_toast_warning,
-                            R.drawable.vector_info_circle,
+                            R.drawable.vector_warning_circle,
                             context.getString(R.string.w_see_end_Ad)
                         )
                     }
@@ -137,7 +137,13 @@ class TapsellShop(val context: Activity) {
 
     private fun updateTableUser() {
         //سکه جدید کاربر
-        val newCreditUser = numberCoin + Utils.EXTRA_COINS_BY_SEEING_ADS_TO_SHOP
+        val newCreditUser = numberCoin + Utils.NUMBER_OF_COINS_FOR_SEEING_ADS_TO_SHOP
+
+        customToastGame.customToast(
+            R.drawable.simple_shape_background_toast_info,
+            R.drawable.vector_info_circle,
+            "${Utils.NUMBER_OF_COINS_FOR_SEEING_ADS_TO_SHOP} سکه به شما اضافه شد."
+        )
 
         txtCoinHeader = context.findViewById(R.id.text_coin)
         txtCoinHeader.text = newCreditUser.toString()

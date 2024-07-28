@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable
 import android.media.AudioManager
 import android.media.SoundPool
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +28,7 @@ import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.model.AnswerModel
 import ir.developre.chistangame.model.LetterModel
 import ir.developre.chistangame.model.LevelModel
+import ir.developre.chistangame.model.UserModel
 import ir.developre.chistangame.my_interface.on_click.ClickOnAnswer
 import ir.developre.chistangame.my_interface.on_click.ClickOnLetter
 
@@ -88,7 +88,6 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private lateinit var dialogShop: DialogShop
 
     private fun dialogShop() {
-
         dialogShop = DialogShop(requireActivity())
         dialogShop.showDialog()
     }
@@ -203,27 +202,39 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         val answerUser = listAnswerUser.joinToString("")
 
         if (answer.trim() == answerUser) {
-
-            Log.i("LAST_LEVEL", "Utils.currentLevel: ${Utils.currentLevel}")
-            Log.i("LAST_LEVEL", "Utils.LAST_LEVEL: ${Utils.LAST_LEVEL}")
-
-            if (Utils.currentLevel != Utils.LAST_LEVEL)
+            if (Utils.currentLevel != Utils.LAST_LEVEL) {
                 showDialogWin()
-            else
+            } else {
                 showDialogFinalWin()
+            }
 
         } else {
+            val currentCoin = readCoin()
 
-            customToast.customToast(
-                R.drawable.simple_shape_background_toast_error,
-                R.drawable.vector_close_circle,
-                requireContext().getString(R.string.wrong_answer)
-            )
+            if (currentCoin >= Utils.NUMBER_OF_COIN_FOR_WRONG_ANSWER) {
 
-            //refresh fragment
-            val id = findNavController().currentDestination?.id
-            findNavController().popBackStack(id!!, true)
-            findNavController().navigate(id)
+                val saveNewCoin = currentCoin - Utils.NUMBER_OF_COIN_FOR_WRONG_ANSWER
+                saveNewCoinInDatabase(saveNewCoin)
+
+                customToast.customToast(
+                    R.drawable.simple_shape_background_toast_error,
+                    R.drawable.vector_close_circle,
+                    requireContext().getString(R.string.wrong_answer)
+                )
+
+                //refresh fragment
+                val id = findNavController().currentDestination?.id
+                findNavController().popBackStack(id!!, true)
+                findNavController().navigate(id)
+
+            } else {
+                customToast.customToast(
+                    R.drawable.simple_shape_background_toast_error,
+                    R.drawable.vector_close_circle,
+                    requireContext().getString(R.string.wrong_answer)
+                )
+                dialogNotEnoughCoin()
+            }
         }
     }
 
@@ -288,17 +299,30 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
 
         btnNextLevel.setOnClickListener {
+            saveNewCoin()
             refreshFragment()
             dialogWin.dismiss()
         }
 
         btnClose.setOnClickListener {
+            saveNewCoin()
             updateData()
             dialogWin.dismiss()
             findNavController().popBackStack()
         }
 
         dialogWin.show()
+    }
+
+    private fun saveNewCoin() {
+        customToast.customToast(
+            R.drawable.simple_shape_background_toast_info,
+            R.drawable.vector_info_circle,
+            "${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER} سکه به شما اضافه شد."
+        )
+
+        val newCreditUser = readCoin() + Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER
+        dataBase.user().updateDataUser(UserModel(id = 1, coin = newCreditUser))
     }
 
     private fun refreshFragment() {
@@ -333,22 +357,71 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private fun help() {
         binding.layoutHelp.setOnClickListener {
             playBeepSound()
+            val currentCoin = readCoin()
 
-            listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = true
-            listAnswerAdapter.find { it.index == currentTextIndex }?.isShow = true
-            adapterAnswer.notifyItemChanged(currentTextIndex)
-            listAnswerAdapter.forEach {
-                if (it.index == currentTextIndex)
-                    listAnswerUser.add(it.characterHelp)
-            }
-            currentTextIndex++
+            if (currentCoin >= Utils.NUMBER_OF_COIN_FOR_HELP) {
 
-            if (currentTextIndex == sizeAnswer + 1) {
-                Utils.isAllEditTextsFilled = true
-                checkAnswer()
+                val saveNewCoin = currentCoin - Utils.NUMBER_OF_COIN_FOR_HELP
+                saveNewCoinInDatabase(saveNewCoin)
 
+                customToast.customToast(
+                    R.drawable.simple_shape_background_toast_info,
+                    R.drawable.vector_info_circle,
+                    "${Utils.NUMBER_OF_COIN_FOR_HELP} سکه کم شد."
+                )
+
+                listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = true
+                listAnswerAdapter.find { it.index == currentTextIndex }?.isShow = true
+                adapterAnswer.notifyItemChanged(currentTextIndex)
+                listAnswerAdapter.forEach {
+                    if (it.index == currentTextIndex)
+                        listAnswerUser.add(it.characterHelp)
+                }
+                currentTextIndex++
+
+                if (currentTextIndex == sizeAnswer + 1) {
+                    Utils.isAllEditTextsFilled = true
+                    checkAnswer()
+
+                }
+            } else {
+                dialogNotEnoughCoin()
             }
         }
+    }
+
+    private fun saveNewCoinInDatabase(saveNewCoin: Int) {
+        dataBase.user().updateDataUser(UserModel(id = 1, coin = saveNewCoin))
+        binding.layoutIncreaseRuby.textCoin.text = saveNewCoin.toString()
+    }
+
+    private lateinit var dialogNotEnoughCoin: Dialog
+    private fun dialogNotEnoughCoin() {
+        dialogNotEnoughCoin = Dialog(requireContext())
+        dialogNotEnoughCoin.setContentView(R.layout.layout_dialog_ruby_not_enough)
+        dialogNotEnoughCoin.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogNotEnoughCoin.window!!.setGravity(Gravity.CENTER)
+        dialogNotEnoughCoin.window!!.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT,
+        )
+        val btnBuy = dialogNotEnoughCoin.findViewById<View>(R.id.btn_buy_coin)
+        val btnClose = dialogNotEnoughCoin.findViewById<View>(R.id.btn_close)
+
+        btnBuy.setOnClickListener {
+            dialogShop()
+            dialogNotEnoughCoin.dismiss()
+        }
+        btnClose.setOnClickListener {
+            dialogNotEnoughCoin.dismiss()
+        }
+
+        dialogNotEnoughCoin.show()
+    }
+
+    private fun readCoin(): Int {
+        val coin = dataBase.user().readDataUser().coin
+        return coin
     }
 
     private var soundPool: SoundPool? = null

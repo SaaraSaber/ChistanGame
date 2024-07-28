@@ -137,8 +137,12 @@ class TapsellWinStage(val context: Activity) {
 
     private fun updateTableUser() {
         //سکه جدید کاربر
-        val newCreditUser = numberCoin + Utils.COIN_FOR_WIN_STAGE
-
+        val newCreditUser = numberCoin + Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER_AND_SEEING_ADS
+        customToastGame.customToast(
+            R.drawable.simple_shape_background_toast_info,
+            R.drawable.vector_info_circle,
+            "${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER_AND_SEEING_ADS} سکه به شما اضافه شد."
+        )
         txtCoinHeader = context.findViewById(R.id.text_coin)
         txtCoinHeader.text = newCreditUser.toString()
 

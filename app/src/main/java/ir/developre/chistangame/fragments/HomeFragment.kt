@@ -404,6 +404,4 @@ class HomeFragment : Fragment() {
         }
 
     }
-
-
 }

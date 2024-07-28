@@ -13,8 +13,14 @@ import ir.developre.chistangame.R
 
 class CustomToast(val context: Context) : Toast(context) {
 
-    @SuppressLint("InflateParams", "MissingInflatedId")
+    @SuppressLint("InflateParams")
+    fun toast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
     fun customToast(colorBackground: Int, img: Int, message: String) {
+
+
         val toast = Toast(context)
 
         val view: View = LayoutInflater.from(context).inflate(R.layout.layout_custom_toast, null)
