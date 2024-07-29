@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -282,6 +283,9 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         val btnNextLevel = dialogWin.findViewById<View>(R.id.btn_next_level)
         val btnSeeAd = dialogWin.findViewById<View>(R.id.btn_see_ad)
         val btnClose = dialogWin.findViewById<View>(R.id.btn_close_win)
+        val textAnswer = dialogWin.findViewById<TextView>(R.id.text_answer)
+
+        textAnswer.text = answer
 
         btnSeeAd.setOnClickListener {
             if (CheckNetworkConnection.isOnline(requireActivity())) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/_15sdp"
@@ -17,93 +18,128 @@
         android:orientation="vertical"
         android:padding="@dimen/_25sdp">
 
-        <ImageView
-            style="@style/text_orange_dialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pic_win_stage" />
-
-        <TextView
-            style="@style/text_orange_dialog"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_margin_top"
-            android:text="@string/txt_felicitation"
-            android:textSize="@dimen/_30sdp" />
-
-        <TextView
-            style="@style/text_orange_dialog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:text="@string/txt_description_felicitation"
-            android:textSize="@dimen/_20sdp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/size_margin_top"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/text_orange_dialog"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:layout_weight="2"
-                android:gravity="start"
-                android:text="@string/txt_get_more_rubies_by_viewing_ad"
-                android:textSize="@dimen/_14sdp" />
-
-            <ImageView
-                style="@style/text_orange_dialog"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/pic_ruby" />
+            android:layout_height="match_parent">
 
 
-        </LinearLayout>
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_250sdp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/anim_one" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/size_margin_top"
-            android:orientation="horizontal">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_next_level"
-                style="@style/text_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_weight="1"
-                android:background="@drawable/background_btn_orange"
-                android:text="@string/txt_next_level"
-                app:backgroundTint="@null" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_see_ad"
-                style="@style/text_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_2sdp"
-                android:layout_weight="1"
-                android:background="@drawable/background_btn_green"
-                android:text="@string/txt_viewing_ad"
-                app:backgroundTint="@null" />
+                <TextView
+                    android:id="@+id/text_answer"
+                    style="@style/text_body_dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/_30sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="اسفنج" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/text_orange_dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_description_felicitation"
+                    android:textSize="@dimen/_20sdp"
+
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_answer" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/size_margin_top"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/layout_buttons"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <TextView
+                        style="@style/text_orange_dialog"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_weight="2"
+                        android:gravity="start"
+                        android:text="@string/txt_get_more_rubies_by_viewing_ad"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <ImageView
+                        style="@style/text_orange_dialog"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/pic_ruby" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_buttons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/size_margin_top"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_next_level"
+                        style="@style/text_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_btn_orange"
+                        android:text="@string/txt_next_level"
+                        app:backgroundTint="@null" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_see_ad"
+                        style="@style/text_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/background_btn_green"
+                        android:text="@string/txt_viewing_ad"
+                        app:backgroundTint="@null" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
 
     </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_close_win"
-            android:layout_width="@dimen/_36sdp"
-            android:layout_height="@dimen/_36sdp"
-            android:layout_gravity="start|top"
-            android:background="@drawable/vector_close" />
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_close_win"
+        android:layout_width="@dimen/_36sdp"
+        android:layout_height="@dimen/_36sdp"
+        android:layout_gravity="start|top"
+        android:background="@drawable/vector_close" />
 
 
 </RelativeLayout>
