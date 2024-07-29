@@ -273,7 +273,7 @@ class HomeFragment : Fragment() {
 
     private fun dialogShop() {
         dialogShop = DialogShop(requireActivity())
-        dialogShop.showDialog()
+        dialogShop.showDialog(requireActivity().activityResultRegistry)
     }
 
     private fun clickBtnAboutUs() {

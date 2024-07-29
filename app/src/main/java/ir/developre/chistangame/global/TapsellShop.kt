@@ -142,7 +142,7 @@ class TapsellShop(val context: Activity) {
         customToastGame.customToast(
             R.drawable.simple_shape_background_toast_info,
             R.drawable.vector_info_circle,
-            "${Utils.NUMBER_OF_COINS_FOR_SEEING_ADS_TO_SHOP} سکه به شما اضافه شد."
+            "${Utils.NUMBER_OF_COINS_FOR_SEEING_ADS_TO_SHOP} یاقوت به شما اضافه شد."
         )
 
         txtCoinHeader = context.findViewById(R.id.text_coin)

@@ -50,7 +50,7 @@
                         style="@style/text_orange_dialog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="15 یاقوت" />
+                        android:text="80 یاقوت" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -61,13 +61,14 @@
 
 
                 <TextView
+                    android:id="@+id/btn_buy_coin_two"
                     style="@style/text_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/background_btn_buy_ruby"
                     android:padding="@dimen/_5sdp"
-                    android:text="12,000 تومان"
+                    android:text="8,000 تومان"
                     android:textSize="@dimen/_12sdp" />
 
 
@@ -94,7 +95,7 @@
                         style="@style/text_orange_dialog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="15 یاقوت" />
+                        android:text="50 یاقوت" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -105,6 +106,7 @@
 
 
                 <TextView
+                    android:id="@+id/btn_buy_coin_one"
                     style="@style/text_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -191,7 +193,7 @@
                         style="@style/text_orange_dialog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="15 یاقوت" />
+                        android:text="300 یاقوت" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -202,13 +204,14 @@
 
 
                 <TextView
+                    android:id="@+id/btn_buy_coin_five"
                     style="@style/text_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/background_btn_buy_ruby"
                     android:padding="@dimen/_5sdp"
-                    android:text="25,000 تومان"
+                    android:text="20,000 تومان"
                     android:textSize="@dimen/_12sdp" />
 
 
@@ -235,7 +238,7 @@
                         style="@style/text_orange_dialog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="15 یاقوت" />
+                        android:text="150 یاقوت" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -246,13 +249,14 @@
 
 
                 <TextView
+                    android:id="@+id/btn_buy_coin_four"
                     style="@style/text_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/background_btn_buy_ruby"
                     android:padding="@dimen/_5sdp"
-                    android:text="20,000 تومان"
+                    android:text="15,000 تومان"
                     android:textSize="@dimen/_12sdp" />
 
 
@@ -278,7 +282,7 @@
                         style="@style/text_orange_dialog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="15 یاقوت" />
+                        android:text="100 یاقوت" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -289,13 +293,15 @@
 
 
                 <TextView
+                    android:id="@+id/btn_buy_coin_three"
+
                     style="@style/text_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/background_btn_buy_ruby"
                     android:padding="@dimen/_5sdp"
-                    android:text="15,000 تومان"
+                    android:text="10,000 تومان"
                     android:textSize="@dimen/_12sdp" />
 
 

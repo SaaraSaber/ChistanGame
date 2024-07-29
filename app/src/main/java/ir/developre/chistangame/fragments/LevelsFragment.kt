@@ -49,7 +49,7 @@ class LevelsFragment : Fragment(), ClickOnLevel {
     private fun dialogShop() {
 
         dialogShop = DialogShop(requireActivity())
-        dialogShop.showDialog()
+        dialogShop.showDialog(requireActivity().activityResultRegistry)
     }
 
 

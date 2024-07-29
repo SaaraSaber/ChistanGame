@@ -16,6 +16,7 @@ navigation = "2.6.0"
 room = "2.5.2"
 lottie = "5.0.3"
 tapsell = "2.2.3"
+poolakey = "2.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +43,8 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
 #tapsell
 tapsell = { group = "ir.tapsell.plus", name = "tapsell-plus-sdk-android", version.ref = "tapsell" }
+#poolakey
+poolakey = { group = "com.github.cafebazaar.Poolakey", name = "poolakey", version.ref = "poolakey" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

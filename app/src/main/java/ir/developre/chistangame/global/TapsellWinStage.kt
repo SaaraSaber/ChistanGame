@@ -49,7 +49,6 @@ class TapsellWinStage(val context: Activity) {
         TapsellPlus.setDebugMode(Log.DEBUG)
     }
 
-
     fun requestAdGift() {
         TapsellPlus.requestRewardedVideoAd(
             context as Activity?,
@@ -103,6 +102,7 @@ class TapsellWinStage(val context: Activity) {
                     if (checkFinishedAd) {
 
                         updateTableUser()
+                        Utils.back_from_tapsell = true
 
                         checkFinishedAd = false
                     } else {
@@ -141,7 +141,7 @@ class TapsellWinStage(val context: Activity) {
         customToastGame.customToast(
             R.drawable.simple_shape_background_toast_info,
             R.drawable.vector_info_circle,
-            "${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER_AND_SEEING_ADS} سکه به شما اضافه شد."
+            "${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER_AND_SEEING_ADS} یاقوت به شما اضافه شد."
         )
         txtCoinHeader = context.findViewById(R.id.text_coin)
         txtCoinHeader.text = newCreditUser.toString()

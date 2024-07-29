@@ -89,7 +89,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
     private fun dialogShop() {
         dialogShop = DialogShop(requireActivity())
-        dialogShop.showDialog()
+        dialogShop.showDialog(requireActivity().activityResultRegistry)
     }
 
     private fun getCoinFromDatabase() {
@@ -200,8 +200,8 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private lateinit var dialogWin: Dialog
     private fun checkAnswer() {
         val answerUser = listAnswerUser.joinToString("")
-
-        if (answer.trim() == answerUser) {
+        val newAnswer = answer.replace(" ", "")
+        if (newAnswer.trim() == answerUser) {
             if (Utils.currentLevel != Utils.LAST_LEVEL) {
                 showDialogWin()
             } else {
@@ -288,7 +288,6 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
                 tapsellWinStage = TapsellWinStage(requireActivity())
                 tapsellWinStage.connectToTapsell()
                 tapsellWinStage.requestAdGift()
-
             } else {
                 customToast.customToast(
                     colorBackground = R.drawable.simple_shape_background_toast_error,
@@ -318,7 +317,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         customToast.customToast(
             R.drawable.simple_shape_background_toast_info,
             R.drawable.vector_info_circle,
-            "${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER} سکه به شما اضافه شد."
+            "${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER} یاقوت به شما اضافه شد."
         )
 
         val newCreditUser = readCoin() + Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER
@@ -367,7 +366,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
                 customToast.customToast(
                     R.drawable.simple_shape_background_toast_info,
                     R.drawable.vector_info_circle,
-                    "${Utils.NUMBER_OF_COIN_FOR_HELP} سکه کم شد."
+                    "${Utils.NUMBER_OF_COIN_FOR_HELP} یاقوت کم شد."
                 )
 
                 listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = true
@@ -481,4 +480,13 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        if (Utils.back_from_tapsell) {
+            refreshFragment()
+            dialogWin.dismiss()
+            Utils.back_from_tapsell = false
+        }
+    }
 }
