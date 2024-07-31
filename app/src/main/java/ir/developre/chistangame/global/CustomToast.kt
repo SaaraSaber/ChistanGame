@@ -31,7 +31,7 @@ class CustomToast(val context: Context) : Toast(context) {
 
         toast.view = view
         toast.setGravity(Gravity.TOP, 30, 30)
-        toast.duration = LENGTH_LONG
+        toast.duration = LENGTH_SHORT
         toast.show()
 
     }

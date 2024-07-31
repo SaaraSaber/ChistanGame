@@ -22,17 +22,18 @@
         android:layout_marginStart="@dimen/padding_all_screen"
         android:layout_marginEnd="@dimen/padding_all_screen"
         android:text="@string/txt_levels"
+        android:elevation="@dimen/_10sdp"
         android:textSize="@dimen/_25ssp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_levels"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/padding_all_screen"
-        android:layout_marginTop="@dimen/size_margin_top"
-        android:layout_marginEnd="@dimen/padding_all_screen"
-        android:layout_marginBottom="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_minus15sdp"
+        android:layout_marginEnd="@dimen/_25sdp"
         android:overScrollMode="never"
+        android:paddingTop="@dimen/_17sdp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="3"
         tools:itemCount="60"
