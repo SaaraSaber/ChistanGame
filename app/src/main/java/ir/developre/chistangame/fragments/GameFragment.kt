@@ -50,6 +50,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private lateinit var adapterAnswer: AnswerAdapter
     private val customToast by lazy { CustomToast(requireContext()) }
     private lateinit var tapsellWinStage: TapsellWinStage
+    private var checkOpenDialog = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -407,26 +408,37 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
     private lateinit var dialogNotEnoughCoin: Dialog
     private fun dialogNotEnoughCoin() {
-        dialogNotEnoughCoin = Dialog(requireContext())
-        dialogNotEnoughCoin.setContentView(R.layout.layout_dialog_ruby_not_enough)
-        dialogNotEnoughCoin.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialogNotEnoughCoin.window!!.setGravity(Gravity.CENTER)
-        dialogNotEnoughCoin.window!!.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT,
-        )
-        val btnBuy = dialogNotEnoughCoin.findViewById<View>(R.id.btn_buy_coin)
-        val btnClose = dialogNotEnoughCoin.findViewById<View>(R.id.btn_close)
+        if (checkOpenDialog) {
+            checkOpenDialog = false
+            dialogNotEnoughCoin = Dialog(requireContext())
+            dialogNotEnoughCoin.setContentView(R.layout.layout_dialog_ruby_not_enough)
+            dialogNotEnoughCoin.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialogNotEnoughCoin.window!!.setGravity(Gravity.CENTER)
+            dialogNotEnoughCoin.window!!.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+            )
+            val btnBuy = dialogNotEnoughCoin.findViewById<View>(R.id.btn_buy_coin)
+            val btnClose = dialogNotEnoughCoin.findViewById<View>(R.id.btn_close)
 
-        btnBuy.setOnClickListener {
-            dialogShop()
-            dialogNotEnoughCoin.dismiss()
-        }
-        btnClose.setOnClickListener {
-            dialogNotEnoughCoin.dismiss()
+            btnBuy.setOnClickListener {
+                dialogShop()
+                checkOpenDialog = true
+                dialogNotEnoughCoin.dismiss()
+            }
+            btnClose.setOnClickListener {
+                checkOpenDialog = true
+                dialogNotEnoughCoin.dismiss()
+            }
+
+            dialogNotEnoughCoin.setOnDismissListener {
+                checkOpenDialog = true
+                dialogNotEnoughCoin.dismiss()
+            }
+
+            dialogNotEnoughCoin.show()
         }
 
-        dialogNotEnoughCoin.show()
     }
 
     private fun readCoin(): Int {

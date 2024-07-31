@@ -38,6 +38,8 @@ class HomeFragment : Fragment() {
     private lateinit var dialogSetting: Dialog
     private lateinit var dataBase: AppDataBase
     private lateinit var animationLoadingWaiting: AnimationLoadingWaiting
+    private var checkOpenDialog = true
+    private var checkOpenDialog2 = true
 
 
     override fun onCreateView(
@@ -112,81 +114,87 @@ class HomeFragment : Fragment() {
     }
 
     private fun dialogSetting() {
-        readDataBaseSetting()
-        dialogSetting = Dialog(requireContext())
-        dialogSetting.setContentView(R.layout.layout_dialog_setting)
-        dialogSetting.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialogSetting.window!!.setGravity(Gravity.CENTER)
-        dialogSetting.window!!.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-        )
+        if (checkOpenDialog) {
+            checkOpenDialog = false
 
-        val btnClose = dialogSetting.findViewById<View>(R.id.btn_close)
-        val btnMusic = dialogSetting.findViewById<AppCompatImageButton>(R.id.btn_music)
-        val btnVolume = dialogSetting.findViewById<AppCompatImageButton>(R.id.btn_volume)
-        val btnRestart = dialogSetting.findViewById<View>(R.id.layout_restart)
+            readDataBaseSetting()
+            dialogSetting = Dialog(requireContext())
+            dialogSetting.setContentView(R.layout.layout_dialog_setting)
+            dialogSetting.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialogSetting.window!!.setGravity(Gravity.CENTER)
+            dialogSetting.window!!.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+            )
 
-        if (Utils.playMusic) {
-            btnMusic.setImageResource(R.drawable.vector_music)
-        } else {
-            btnMusic.setImageResource(R.drawable.vector_no_music)
-        }
+            val btnClose = dialogSetting.findViewById<View>(R.id.btn_close)
+            val btnMusic = dialogSetting.findViewById<AppCompatImageButton>(R.id.btn_music)
+            val btnVolume = dialogSetting.findViewById<AppCompatImageButton>(R.id.btn_volume)
+            val btnRestart = dialogSetting.findViewById<View>(R.id.layout_restart)
 
-        if (Utils.playVolume) {
-            btnVolume.setImageResource(R.drawable.vector_volume)
-        } else {
-            btnVolume.setImageResource(R.drawable.vector_no_volume)
-        }
-
-        btnMusic.setOnClickListener {
             if (Utils.playMusic) {
-                btnMusic.setImageResource(R.drawable.vector_no_music)
-                Utils.playMusic = false
-                requireActivity().stopService(
-                    Intent(
-                        requireActivity(),
-                        PlayMusicService::class.java
-                    )
-                )
-            } else {
                 btnMusic.setImageResource(R.drawable.vector_music)
-                Utils.playMusic = true
-                requireActivity().startService(
-                    Intent(
-                        requireActivity(),
-                        PlayMusicService::class.java
-                    )
-                )
-            }
-        }
-
-        btnVolume.setOnClickListener {
-            if (Utils.playVolume) {
-                btnVolume.setImageResource(R.drawable.vector_no_volume)
-
-                Utils.playVolume = false
             } else {
-                btnVolume.setImageResource(R.drawable.vector_volume)
-
-                Utils.playVolume = true
+                btnMusic.setImageResource(R.drawable.vector_no_music)
             }
-        }
 
-        btnRestart.setOnClickListener {
-            dialogRestart(dialogSetting)
-        }
+            if (Utils.playVolume) {
+                btnVolume.setImageResource(R.drawable.vector_volume)
+            } else {
+                btnVolume.setImageResource(R.drawable.vector_no_volume)
+            }
 
-        btnClose.setOnClickListener {
-            dialogSetting.dismiss()
-            updateDataBaseSetting()
-        }
+            btnMusic.setOnClickListener {
+                if (Utils.playMusic) {
+                    btnMusic.setImageResource(R.drawable.vector_no_music)
+                    Utils.playMusic = false
+                    requireActivity().stopService(
+                        Intent(
+                            requireActivity(),
+                            PlayMusicService::class.java
+                        )
+                    )
+                } else {
+                    btnMusic.setImageResource(R.drawable.vector_music)
+                    Utils.playMusic = true
+                    requireActivity().startService(
+                        Intent(
+                            requireActivity(),
+                            PlayMusicService::class.java
+                        )
+                    )
+                }
+            }
 
-        dialogSetting.setOnDismissListener {
-            updateDataBaseSetting()
-        }
+            btnVolume.setOnClickListener {
+                if (Utils.playVolume) {
+                    btnVolume.setImageResource(R.drawable.vector_no_volume)
 
-        dialogSetting.show()
+                    Utils.playVolume = false
+                } else {
+                    btnVolume.setImageResource(R.drawable.vector_volume)
+
+                    Utils.playVolume = true
+                }
+            }
+
+            btnRestart.setOnClickListener {
+                dialogRestart(dialogSetting)
+            }
+
+            btnClose.setOnClickListener {
+                checkOpenDialog = true
+                dialogSetting.dismiss()
+                updateDataBaseSetting()
+            }
+
+            dialogSetting.setOnDismissListener {
+                checkOpenDialog = true
+                updateDataBaseSetting()
+            }
+
+            dialogSetting.show()
+        }
     }
 
     private fun readDataBaseSetting() {
@@ -208,45 +216,56 @@ class HomeFragment : Fragment() {
     }
 
     private fun dialogRestart(dialogSetting: Dialog) {
-        dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.layout_dialog_question)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.setGravity(Gravity.CENTER)
-        dialog.window!!.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-        )
+        if (checkOpenDialog2) {
+            checkOpenDialog2 = false
 
-        val btnOk = dialog.findViewById<View>(R.id.btn_ok)
-        val btnCansel = dialog.findViewById<View>(R.id.btn_cansel)
-        val btnClose = dialog.findViewById<View>(R.id.btn_close_question)
+            dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.layout_dialog_question)
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.window!!.setGravity(Gravity.CENTER)
+            dialog.window!!.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+            )
 
-        btnCansel.setOnClickListener { dialog.dismiss() }
+            val btnOk = dialog.findViewById<View>(R.id.btn_ok)
+            val btnCansel = dialog.findViewById<View>(R.id.btn_cansel)
+            val btnClose = dialog.findViewById<View>(R.id.btn_close_question)
 
-        btnClose.setOnClickListener { dialog.dismiss() }
+            btnCansel.setOnClickListener {
+                dialog.dismiss()
+                checkOpenDialog2 = true
+            }
 
-        btnOk.setOnClickListener {
-            animationLoadingWaiting = AnimationLoadingWaiting(requireActivity())
+            btnClose.setOnClickListener {
+                dialog.dismiss()
+                checkOpenDialog2 = true
+            }
 
-            deleteDatabase()
-            dialog.dismiss()
-            dialogSetting.dismiss()
-            Utils.playMusic = true
-            Utils.playVolume = true
+            btnOk.setOnClickListener {
+                checkOpenDialog2 = true
+                animationLoadingWaiting = AnimationLoadingWaiting(requireActivity())
 
-            Handler(Looper.getMainLooper()).postDelayed({
-                animationLoadingWaiting.dismissLoading()
-                binding.layoutIncreaseRubyHome.textCoin.text = Utils.BASE_COIN.toString()
-                requireActivity().startService(
-                    Intent(
-                        requireActivity(),
-                        PlayMusicService::class.java
+                deleteDatabase()
+                dialog.dismiss()
+                dialogSetting.dismiss()
+                Utils.playMusic = true
+                Utils.playVolume = true
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    animationLoadingWaiting.dismissLoading()
+                    binding.layoutIncreaseRubyHome.textCoin.text = Utils.BASE_COIN.toString()
+                    requireActivity().startService(
+                        Intent(
+                            requireActivity(),
+                            PlayMusicService::class.java
+                        )
                     )
-                )
-            }, 3000)
-        }
+                }, 3000)
+            }
 
-        dialog.show()
+            dialog.show()
+        }
     }
 
     private fun deleteDatabase() {
@@ -289,26 +308,37 @@ class HomeFragment : Fragment() {
     }
 
     private fun dialogAboutUs() {
-        dialog = Dialog(requireContext())
+        if (checkOpenDialog) {
+            checkOpenDialog = false
+
+            dialog = Dialog(requireContext())
 //        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.layout_dialog_about_us)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.setGravity(Gravity.CENTER)
-        dialog.window!!.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-        )
-        val btnClose = dialog.findViewById<View>(R.id.btn_close)
-        btnClose.setOnClickListener {
-            dialog.dismiss()
-        }
-        val btnEmail = dialog.findViewById<View>(R.id.btn_email)
+            dialog.setContentView(R.layout.layout_dialog_about_us)
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.window!!.setGravity(Gravity.CENTER)
+            dialog.window!!.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+            )
+            val btnClose = dialog.findViewById<View>(R.id.btn_close)
+            btnClose.setOnClickListener {
+                checkOpenDialog = true
+                dialog.dismiss()
+            }
+            val btnEmail = dialog.findViewById<View>(R.id.btn_email)
 
-        btnEmail.setOnClickListener {
-            sendProblemWithEmail()
-        }
+            btnEmail.setOnClickListener {
+                checkOpenDialog = true
+                sendProblemWithEmail()
+            }
 
-        dialog.show()
+            dialog.setOnDismissListener {
+                checkOpenDialog = true
+                dialog.dismiss()
+            }
+
+            dialog.show()
+        }
     }
 
     @SuppressLint("IntentReset")

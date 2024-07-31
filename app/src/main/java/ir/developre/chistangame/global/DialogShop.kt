@@ -26,6 +26,7 @@ class DialogShop(val context: Activity) : Dialog(context) {
     private lateinit var dialog: Dialog
     private lateinit var tapsellShop: TapsellShop
     private val customToast by lazy { CustomToast(context) }
+    private var checkOpenDialog = true
     private val paymentConfiguration = PaymentConfiguration(
         localSecurityCheck = SecurityCheck.Enable(rsaPublicKey = Utils.rsaPublicKey)
     )
@@ -41,141 +42,145 @@ class DialogShop(val context: Activity) : Dialog(context) {
 
 
     fun showDialog(activityResultRegistry: ActivityResultRegistry) {
-        startPaymentConnection()
-        dialog = Dialog(context)
-        dialog.setContentView(R.layout.layout_dialog_shop)
-        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.setGravity(Gravity.CENTER)
-        dialog.window!!.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT,
-        )
-        dialog.setCancelable(false)
-        val btnClose = dialog.findViewById<View>(R.id.btn_close)
-        val btnSeeAds = dialog.findViewById<View>(R.id.btn_see_ad)
-        val btnBuyCoinOne = dialog.findViewById<View>(R.id.btn_buy_coin_one)
-        val btnBuyCoinTwo = dialog.findViewById<View>(R.id.btn_buy_coin_two)
-        val btnBuyCoinThree = dialog.findViewById<View>(R.id.btn_buy_coin_three)
-        val btnBuyCoinFour = dialog.findViewById<View>(R.id.btn_buy_coin_four)
-        val btnBuyCoinFive = dialog.findViewById<View>(R.id.btn_buy_coin_five)
+        if (checkOpenDialog) {
+            checkOpenDialog = false
+            startPaymentConnection()
+            dialog = Dialog(context)
+            dialog.setContentView(R.layout.layout_dialog_shop)
+            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.window!!.setGravity(Gravity.CENTER)
+            dialog.window!!.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+            )
+            dialog.setCancelable(false)
+            val btnClose = dialog.findViewById<View>(R.id.btn_close)
+            val btnSeeAds = dialog.findViewById<View>(R.id.btn_see_ad)
+            val btnBuyCoinOne = dialog.findViewById<View>(R.id.btn_buy_coin_one)
+            val btnBuyCoinTwo = dialog.findViewById<View>(R.id.btn_buy_coin_two)
+            val btnBuyCoinThree = dialog.findViewById<View>(R.id.btn_buy_coin_three)
+            val btnBuyCoinFour = dialog.findViewById<View>(R.id.btn_buy_coin_four)
+            val btnBuyCoinFive = dialog.findViewById<View>(R.id.btn_buy_coin_five)
 
-        btnClose.setOnClickListener {
-            paymentConnection.disconnect()
-            dialog.dismiss()
-        }
-
-        btnSeeAds.setOnClickListener {
-            if (CheckNetworkConnection.isOnline(context)) {
-                tapsellShop = TapsellShop(context as Activity)
-                tapsellShop.connectToTapsell()
-                tapsellShop.requestAdGift()
-
-            } else {
-                customToast.customToast(
-                    colorBackground = R.drawable.simple_shape_background_toast_error,
-                    img = R.drawable.vector_close_circle,
-                    message = context.getString(R.string.w_no_access_to_internet)
-                )
+            btnClose.setOnClickListener {
+                paymentConnection.disconnect()
+                checkOpenDialog = true
+                dialog.dismiss()
             }
-        }
 
-        btnBuyCoinOne.setOnClickListener {
-            if (CheckNetworkConnection.isOnline(context)) {
-                if (paymentConnection.getState() == ConnectionState.Connected) {
-                    purchaseProduct(
-                        productId = Utils.productId_50,
-                        payload = "payload",
-                        "",
-                        activityResultRegistry
+            btnSeeAds.setOnClickListener {
+                if (CheckNetworkConnection.isOnline(context)) {
+                    tapsellShop = TapsellShop(context as Activity)
+                    tapsellShop.connectToTapsell()
+                    tapsellShop.requestAdGift()
+
+                } else {
+                    customToast.customToast(
+                        colorBackground = R.drawable.simple_shape_background_toast_error,
+                        img = R.drawable.vector_close_circle,
+                        message = context.getString(R.string.w_no_access_to_internet)
                     )
-                    coin50 = true
                 }
-            } else {
-                customToast.customToast(
-                    R.drawable.simple_shape_background_toast_error,
-                    R.drawable.vector_close_circle,
-                    context.getString(R.string.w_no_access_to_internet)
-                )
             }
-        }
 
-        btnBuyCoinTwo.setOnClickListener {
-            if (CheckNetworkConnection.isOnline(context)) {
-                if (paymentConnection.getState() == ConnectionState.Connected) {
-                    purchaseProduct(
-                        productId = Utils.productId_80,
-                        payload = "payload",
-                        "", activityResultRegistry
+            btnBuyCoinOne.setOnClickListener {
+                if (CheckNetworkConnection.isOnline(context)) {
+                    if (paymentConnection.getState() == ConnectionState.Connected) {
+                        purchaseProduct(
+                            productId = Utils.productId_50,
+                            payload = "payload",
+                            "",
+                            activityResultRegistry
+                        )
+                        coin50 = true
+                    }
+                } else {
+                    customToast.customToast(
+                        R.drawable.simple_shape_background_toast_error,
+                        R.drawable.vector_close_circle,
+                        context.getString(R.string.w_no_access_to_internet)
                     )
-                    coin80 = true
                 }
-            } else {
-                customToast.customToast(
-                    R.drawable.simple_shape_background_toast_error,
-                    R.drawable.vector_close_circle,
-                    context.getString(R.string.w_no_access_to_internet)
-                )
             }
-        }
 
-        btnBuyCoinThree.setOnClickListener {
-            if (CheckNetworkConnection.isOnline(context)) {
-                if (paymentConnection.getState() == ConnectionState.Connected) {
-                    purchaseProduct(
-                        productId = Utils.productId_100,
-                        payload = "payload",
-                        "", activityResultRegistry
+            btnBuyCoinTwo.setOnClickListener {
+                if (CheckNetworkConnection.isOnline(context)) {
+                    if (paymentConnection.getState() == ConnectionState.Connected) {
+                        purchaseProduct(
+                            productId = Utils.productId_80,
+                            payload = "payload",
+                            "", activityResultRegistry
+                        )
+                        coin80 = true
+                    }
+                } else {
+                    customToast.customToast(
+                        R.drawable.simple_shape_background_toast_error,
+                        R.drawable.vector_close_circle,
+                        context.getString(R.string.w_no_access_to_internet)
                     )
-                    coin100 = true
                 }
-            } else {
-                customToast.customToast(
-                    R.drawable.simple_shape_background_toast_error,
-                    R.drawable.vector_close_circle,
-                    context.getString(R.string.w_no_access_to_internet)
-                )
             }
-        }
 
-        btnBuyCoinFour.setOnClickListener {
-            if (CheckNetworkConnection.isOnline(context)) {
-                if (paymentConnection.getState() == ConnectionState.Connected) {
-                    purchaseProduct(
-                        productId = Utils.productId_150,
-                        payload = "payload",
-                        "", activityResultRegistry
+            btnBuyCoinThree.setOnClickListener {
+                if (CheckNetworkConnection.isOnline(context)) {
+                    if (paymentConnection.getState() == ConnectionState.Connected) {
+                        purchaseProduct(
+                            productId = Utils.productId_100,
+                            payload = "payload",
+                            "", activityResultRegistry
+                        )
+                        coin100 = true
+                    }
+                } else {
+                    customToast.customToast(
+                        R.drawable.simple_shape_background_toast_error,
+                        R.drawable.vector_close_circle,
+                        context.getString(R.string.w_no_access_to_internet)
                     )
-                    coin150 = true
                 }
-            } else {
-                customToast.customToast(
-                    R.drawable.simple_shape_background_toast_error,
-                    R.drawable.vector_close_circle,
-                    context.getString(R.string.w_no_access_to_internet)
-                )
             }
-        }
 
-        btnBuyCoinFive.setOnClickListener {
-            if (CheckNetworkConnection.isOnline(context)) {
-                if (paymentConnection.getState() == ConnectionState.Connected) {
-                    purchaseProduct(
-                        productId = Utils.productId_300,
-                        payload = "payload",
-                        "", activityResultRegistry
+            btnBuyCoinFour.setOnClickListener {
+                if (CheckNetworkConnection.isOnline(context)) {
+                    if (paymentConnection.getState() == ConnectionState.Connected) {
+                        purchaseProduct(
+                            productId = Utils.productId_150,
+                            payload = "payload",
+                            "", activityResultRegistry
+                        )
+                        coin150 = true
+                    }
+                } else {
+                    customToast.customToast(
+                        R.drawable.simple_shape_background_toast_error,
+                        R.drawable.vector_close_circle,
+                        context.getString(R.string.w_no_access_to_internet)
                     )
-                    coin300 = true
                 }
-            } else {
-                customToast.customToast(
-                    R.drawable.simple_shape_background_toast_error,
-                    R.drawable.vector_close_circle,
-                    context.getString(R.string.w_no_access_to_internet)
-                )
             }
-        }
 
-        dialog.show()
+            btnBuyCoinFive.setOnClickListener {
+                if (CheckNetworkConnection.isOnline(context)) {
+                    if (paymentConnection.getState() == ConnectionState.Connected) {
+                        purchaseProduct(
+                            productId = Utils.productId_300,
+                            payload = "payload",
+                            "", activityResultRegistry
+                        )
+                        coin300 = true
+                    }
+                } else {
+                    customToast.customToast(
+                        R.drawable.simple_shape_background_toast_error,
+                        R.drawable.vector_close_circle,
+                        context.getString(R.string.w_no_access_to_internet)
+                    )
+                }
+            }
+
+            dialog.show()
+        }
     }
 
     private fun startPaymentConnection() {
