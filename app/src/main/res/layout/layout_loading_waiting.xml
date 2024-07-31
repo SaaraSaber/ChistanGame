@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_300sdp"
+    android:gravity="center"
     android:layout_margin="@dimen/_10sdp"
     android:background="@drawable/simple_shape_background_loading"
     android:orientation="vertical"
@@ -10,7 +11,7 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/_260sdp"
         android:layout_height="0dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
