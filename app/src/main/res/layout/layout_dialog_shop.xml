@@ -139,7 +139,7 @@
                         style="@style/text_orange_dialog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="15 یاقوت" />
+                        android:text="10 یاقوت" />
 
                     <ImageView
                         android:layout_width="wrap_content"

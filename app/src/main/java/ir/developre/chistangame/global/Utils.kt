@@ -8,7 +8,7 @@ object Utils {
     var back_from_tapsell = false
 
     const val PACKAGE_NAME = "ir.developre.chistangame"
-    const val LINK_SHARED_APP = "https://cafebazaar.ir/app/ir.arinaco.mafiagames"
+    const val LINK_SHARED_APP = "https://cafebazaar.ir/app/ir.developre.chistangame"
 
     /*currentLevel:
     این زمانی پر میشه که کاربر روی لول مورد نظر کلیک کنه و زمانی که لول مورد نظر رو درست بره

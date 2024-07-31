@@ -24,8 +24,8 @@
 
     <ImageView
         android:id="@+id/image_lock"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
         android:src="@drawable/vector_lock"
         android:visibility="gone" />
 
