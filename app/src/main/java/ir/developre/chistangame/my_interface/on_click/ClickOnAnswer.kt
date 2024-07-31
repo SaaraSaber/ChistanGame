@@ -5,11 +5,13 @@ interface ClickOnAnswer {
         index: Int,
         letter: Char? = null,
         positionLetter: Int? = null,
-        isHelp: Boolean
+        isHelp: Boolean,
+        isClick:Boolean
     )
 
     fun clickOnHelp(
         index: Int,
-        isHelp: Boolean
+        isHelp: Boolean,
+        isClick:Boolean
     )
 }

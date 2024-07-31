@@ -57,7 +57,7 @@ class AnswerAdapter(
             holder.layout.setOnClickListener {
                 clickOnLetter.clickOnHelp(
                     holder.adapterPosition,
-                    item.isHelp
+                    item.isHelp,item.isClick
                 )
             }
         } else if (!item.isHelp && item.letter != null) {
@@ -66,7 +66,7 @@ class AnswerAdapter(
                     holder.adapterPosition,
                     item.letter!!,
                     item.positionLetter!!,
-                    item.isHelp
+                    item.isHelp,item.isClick
                 )
             }
         }

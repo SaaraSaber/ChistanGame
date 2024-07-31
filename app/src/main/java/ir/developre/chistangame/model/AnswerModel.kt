@@ -7,5 +7,6 @@ data class AnswerModel(
     var positionLetter: Int? = null,
     var isShow: Boolean,
     var isHelp: Boolean = false,
-    var characterHelp: Char
+    var characterHelp: Char,
+    var isClick: Boolean = true
 )

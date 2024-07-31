@@ -376,6 +376,12 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
                 listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = true
                 listAnswerAdapter.find { it.index == currentTextIndex }?.isShow = true
+                listAnswerAdapter.find { it.index == currentTextIndex }?.isClick = true
+
+                listAnswerAdapter.forEach {
+                    if (it.index != currentTextIndex)
+                        it.isClick = false
+                }
                 adapterAnswer.notifyItemChanged(currentTextIndex)
                 listAnswerAdapter.forEach {
                     if (it.index == currentTextIndex)
@@ -435,8 +441,10 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             soundPool?.play(soundId, 1F, 1F, 0, 0, 1F)
     }
 
-    override fun clickOnAnswer(index: Int, letter: Char?, positionLetter: Int?, isHelp: Boolean) {
-        if (!isHelp) {
+    override fun clickOnAnswer(
+        index: Int, letter: Char?, positionLetter: Int?, isHelp: Boolean, isClick: Boolean
+    ) {
+        if (!isHelp && isClick != false) {
             if (index == currentTextIndex - 1) {
                 playBeepSound()
                 listAnswerAdapter.find { it.index == index }?.letter = null
@@ -447,6 +455,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
                 listLetterAdapter.find { it.index == positionLetter && it.letter == letter }?.isShow =
                     true
+                listAnswerAdapter.find { it.index == currentTextIndex - 1 }?.isClick = true
                 adapterLetter.notifyItemChanged(positionLetter!!)
 
                 listAnswerUser.removeAt(index)
@@ -454,13 +463,16 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
-    override fun clickOnHelp(index: Int, isHelp: Boolean) {
-        if (isHelp) {
+    override fun clickOnHelp(
+        index: Int, isHelp: Boolean, isClick: Boolean
+    ) {
+        if (isHelp && isClick != false) {
             playBeepSound()
             currentTextIndex--
             listAnswerUser.removeAt(index)
             listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = false
             listAnswerAdapter.find { it.index == index }?.isShow = false
+            listAnswerAdapter.find { it.index == currentTextIndex - 1 }?.isClick = true
             adapterAnswer.notifyItemChanged(index)
         }
     }
@@ -477,6 +489,13 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             listAnswerAdapter.find { it.index == currentTextIndex }?.letter = letter
             listAnswerAdapter.find { it.index == currentTextIndex }?.positionLetter = index
             listAnswerAdapter.find { it.index == currentTextIndex }?.isShow = true
+            listAnswerAdapter.find { it.index == currentTextIndex }?.isClick = true
+
+            listAnswerAdapter.forEach {
+                if (it.index != currentTextIndex)
+                    it.isClick = false
+            }
+
             adapterAnswer.notifyItemChanged(currentTextIndex)
 
             currentTextIndex++
