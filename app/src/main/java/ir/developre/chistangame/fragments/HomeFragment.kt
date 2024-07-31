@@ -57,12 +57,20 @@ class HomeFragment : Fragment() {
         binding.layoutIncreaseRubyHome.btnBack.visibility = View.INVISIBLE
 
         getCoinFromDatabase()
+        getDataSetting()
         clickOnLayoutIncludeIncreaseRuby()
         clickBtnStartGame()
         clickBtnSetting()
         clickBtnShop()
         clickBtnAboutUs()
         clickBtnShareApp()
+    }
+
+    private fun getDataSetting() {
+        dataBase = AppDataBase.getDatabase(requireActivity())
+        val setting = dataBase.setting().readDataSetting()
+        Utils.playVolume = setting.playVolume
+        Utils.playMusic = setting.playMusic
     }
 
     private fun clickBtnShareApp() {

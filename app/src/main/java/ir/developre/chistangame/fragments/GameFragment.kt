@@ -75,6 +75,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         binding.layoutIncreaseRuby.layoutBuyRuby.setOnClickListener { dialogShop() }
 
         readDataFromDatabaseAndFillFilds()
+
         getCoinFromDatabase()
         fillListAnswer()
         fillListLetterAdapter()
