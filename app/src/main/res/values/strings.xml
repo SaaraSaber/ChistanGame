@@ -21,8 +21,10 @@
     <string name="txt_description_delete_database_2">آیا مطمئن هستید؟</string>
     <string name="txt_felicitation">تبریک</string>
     <string name="txt_description_felicitation">تبریک شما به مرحله بعد راه یافتید</string>
+    <string name="txt_wrong_answer">جواب اشتباه است.</string>
     <string name="txt_get_more_rubies_by_viewing_ad">با مشاهده تبلیغ 2 برابر یاقوت دریافت کنید.</string>
     <string name="txt_viewing_ad">دیدن تبلیغ</string>
+    <string name="txt_again">دوباره</string>
     <string name="txt_ad">تبلیغات</string>
     <string name="txt_next_level">مرحله بعد</string>
     <string name="txt_shop">فروشگاه</string>

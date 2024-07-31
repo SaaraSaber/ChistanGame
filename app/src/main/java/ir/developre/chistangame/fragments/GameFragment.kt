@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.media.AudioManager
+import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
 import android.view.Gravity
@@ -51,6 +51,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private val customToast by lazy { CustomToast(requireContext()) }
     private lateinit var tapsellWinStage: TapsellWinStage
     private var checkOpenDialog = true
+    private lateinit var soundPool: SoundPool
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,7 +76,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         binding.layoutIncreaseRuby.btnBuyRuby.setOnClickListener { dialogShop() }
         binding.layoutIncreaseRuby.layoutBuyRuby.setOnClickListener { dialogShop() }
 
-        readDataFromDatabaseAndFillFilds()
+        readDataFromDatabaseAndFillFields()
 
         getCoinFromDatabase()
         fillListAnswer()
@@ -83,9 +84,56 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         createRecyclerViewAnswer()
         setDataToRecyclerViewLetter()
         help()
+        initializerSoundPool()
 
-        soundPool = SoundPool(6, AudioManager.STREAM_MUSIC, 0)
-        soundPool!!.load(requireContext(), R.raw.sound_effect, 1)
+    }
+
+    private var soundIdClickLetter = 1
+    private var soundIdWinStage = 2
+    private var soundIdClickAnswer = 3
+    private var soundIdFinalWin = 4
+    private var soundIdWrongAnswer = 5
+    private fun initializerSoundPool() {
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_MEDIA)
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .build()
+
+        soundPool = SoundPool.Builder()
+            .setMaxStreams(1)
+            .setAudioAttributes(audioAttributes)
+            .build()
+
+        soundIdClickLetter = soundPool.load(requireContext(), R.raw.sound_effect_click_letter, 1)
+        soundIdWinStage = soundPool.load(requireContext(), R.raw.sound_effect_win_stage, 1)
+        soundIdClickAnswer = soundPool.load(requireContext(), R.raw.sound_effect_click_answer, 1)
+        soundIdFinalWin = soundPool.load(requireContext(), R.raw.sound_effect_final_win, 1)
+        soundIdWrongAnswer = soundPool.load(requireContext(), R.raw.sound_effect_wrong_answer, 1)
+    }
+
+    private fun playSoundEffectClickLetter() {
+        if (Utils.playVolume)
+            soundPool.play(soundIdClickLetter, 1F, 1F, 0, 0, 1F)
+    }
+
+    private fun playSoundEffectWinStage() {
+        if (Utils.playVolume)
+            soundPool.play(soundIdWinStage, 1F, 1F, 0, 0, 1F)
+    }
+
+    private fun playSoundEffectFinalWin() {
+        if (Utils.playVolume)
+            soundPool.play(soundIdFinalWin, 1F, 1F, 0, 0, 1F)
+    }
+
+    private fun playSoundEffectClickAnswer() {
+        if (Utils.playVolume)
+            soundPool.play(soundIdClickAnswer, 1F, 1F, 0, 0, 1F)
+    }
+
+    private fun playSoundEffectWrongAnswer() {
+        if (Utils.playVolume)
+            soundPool.play(soundIdWrongAnswer, 1F, 1F, 0, 0, 1F)
     }
 
     private lateinit var dialogShop: DialogShop
@@ -119,7 +167,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
     }
 
-    private fun readDataFromDatabaseAndFillFilds() {
+    private fun readDataFromDatabaseAndFillFields() {
         readData = dataBase.levels().readDataLevel()
 
         readData.forEach {
@@ -201,17 +249,21 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     }
 
     private lateinit var dialogWin: Dialog
+    private lateinit var answerUser: String
     private fun checkAnswer() {
-        val answerUser = listAnswerUser.joinToString("")
+        answerUser = listAnswerUser.joinToString("")
         val newAnswer = answer.replace(" ", "")
         if (newAnswer.trim() == answerUser) {
             if (Utils.currentLevel != Utils.LAST_LEVEL) {
                 showDialogWin()
+                playSoundEffectWinStage()
             } else {
                 showDialogFinalWin()
+                playSoundEffectFinalWin()
             }
 
         } else {
+
             val currentCoin = readCoin()
 
             if (currentCoin >= Utils.NUMBER_OF_COIN_FOR_WRONG_ANSWER) {
@@ -219,26 +271,55 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
                 val saveNewCoin = currentCoin - Utils.NUMBER_OF_COIN_FOR_WRONG_ANSWER
                 saveNewCoinInDatabase(saveNewCoin)
 
-                customToast.customToast(
-                    R.drawable.simple_shape_background_toast_error,
-                    R.drawable.vector_close_circle,
-                    requireContext().getString(R.string.wrong_answer)
-                )
-
-                //refresh fragment
-                val id = findNavController().currentDestination?.id
-                findNavController().popBackStack(id!!, true)
-                findNavController().navigate(id)
+                dialogWrongAnswer()
+                playSoundEffectWrongAnswer()
 
             } else {
-                customToast.customToast(
-                    R.drawable.simple_shape_background_toast_error,
-                    R.drawable.vector_close_circle,
-                    requireContext().getString(R.string.wrong_answer)
-                )
+                dialogWrongAnswer()
+                playSoundEffectWrongAnswer()
                 dialogNotEnoughCoin()
             }
         }
+    }
+
+    private lateinit var dialogWrongAnswer: Dialog
+    private fun dialogWrongAnswer() {
+        dialogWrongAnswer = Dialog(requireContext())
+        dialogWrongAnswer.setContentView(R.layout.layout_dialog_wrong_answer)
+        dialogWrongAnswer.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogWrongAnswer.window!!.setGravity(Gravity.CENTER)
+        dialogWrongAnswer.window!!.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT,
+        )
+        val lp = dialogWrongAnswer.window!!.attributes
+        lp.dimAmount = 0.8f
+        dialogWrongAnswer.setCancelable(false)
+
+        val textAnswerUser = dialogWrongAnswer.findViewById<TextView>(R.id.text_wrong_answer)
+        val btnClose = dialogWrongAnswer.findViewById<View>(R.id.btn_close_wrong_answer)
+        val btnFinish = dialogWrongAnswer.findViewById<View>(R.id.btn_finish)
+        val btnAgain = dialogWrongAnswer.findViewById<View>(R.id.btn_again)
+
+        textAnswerUser.text = answerUser
+        btnClose.setOnClickListener {
+            dialogWrongAnswer.dismiss()
+            findNavController().popBackStack()
+        }
+        btnAgain.setOnClickListener {
+            //refresh fragment
+            val id = findNavController().currentDestination?.id
+            findNavController().popBackStack(id!!, true)
+            findNavController().navigate(id)
+
+            dialogWrongAnswer.dismiss()
+        }
+        btnFinish.setOnClickListener {
+            dialogWrongAnswer.dismiss()
+            findNavController().popBackStack()
+        }
+
+        dialogWrongAnswer.show()
     }
 
     private fun showDialogFinalWin() {
@@ -361,9 +442,8 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
     private fun help() {
         binding.layoutHelp.setOnClickListener {
-            playBeepSound()
+            playSoundEffectClickLetter()
             val currentCoin = readCoin()
-
             if (currentCoin >= Utils.NUMBER_OF_COIN_FOR_HELP) {
 
                 val saveNewCoin = currentCoin - Utils.NUMBER_OF_COIN_FOR_HELP
@@ -446,19 +526,12 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         return coin
     }
 
-    private var soundPool: SoundPool? = null
-    private val soundId = 1
-    private fun playBeepSound() {
-        if (Utils.playVolume)
-            soundPool?.play(soundId, 1F, 1F, 0, 0, 1F)
-    }
-
     override fun clickOnAnswer(
         index: Int, letter: Char?, positionLetter: Int?, isHelp: Boolean, isClick: Boolean
     ) {
         if (!isHelp && isClick != false) {
             if (index == currentTextIndex - 1) {
-                playBeepSound()
+                playSoundEffectClickAnswer()
                 listAnswerAdapter.find { it.index == index }?.letter = null
                 listAnswerAdapter.find { it.index == index }?.positionLetter = null
                 listAnswerAdapter.find { it.index == index }?.isShow = false
@@ -479,7 +552,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         index: Int, isHelp: Boolean, isClick: Boolean
     ) {
         if (isHelp && isClick != false) {
-            playBeepSound()
+            playSoundEffectClickAnswer()
             currentTextIndex--
             listAnswerUser.removeAt(index)
             listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = false
@@ -491,7 +564,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
 
     override fun clickOnLetter(index: Int, letter: Char, linearLayout: LinearLayout) {
         if (currentTextIndex <= sizeAnswer) {
-            playBeepSound()
+            playSoundEffectClickLetter()
             listAnswerUser.add(letter)
             if (currentTextIndex == sizeAnswer) {
                 Utils.isAllEditTextsFilled = true
@@ -525,4 +598,5 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             Utils.back_from_tapsell = false
         }
     }
+
 }
