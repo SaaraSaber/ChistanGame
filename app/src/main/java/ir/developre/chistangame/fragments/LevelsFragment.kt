@@ -133,7 +133,7 @@ class LevelsFragment : Fragment(), ClickOnLevel {
             )
             val textDes = dialogNotEnoughCoin.findViewById<TextView>(R.id.text_description)
             val btnBuyCoin = dialogNotEnoughCoin.findViewById<View>(R.id.btn_buy_coin)
-            val btnClose = dialogNotEnoughCoin.findViewById<View>(R.id.btn_close_not_enough_coin)
+            val btnClose = dialogNotEnoughCoin.findViewById<View>(R.id.btn_close)
             textDes.text = requireContext().getString(R.string.w_not_enough_coin_for_continue_game)
             btnClose.setOnClickListener {
                 checkOpenDialog = true
