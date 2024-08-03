@@ -1,12 +1,14 @@
 package ir.developre.chistangame.fragments
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.media.AudioAttributes
 import android.media.SoundPool
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import ir.cafebazaar.poolakey.Connection
+import ir.cafebazaar.poolakey.ConnectionState
+import ir.cafebazaar.poolakey.Payment
+import ir.cafebazaar.poolakey.config.PaymentConfiguration
+import ir.cafebazaar.poolakey.config.SecurityCheck
+import ir.cafebazaar.poolakey.exception.DynamicPriceNotSupportedException
+import ir.cafebazaar.poolakey.request.PurchaseRequest
 import ir.developre.chistangame.R
 import ir.developre.chistangame.adapter.AnswerAdapter
 import ir.developre.chistangame.adapter.LetterAdapter
@@ -24,6 +33,7 @@ import ir.developre.chistangame.databinding.FragmentGameBinding
 import ir.developre.chistangame.global.CheckNetworkConnection
 import ir.developre.chistangame.global.CustomToast
 import ir.developre.chistangame.global.DialogShop
+import ir.developre.chistangame.global.TapsellShop
 import ir.developre.chistangame.global.TapsellWinStage
 import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.model.AnswerModel
@@ -52,6 +62,20 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private lateinit var tapsellWinStage: TapsellWinStage
     private var checkOpenDialog = true
     private lateinit var soundPool: SoundPool
+    private lateinit var dialogCustomShop: Dialog
+    private lateinit var tapsellShop: TapsellShop
+    private val paymentConfiguration = PaymentConfiguration(
+        localSecurityCheck = SecurityCheck.Enable(rsaPublicKey = Utils.rsaPublicKey)
+    )
+    private val payment by lazy(LazyThreadSafetyMode.NONE) {
+        Payment(context = requireActivity(), config = paymentConfiguration)
+    }
+    private lateinit var paymentConnection: Connection
+    private var coin50 = false
+    private var coin80 = false
+    private var coin100 = false
+    private var coin150 = false
+    private var coin300 = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -277,7 +301,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             } else {
                 dialogWrongAnswer()
                 playSoundEffectWrongAnswer()
-                dialogNotEnoughCoin()
+//                dialogNotEnoughCoin()
             }
         }
     }
@@ -307,10 +331,15 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             findNavController().popBackStack()
         }
         btnAgain.setOnClickListener {
-            //refresh fragment
-            val id = findNavController().currentDestination?.id
-            findNavController().popBackStack(id!!, true)
-            findNavController().navigate(id)
+            val coin = dataBase.user().readDataUser().coin
+            if (coin >= Utils.ENOUGH_COIN_FOR_CONTINUE_GAME) {
+                //refresh fragment
+                val id = findNavController().currentDestination?.id
+                findNavController().popBackStack(id!!, true)
+                findNavController().navigate(id)
+            } else {
+                customDialogNotEnoughCoinForContinueGame()
+            }
 
             dialogWrongAnswer.dismiss()
         }
@@ -320,6 +349,176 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         }
 
         dialogWrongAnswer.show()
+    }
+
+    private fun customDialogNotEnoughCoinForContinueGame() {
+        dialogNotEnoughCoin = Dialog(requireContext())
+        dialogNotEnoughCoin.setContentView(R.layout.layout_dialog_ruby_not_enough)
+        dialogNotEnoughCoin.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogNotEnoughCoin.window!!.setGravity(Gravity.CENTER)
+        dialogNotEnoughCoin.window!!.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+        )
+        dialogNotEnoughCoin.setCancelable(false)
+        val textDes = dialogNotEnoughCoin.findViewById<TextView>(R.id.text_description)
+        val btnBuyCoin = dialogNotEnoughCoin.findViewById<View>(R.id.btn_buy_coin)
+        val btnClose = dialogNotEnoughCoin.findViewById<View>(R.id.btn_close_not_enough_coin)
+        textDes.text = requireContext().getString(R.string.w_not_enough_coin_for_continue_game)
+        btnClose.setOnClickListener {
+            dialogNotEnoughCoin.dismiss()
+            findNavController().popBackStack()
+        }
+        btnBuyCoin.setOnClickListener {
+            dialogNotEnoughCoin.dismiss()
+            customDialogShop()
+        }
+
+        dialogNotEnoughCoin.show()
+    }
+
+    private fun customDialogShop() {
+        dialogCustomShop = Dialog(requireActivity())
+        startPaymentConnection()
+        dialogCustomShop.setContentView(R.layout.layout_dialog_shop)
+        dialogCustomShop.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialogCustomShop.window!!.setGravity(Gravity.CENTER)
+        dialogCustomShop.window!!.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+        )
+        dialogCustomShop.setCancelable(false)
+        val btnClose = dialogCustomShop.findViewById<View>(R.id.btn_close_shop)
+        val btnSeeAds = dialogCustomShop.findViewById<View>(R.id.btn_see_ad)
+        val btnBuyCoinOne = dialogCustomShop.findViewById<View>(R.id.btn_buy_coin_one)
+        val btnBuyCoinTwo = dialogCustomShop.findViewById<View>(R.id.btn_buy_coin_two)
+        val btnBuyCoinThree = dialogCustomShop.findViewById<View>(R.id.btn_buy_coin_three)
+        val btnBuyCoinFour = dialogCustomShop.findViewById<View>(R.id.btn_buy_coin_four)
+        val btnBuyCoinFive = dialogCustomShop.findViewById<View>(R.id.btn_buy_coin_five)
+
+        btnClose.setOnClickListener {
+            val coin = dataBase.user().readDataUser().coin
+            if (coin >= Utils.ENOUGH_COIN_FOR_CONTINUE_GAME) {
+                paymentConnection.disconnect()
+                dialogCustomShop.dismiss()
+            } else {
+                paymentConnection.disconnect()
+                dialogCustomShop.dismiss()
+               findNavController().popBackStack()
+            }
+        }
+
+        btnSeeAds.setOnClickListener {
+            if (CheckNetworkConnection.isOnline(requireActivity())) {
+                tapsellShop = TapsellShop(context as Activity)
+                tapsellShop.connectToTapsell()
+                tapsellShop.requestAdGift()
+
+            } else {
+                customToast.customToast(
+                    colorBackground = R.drawable.simple_shape_background_toast_error,
+                    img = R.drawable.vector_close_circle,
+                    message = requireActivity().getString(R.string.w_no_access_to_internet)
+                )
+            }
+        }
+
+        btnBuyCoinOne.setOnClickListener {
+            if (CheckNetworkConnection.isOnline(requireActivity())) {
+                if (paymentConnection.getState() == ConnectionState.Connected) {
+                    purchaseProduct(
+                        productId = Utils.productId_50,
+                        payload = "payload",
+                        ""
+                    )
+                    coin50 = true
+                }
+            } else {
+                customToast.customToast(
+                    R.drawable.simple_shape_background_toast_error,
+                    R.drawable.vector_close_circle,
+                    requireActivity().getString(R.string.w_no_access_to_internet)
+                )
+            }
+        }
+
+        btnBuyCoinTwo.setOnClickListener {
+            if (CheckNetworkConnection.isOnline(requireActivity())) {
+                if (paymentConnection.getState() == ConnectionState.Connected) {
+                    purchaseProduct(
+                        productId = Utils.productId_80,
+                        payload = "payload",
+                        ""
+                    )
+                    coin80 = true
+                }
+            } else {
+                customToast.customToast(
+                    R.drawable.simple_shape_background_toast_error,
+                    R.drawable.vector_close_circle,
+                    requireActivity().getString(R.string.w_no_access_to_internet)
+                )
+            }
+        }
+
+        btnBuyCoinThree.setOnClickListener {
+            if (CheckNetworkConnection.isOnline(requireActivity())) {
+                if (paymentConnection.getState() == ConnectionState.Connected) {
+                    purchaseProduct(
+                        productId = Utils.productId_100,
+                        payload = "payload",
+                        ""
+                    )
+                    coin100 = true
+                }
+            } else {
+                customToast.customToast(
+                    R.drawable.simple_shape_background_toast_error,
+                    R.drawable.vector_close_circle,
+                    requireActivity().getString(R.string.w_no_access_to_internet)
+                )
+            }
+        }
+
+        btnBuyCoinFour.setOnClickListener {
+            if (CheckNetworkConnection.isOnline(requireActivity())) {
+                if (paymentConnection.getState() == ConnectionState.Connected) {
+                    purchaseProduct(
+                        productId = Utils.productId_150,
+                        payload = "payload",
+                        ""
+                    )
+                    coin150 = true
+                }
+            } else {
+                customToast.customToast(
+                    R.drawable.simple_shape_background_toast_error,
+                    R.drawable.vector_close_circle,
+                    requireActivity().getString(R.string.w_no_access_to_internet)
+                )
+            }
+        }
+
+        btnBuyCoinFive.setOnClickListener {
+            if (CheckNetworkConnection.isOnline(requireActivity())) {
+                if (paymentConnection.getState() == ConnectionState.Connected) {
+                    purchaseProduct(
+                        productId = Utils.productId_300,
+                        payload = "payload",
+                        ""
+                    )
+                    coin300 = true
+                }
+            } else {
+                customToast.customToast(
+                    R.drawable.simple_shape_background_toast_error,
+                    R.drawable.vector_close_circle,
+                    requireActivity().getString(R.string.w_no_access_to_internet)
+                )
+            }
+        }
+
+        dialogCustomShop.show()
     }
 
     private fun showDialogFinalWin() {
@@ -446,39 +645,82 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             val currentCoin = readCoin()
             if (currentCoin >= Utils.NUMBER_OF_COIN_FOR_HELP) {
 
-                val saveNewCoin = currentCoin - Utils.NUMBER_OF_COIN_FOR_HELP
-                saveNewCoinInDatabase(saveNewCoin)
+                val newCoin = currentCoin - Utils.NUMBER_OF_COIN_FOR_HELP
 
-                customToast.customToast(
-                    R.drawable.simple_shape_background_toast_info,
-                    R.drawable.vector_info_circle,
-                    "${Utils.NUMBER_OF_COIN_FOR_HELP} یاقوت کم شد."
-                )
+                if (newCoin >= Utils.ENOUGH_COIN_FOR_CONTINUE_GAME) {
 
-                listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = true
-                listAnswerAdapter.find { it.index == currentTextIndex }?.isShow = true
-                listAnswerAdapter.find { it.index == currentTextIndex }?.isClick = true
+                    val saveNewCoin = currentCoin - Utils.NUMBER_OF_COIN_FOR_HELP
+                    saveNewCoinInDatabase(saveNewCoin)
 
-                listAnswerAdapter.forEach {
-                    if (it.index != currentTextIndex)
-                        it.isClick = false
-                }
-                adapterAnswer.notifyItemChanged(currentTextIndex)
-                listAnswerAdapter.forEach {
-                    if (it.index == currentTextIndex)
-                        listAnswerUser.add(it.characterHelp)
-                }
-                currentTextIndex++
+                    customToast.customToast(
+                        R.drawable.simple_shape_background_toast_info,
+                        R.drawable.vector_info_circle,
+                        "${Utils.NUMBER_OF_COIN_FOR_HELP} یاقوت کم شد."
+                    )
 
-                if (currentTextIndex == sizeAnswer + 1) {
-                    Utils.isAllEditTextsFilled = true
-                    checkAnswer()
+                    listAnswerAdapter.find { it.index == currentTextIndex }?.isHelp = true
+                    listAnswerAdapter.find { it.index == currentTextIndex }?.isShow = true
+                    listAnswerAdapter.find { it.index == currentTextIndex }?.isClick = true
 
+                    listAnswerAdapter.forEach {
+                        if (it.index != currentTextIndex)
+                            it.isClick = false
+                    }
+                    adapterAnswer.notifyItemChanged(currentTextIndex)
+                    listAnswerAdapter.forEach {
+                        if (it.index == currentTextIndex)
+                            listAnswerUser.add(it.characterHelp)
+                    }
+                    currentTextIndex++
+
+                    if (currentTextIndex == sizeAnswer + 1) {
+                        Utils.isAllEditTextsFilled = true
+                        checkAnswer()
+                    }
+                } else {
+                    dialogNotEnoughCoinForContinueGame()
                 }
             } else {
                 dialogNotEnoughCoin()
             }
         }
+    }
+
+    private var checkOpenDialog1 = true
+
+    private fun dialogNotEnoughCoinForContinueGame() {
+        if (checkOpenDialog1) {
+            checkOpenDialog1 = false
+            dialogNotEnoughCoin = Dialog(requireContext())
+            dialogNotEnoughCoin.setContentView(R.layout.layout_dialog_ruby_not_enough)
+            dialogNotEnoughCoin.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialogNotEnoughCoin.window!!.setGravity(Gravity.CENTER)
+            dialogNotEnoughCoin.window!!.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+            )
+            dialogNotEnoughCoin.setCancelable(false)
+            val textDes = dialogNotEnoughCoin.findViewById<TextView>(R.id.text_description)
+            val btnBuyCoin = dialogNotEnoughCoin.findViewById<View>(R.id.btn_buy_coin)
+            val btnClose = dialogNotEnoughCoin.findViewById<View>(R.id.btn_close)
+            textDes.text = requireContext().getString(R.string.w_not_enough_coin_for_continue_game)
+            btnClose.setOnClickListener {
+                checkOpenDialog1 = true
+                findNavController().popBackStack()
+                dialogNotEnoughCoin.dismiss()
+            }
+            btnBuyCoin.setOnClickListener {
+                checkOpenDialog1 = true
+                dialogNotEnoughCoin.dismiss()
+                dialogShop()
+            }
+            dialogNotEnoughCoin.setOnDismissListener {
+                checkOpenDialog1 = true
+                dialogNotEnoughCoin.dismiss()
+            }
+            dialogNotEnoughCoin.show()
+        }
+
     }
 
     private fun saveNewCoinInDatabase(saveNewCoin: Int) {
@@ -498,8 +740,10 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT,
             )
+            val textDes = dialogNotEnoughCoin.findViewById<TextView>(R.id.text_description)
             val btnBuy = dialogNotEnoughCoin.findViewById<View>(R.id.btn_buy_coin)
             val btnClose = dialogNotEnoughCoin.findViewById<View>(R.id.btn_close)
+            textDes.text = requireContext().getString(R.string.txt_ruby_is_not_enough)
 
             btnBuy.setOnClickListener {
                 dialogShop()
@@ -524,6 +768,111 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private fun readCoin(): Int {
         val coin = dataBase.user().readDataUser().coin
         return coin
+    }
+
+    private fun startPaymentConnection() {
+        paymentConnection = payment.connect {
+            connectionSucceed {
+                Log.i("pay", "startPaymentConnection: connectionSucceed")
+            }
+            connectionFailed {
+                Log.i("pay", "startPaymentConnection: connectionFailed")
+            }
+            disconnected {
+                Log.i("pay", "startPaymentConnection: disconnected")
+            }
+        }
+    }
+
+    private fun purchaseProduct(
+        productId: String,
+        payload: String,
+        dynamicPriceToken: String?,
+    ) {
+
+        val purchaseRequest = PurchaseRequest(
+            productId = productId,
+            payload = payload,
+            dynamicPriceToken = dynamicPriceToken,
+        )
+
+        payment.purchaseProduct(
+            registry = requireActivity().activityResultRegistry,
+            request = purchaseRequest
+        ) {
+            purchaseFlowBegan {
+                Log.i("pay", "purchaseProduct: purchaseFlowBegan")
+            }
+            failedToBeginFlow { throwable ->
+                if (throwable is DynamicPriceNotSupportedException) {
+
+                    Log.i("pay", "purchaseProduct: failedToBeginFlow ${throwable.message}")
+
+                    purchaseProduct(productId, payload, null)
+                } else {
+                    Log.i("pay", "purchaseProduct: failedToBeginFlow ${throwable.message}")
+
+                }
+            }
+            purchaseSucceed { purchaseEntity ->
+
+                consumePurchasedItem(purchaseEntity.purchaseToken)
+                Log.i("pay", "purchaseSucceed ")
+            }
+            purchaseCanceled {
+                Log.i("pay", "purchaseCanceled ")
+            }
+            purchaseFailed { throwable ->
+                Log.i("pay", "purchaseFailed: throwable ${throwable.message}")
+
+            }
+
+        }
+    }
+
+    private fun consumePurchasedItem(purchaseToken: String) {
+        payment.consumeProduct(purchaseToken) {
+            consumeSucceed {
+                Log.i("pay", "consumePurchasedItem: ")
+                updateDatabaseUserAndCoin()
+            }
+            consumeFailed {
+                Log.i("pay", "consumeFailed:  ${it.message}")
+            }
+        }
+    }
+
+    private fun updateDatabaseUserAndCoin() {
+        if (coin50) {
+            updateDatabaseUser(50)
+        } else if (coin80) {
+            updateDatabaseUser(80)
+        } else if (coin100) {
+            updateDatabaseUser(100)
+        } else if (coin150) {
+            updateDatabaseUser(150)
+        } else if (coin300) {
+            updateDatabaseUser(300)
+        }
+    }
+
+    private lateinit var txtRuby: TextView
+
+    private fun updateDatabaseUser(ruby: Int) {
+        txtRuby = requireActivity().findViewById(R.id.text_coin)
+
+        dataBase = AppDataBase.getDatabase(requireActivity())
+        val read = dataBase.user().readDataUser().coin
+        val newRuby = read + ruby
+
+        dataBase.user().updateDataUser(UserModel(id = 1, coin = newRuby))
+        txtRuby.text = newRuby.toString()
+
+        customToast.customToast(
+            R.drawable.simple_shape_background_toast_info,
+            R.drawable.vector_info_circle,
+            "$ruby یاقوت به شما اضافه شد."
+        )
     }
 
     override fun clickOnAnswer(

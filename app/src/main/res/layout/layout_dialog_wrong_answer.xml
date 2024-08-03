@@ -37,9 +37,40 @@
             style="@style/text_orange_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_margin_top"
             android:text="@string/txt_wrong_answer"
             android:textSize="@dimen/_20sdp" />
 
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/layout_buttons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                style="@style/text_orange_dialog"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_weight="2"
+                android:gravity="start"
+                android:text="@string/w_lock_of_ruby"
+                android:textSize="@dimen/_14sdp" />
+
+            <ImageView
+                style="@style/text_orange_dialog"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/pic_ruby" />
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout_buttons"

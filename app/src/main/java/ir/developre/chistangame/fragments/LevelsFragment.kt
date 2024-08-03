@@ -1,9 +1,14 @@
 package ir.developre.chistangame.fragments
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -24,6 +29,7 @@ class LevelsFragment : Fragment(), ClickOnLevel {
     private lateinit var dataBaseLevel: AppDataBase
     private lateinit var dataLevel: List<LevelModel>
     private val customToast by lazy { CustomToast(requireContext()) }
+    private lateinit var dialogNotEnoughCoin: Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,7 +54,6 @@ class LevelsFragment : Fragment(), ClickOnLevel {
     private lateinit var dialogShop: DialogShop
 
     private fun dialogShop() {
-
         dialogShop = DialogShop(requireActivity())
         dialogShop.showDialog(requireActivity().activityResultRegistry)
     }
@@ -94,8 +99,7 @@ class LevelsFragment : Fragment(), ClickOnLevel {
 
     override fun clickOnLevel(index: Int, lockItemSelected: Boolean) {
         if (!lockItemSelected) {
-            Utils.currentLevel = index + 1
-            findNavController().navigate(R.id.action_levelsFragment_to_gameFragment)
+            checkEnoughCoin(index)
         } else {
             customToast.customToast(
                 colorBackground = R.drawable.simple_shape_background_toast_warning,
@@ -105,4 +109,47 @@ class LevelsFragment : Fragment(), ClickOnLevel {
         }
     }
 
+    private fun checkEnoughCoin(index: Int) {
+        val coin = dataBaseLevel.user().readDataUser().coin
+        if (coin >= Utils.ENOUGH_COIN_FOR_CONTINUE_GAME) {
+            Utils.currentLevel = index + 1
+            findNavController().navigate(R.id.action_levelsFragment_to_gameFragment)
+        } else {
+            dialogNotEnoughCoinForContinueGame()
+        }
+    }
+
+    private var checkOpenDialog = true
+    private fun dialogNotEnoughCoinForContinueGame() {
+        if (checkOpenDialog) {
+            checkOpenDialog = false
+            dialogNotEnoughCoin = Dialog(requireContext())
+            dialogNotEnoughCoin.setContentView(R.layout.layout_dialog_ruby_not_enough)
+            dialogNotEnoughCoin.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialogNotEnoughCoin.window!!.setGravity(Gravity.CENTER)
+            dialogNotEnoughCoin.window!!.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+            )
+            val textDes = dialogNotEnoughCoin.findViewById<TextView>(R.id.text_description)
+            val btnBuyCoin = dialogNotEnoughCoin.findViewById<View>(R.id.btn_buy_coin)
+            val btnClose = dialogNotEnoughCoin.findViewById<View>(R.id.btn_close_not_enough_coin)
+            textDes.text = requireContext().getString(R.string.w_not_enough_coin_for_continue_game)
+            btnClose.setOnClickListener {
+                checkOpenDialog = true
+                dialogNotEnoughCoin.dismiss()
+            }
+            btnBuyCoin.setOnClickListener {
+                checkOpenDialog = true
+                dialogNotEnoughCoin.dismiss()
+                dialogShop()
+            }
+            dialogNotEnoughCoin.setOnDismissListener {
+                checkOpenDialog = true
+                dialogNotEnoughCoin.dismiss()
+            }
+            dialogNotEnoughCoin.show()
+        }
+
+    }
 }

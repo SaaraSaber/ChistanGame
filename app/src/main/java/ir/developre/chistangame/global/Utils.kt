@@ -19,6 +19,7 @@ object Utils {
 
     //................coin.................
 
+    const val ENOUGH_COIN_FOR_CONTINUE_GAME = 7
     const val BASE_COIN = 30
     const val NUMBER_OF_COIN_FOR_WRONG_ANSWER = 7
     const val NUMBER_OF_COIN_FOR_CORRECT_ANSWER = 5

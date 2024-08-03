@@ -54,7 +54,7 @@ class DialogShop(val context: Activity) : Dialog(context) {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
             )
             dialog.setCancelable(false)
-            val btnClose = dialog.findViewById<View>(R.id.btn_close)
+            val btnClose = dialog.findViewById<View>(R.id.btn_close_shop)
             val btnSeeAds = dialog.findViewById<View>(R.id.btn_see_ad)
             val btnBuyCoinOne = dialog.findViewById<View>(R.id.btn_buy_coin_one)
             val btnBuyCoinTwo = dialog.findViewById<View>(R.id.btn_buy_coin_two)
@@ -258,7 +258,7 @@ class DialogShop(val context: Activity) : Dialog(context) {
 
     private fun updateDatabaseUserAndCoin() {
         if (coin50) {
-            updateDatabaseUser(50)
+            updateDatabaseUser(10)
         } else if (coin80) {
             updateDatabaseUser(80)
         } else if (coin100) {

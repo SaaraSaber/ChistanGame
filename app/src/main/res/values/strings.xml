@@ -41,5 +41,7 @@
     <string name="w_see_end_Ad">لطفا تبلیغات را تا آخر ببنید</string>
     <string name="w_no_access_to_internet">لطفا اینترنت خود را روشن کنید.</string>
     <string name="w_lock_level">مرحله مورد نظر قفل می باشد</string>
+    <string name="w_not_enough_coin_for_continue_game">برای ادامه بازی باید 7یاقوت داشته باشید</string>
+    <string name="w_lock_of_ruby">7یاقوت از شما کم شد.</string>
 
 </resources>

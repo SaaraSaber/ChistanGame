@@ -313,7 +313,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/btn_close"
+        android:id="@+id/btn_close_shop"
         android:layout_width="@dimen/_36sdp"
         android:layout_height="@dimen/_36sdp"
         android:layout_gravity="start|top"

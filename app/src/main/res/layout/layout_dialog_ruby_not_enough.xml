@@ -18,6 +18,7 @@
         android:padding="@dimen/_25sdp">
 
         <TextView
+            android:id="@+id/text_description"
             style="@style/text_orange_dialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +40,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/btn_close"
+        android:id="@+id/btn_close_not_enough_coin"
         android:layout_width="@dimen/_36sdp"
         android:layout_height="@dimen/_36sdp"
         android:layout_gravity="start|top"
