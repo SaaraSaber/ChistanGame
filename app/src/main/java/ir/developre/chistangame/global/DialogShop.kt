@@ -258,7 +258,7 @@ class DialogShop(val context: Activity) : Dialog(context) {
 
     private fun updateDatabaseUserAndCoin() {
         if (coin50) {
-            updateDatabaseUser(10)
+            updateDatabaseUser(50)
         } else if (coin80) {
             updateDatabaseUser(80)
         } else if (coin100) {
