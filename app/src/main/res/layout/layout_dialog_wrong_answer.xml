@@ -81,26 +81,27 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_finish"
+                android:id="@+id/btn_again"
                 style="@style/text_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_weight="1"
-                android:background="@drawable/background_btn_red"
-                android:text="@string/txt_finish"
+                android:background="@drawable/background_btn_orange"
+                android:text="@string/txt_again"
                 app:backgroundTint="@null" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_again"
+                android:id="@+id/btn_finish"
                 style="@style/text_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_2sdp"
                 android:layout_weight="1"
-                android:background="@drawable/background_btn_orange"
-                android:text="@string/txt_again"
+                android:background="@drawable/background_btn_red"
+                android:text="@string/txt_finish"
                 app:backgroundTint="@null" />
+
 
         </LinearLayout>
 

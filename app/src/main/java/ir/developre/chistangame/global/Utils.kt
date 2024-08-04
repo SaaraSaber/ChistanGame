@@ -19,11 +19,11 @@ object Utils {
 
     //................coin.................
 
-    const val ENOUGH_COIN_FOR_CONTINUE_GAME = 7
+    const val ENOUGH_COIN_FOR_CONTINUE_GAME = 8
     const val BASE_COIN = 30
-    const val NUMBER_OF_COIN_FOR_WRONG_ANSWER = 7
-    const val NUMBER_OF_COIN_FOR_CORRECT_ANSWER = 5
-    const val NUMBER_OF_COIN_FOR_CORRECT_ANSWER_AND_SEEING_ADS = 10
+    const val NUMBER_OF_COIN_FOR_WRONG_ANSWER = 8
+    const val NUMBER_OF_COIN_FOR_CORRECT_ANSWER = 4
+    const val NUMBER_OF_COIN_FOR_CORRECT_ANSWER_AND_SEEING_ADS = 8
     const val NUMBER_OF_COIN_FOR_HELP = 3
 
     const val NUMBER_OF_COINS_FOR_SEEING_ADS_TO_SHOP = 10

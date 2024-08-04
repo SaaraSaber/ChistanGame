@@ -967,18 +967,19 @@ class AppController : Application() {
                 titleLevel = 52,
                 isLockLevel = true,
                 question = "یک کیلوگرم پر سنگین تر است یا یک کیلوگرم آجر؟",
-                answer = "هیچکدام",
-                sizeAnswer = 7,
+                answer = "برابر است",
+                sizeAnswer = 8,
                 listAnswer = arrayListOf(
-                    'ه',
-                    'ی',
-                    'چ',
-                    'ک',
-                    'د',
+                    'ب',
+                    'ر',
                     'ا',
-                    'م',
+                    'ب',
+                    'ر',
+                    'ا',
+                    'س',
+                    'ت',
                 ),
-                letters = arrayListOf('چ', 'م', 'ه', 'ت', 'د', 'ک', 'ن', 'ف', 'و', 'ی', 'ا', 'م')
+                letters = arrayListOf('ا', 'س', 'ه', 'ت', 'د', 'ک', 'ر', 'ر', 'ب', 'ی', 'ا', 'ب')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -1177,7 +1178,7 @@ class AppController : Application() {
                     'ز',
                     'ن',
                 ),
-                letters = arrayListOf('چ', 'م', 'س', 'ت', 'د', 'ز', 'ن', 'ف', 'و', 'س', 'ا', 'ش')
+                letters = arrayListOf('ی', 'م', 'س', 'ت', 'د', 'ز', 'ن', 'ط', 'و', 'س', 'ا', 'خ')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -1327,7 +1328,7 @@ class AppController : Application() {
                     'ر',
                     'ی',
                 ),
-                letters = arrayListOf('چ', 'م', 'ک', 'ت', 'د', 'ر', 'ن', 'ف', 'و', 'س', 'ا', 'ی')
+                letters = arrayListOf('ی', 'م', 'ک', 'ت', 'د', 'ر', 'ن', 'ف', 'و', 'س', 'ق', 'ی')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -1560,7 +1561,7 @@ class AppController : Application() {
                     'ش',
                     'ت',
                 ),
-                letters = arrayListOf('چ', 'م', 'س', 'ت', 'د', 'پ', 'ن', 'ک', 'و', 'ل', 'ا', 'ش')
+                letters = arrayListOf('ن', 'م', 'و', 'ت', 'ز', 'پ', 'ن', 'ک', 'ح', 'ل', 'ا', 'ش')
             )
         )
         dataBase.levels().saveDataLevel(
