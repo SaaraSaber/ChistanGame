@@ -25,110 +25,137 @@ class TapsellWinStage(val context: Activity) {
     var checkFinishedAd = false
 
     fun connectToTapsell() {
-        animationLoadingWaiting = AnimationLoadingWaiting(context)
+        try {
 
-        TapsellPlus.initialize(context, Utils.KEY_TAPSELL,
-            object : TapsellPlusInitListener {
-                override fun onInitializeSuccess(adNetworks: AdNetworks) {
-                    Log.d("onInitializeSuccess", adNetworks.name)
-                }
 
-                override fun onInitializeFailed(
-                    adNetworks: AdNetworks,
-                    adNetworkError: AdNetworkError
-                ) {
-                    Log.e(
-                        "onInitializeFailed",
-                        "ad network: ${adNetworks.name}, error: ${adNetworkError.errorMessage}"
-                    )
-                    animationLoadingWaiting.dismissLoading()
+            animationLoadingWaiting = AnimationLoadingWaiting(context)
+
+            TapsellPlus.initialize(context, Utils.KEY_TAPSELL,
+                object : TapsellPlusInitListener {
+                    override fun onInitializeSuccess(adNetworks: AdNetworks) {
+                        Log.d("onInitializeSuccess", adNetworks.name)
+                    }
+
+                    override fun onInitializeFailed(
+                        adNetworks: AdNetworks,
+                        adNetworkError: AdNetworkError
+                    ) {
+                        Log.e(
+                            "onInitializeFailed",
+                            "ad network: ${adNetworks.name}, error: ${adNetworkError.errorMessage}"
+                        )
+                        animationLoadingWaiting.dismissLoading()
+                    }
                 }
-            }
-        )
-        TapsellPlus.setGDPRConsent(context, true)
-        TapsellPlus.setDebugMode(Log.DEBUG)
+            )
+            TapsellPlus.setGDPRConsent(context, true)
+            TapsellPlus.setDebugMode(Log.DEBUG)
+        } catch (t: Throwable) {
+            customToastGame.customToast(
+                R.drawable.simple_shape_background_toast_error,
+                R.drawable.vector_close_circle,
+                context.getString(R.string.not_ad)
+            )
+        }
     }
 
     fun requestAdGift() {
-        TapsellPlus.requestRewardedVideoAd(
-            context as Activity?,
-            Utils.TAPSELL_GIFT_VIDEO_KEY,
-            object : AdRequestCallback() {
-                override fun response(tapsellPlusAdModel: TapsellPlusAdModel) {
-                    super.response(tapsellPlusAdModel)
+        try {
 
-                    // Ad is ready to show
-                    // Put the ad's responseId to your responseId variable
-                    val rewardedResponseId = tapsellPlusAdModel.responseId
-                    animationLoadingWaiting.dismissLoading()
-                    showAdGift(context, rewardedResponseId)
 
+            TapsellPlus.requestRewardedVideoAd(
+                context as Activity?,
+                Utils.TAPSELL_GIFT_VIDEO_KEY,
+                object : AdRequestCallback() {
+                    override fun response(tapsellPlusAdModel: TapsellPlusAdModel) {
+                        super.response(tapsellPlusAdModel)
+
+                        // Ad is ready to show
+                        // Put the ad's responseId to your responseId variable
+                        val rewardedResponseId = tapsellPlusAdModel.responseId
+                        animationLoadingWaiting.dismissLoading()
+                        showAdGift(context, rewardedResponseId)
+
+                    }
+
+                    override fun error(message: String) {
+                        Log.i("showAd", "error: $message")
+
+                        animationLoadingWaiting.dismissLoading()
+
+                        customToastGame.customToast(
+                            R.drawable.simple_shape_background_toast_error,
+                            R.drawable.vector_close_circle,
+                            context.getString(R.string.not_ad)
+                        )
+                        // Handle error if needed
+                    }
                 }
-
-                override fun error(message: String) {
-                    Log.i("showAd", "error: $message")
-
-                    animationLoadingWaiting.dismissLoading()
-
-                    customToastGame.customToast(
-                        R.drawable.simple_shape_background_toast_error,
-                        R.drawable.vector_close_circle,
-                        context.getString(R.string.not_ad)
-                    )
-                    // Handle error if needed
-                }
-            }
-        )
+            )
+        } catch (t: Throwable) {
+            customToastGame.customToast(
+                R.drawable.simple_shape_background_toast_error,
+                R.drawable.vector_close_circle,
+                context.getString(R.string.not_ad)
+            )
+        }
     }
 
 
     private var numberCoin = 0
     private fun showAdGift(context1: Context, responseId: String) {
+        try {
+            //گرفتن تعداد سکه فعلی کاربر
+            numberCoin = dataBase.user().readDataUser().coin
 
-        //گرفتن تعداد سکه فعلی کاربر
-        numberCoin = dataBase.user().readDataUser().coin
+            TapsellPlus.showRewardedVideoAd(
+                context1 as Activity?, responseId,
+                object : AdShowListener() {
+                    override fun onOpened(tapsellPlusAdModel: TapsellPlusAdModel) {
+                        super.onOpened(tapsellPlusAdModel)
+                        Log.i("showAd", "onOpened: ")
+                    }
 
-        TapsellPlus.showRewardedVideoAd(
-            context1 as Activity?, responseId,
-            object : AdShowListener() {
-                override fun onOpened(tapsellPlusAdModel: TapsellPlusAdModel) {
-                    super.onOpened(tapsellPlusAdModel)
-                    Log.i("showAd", "onOpened: ")
-                }
+                    override fun onClosed(tapsellPlusAdModel: TapsellPlusAdModel) {
+                        super.onClosed(tapsellPlusAdModel)
+                        Log.i("showAd", "onClosed: ")
+                        if (checkFinishedAd) {
 
-                override fun onClosed(tapsellPlusAdModel: TapsellPlusAdModel) {
-                    super.onClosed(tapsellPlusAdModel)
-                    Log.i("showAd", "onClosed: ")
-                    if (checkFinishedAd) {
+                            updateTableUser()
+                            Utils.back_from_tapsell = true
 
-                        updateTableUser()
-                        Utils.back_from_tapsell = true
+                            checkFinishedAd = false
+                        } else {
+                            customToastGame.customToast(
+                                R.drawable.simple_shape_background_toast_warning,
+                                R.drawable.vector_info_circle,
+                                context.getString(R.string.w_see_end_Ad)
+                            )
+                        }
+                    }
 
-                        checkFinishedAd = false
-                    } else {
-                        customToastGame.customToast(
-                            R.drawable.simple_shape_background_toast_warning,
-                            R.drawable.vector_info_circle,
-                            context.getString(R.string.w_see_end_Ad)
-                        )
+                    override fun onRewarded(tapsellPlusAdModel: TapsellPlusAdModel) {
+                        super.onRewarded(tapsellPlusAdModel)
+                        Log.i("showAd", "onRewarded: ")
+
+                        checkFinishedAd = true
+
+                    }
+
+                    override fun onError(tapsellPlusErrorModel: TapsellPlusErrorModel) {
+                        super.onError(tapsellPlusErrorModel)
+
+                        Log.i("showAd", "onError: ")
                     }
                 }
-
-                override fun onRewarded(tapsellPlusAdModel: TapsellPlusAdModel) {
-                    super.onRewarded(tapsellPlusAdModel)
-                    Log.i("showAd", "onRewarded: ")
-
-                    checkFinishedAd = true
-
-                }
-
-                override fun onError(tapsellPlusErrorModel: TapsellPlusErrorModel) {
-                    super.onError(tapsellPlusErrorModel)
-
-                    Log.i("showAd", "onError: ")
-                }
-            }
-        )
+            )
+        } catch (t: Throwable) {
+            customToastGame.customToast(
+                R.drawable.simple_shape_background_toast_error,
+                R.drawable.vector_close_circle,
+                context.getString(R.string.not_ad)
+            )
+        }
 
     }
 

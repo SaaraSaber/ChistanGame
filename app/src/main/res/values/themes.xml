@@ -8,6 +8,7 @@
     <style name="Theme.ChistanGame" parent="Base.Theme.ChistanGame">
         <item name="android:statusBarColor">@color/friendlyFrost</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="android:layoutDirection">ltr</item>
         <item name="android:windowBackground">@color/friendlyFrost</item>
         <item name="android:forceDarkAllowed" tools:ignore="NewApi" tools:targetApi="q">false</item>
         <item name="windowNoTitle">true</item>
