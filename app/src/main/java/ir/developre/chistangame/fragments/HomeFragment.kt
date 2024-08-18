@@ -27,6 +27,7 @@ import ir.developre.chistangame.global.Utils
 import ir.developre.chistangame.model.LevelModel
 import ir.developre.chistangame.model.SettingModel
 import ir.developre.chistangame.model.UserModel
+import ir.developre.chistangame.sharedPref.SharedPreferencesGame
 
 
 class HomeFragment : Fragment() {
@@ -75,7 +76,8 @@ class HomeFragment : Fragment() {
     private fun clickBtnShareApp() {
         binding.btnShareApp.setOnClickListener {
             // متنی که می‌خواهید ارسال کنید
-            val messageText = "با نصب اپلیکیشن چیستان باز، به دنیایی از چالش های ذهنی قدم بگذارید و از حل معماهای جذاب لذت ببرید! آماده اید که هوش خود را محک بزنید؟\n\n${Utils.LINK_SHARED_APP}"
+            val messageText =
+                "با نصب اپلیکیشن چیستان باز، به دنیایی از چالش های ذهنی قدم بگذارید و از حل معماهای جذاب لذت ببرید! آماده اید که هوش خود را محک بزنید؟\n\n${Utils.LINK_SHARED_APP}"
 
             // ایجاد Intent برای ارسال متن
             val intent = Intent(Intent.ACTION_SEND).apply {
@@ -407,6 +409,20 @@ class HomeFragment : Fragment() {
         startActivity(intent)
     }
 
+    private lateinit var sharedPreferencesGame: SharedPreferencesGame
+
+    private fun checkEnterToAppForFirst(): Boolean {
+        sharedPreferencesGame = SharedPreferencesGame(requireContext())
+        val result = sharedPreferencesGame.readStatusFirst()
+        return result
+    }
+
+    private fun saveEnterToAppForFirst() {
+        sharedPreferencesGame = SharedPreferencesGame(requireContext())
+        sharedPreferencesGame.saveStatusFirst(true)
+        btnScoringApp()
+    }
+
     private var doubleBackToExitPressedOnce = false
     override fun onResume() {
         super.onResume()
@@ -419,6 +435,10 @@ class HomeFragment : Fragment() {
         requireView().setOnKeyListener { _, keyCode, event ->
             if (event.action === KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                 // handle back button's click listener
+
+                if (!checkEnterToAppForFirst()) {
+                    saveEnterToAppForFirst()
+                }
 
                 if (doubleBackToExitPressedOnce) {
 //                    exitProcess(0)

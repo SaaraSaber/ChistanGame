@@ -44,8 +44,8 @@ class AppController : Application() {
     private lateinit var sharedPreferencesGame: SharedPreferencesGame
 
     private fun saveEnterToAppForFirst() {
-        sharedPreferencesGame = SharedPreferencesGame(this)
-        sharedPreferencesGame.saveStatusFirst(true)
+//        sharedPreferencesGame = SharedPreferencesGame(this)
+//        sharedPreferencesGame.saveStatusFirst(true)
 
         insertDataToDbSetting()
         insertDataToDbLevels()

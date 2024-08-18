@@ -620,8 +620,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         val textSeeAd = dialogWin.findViewById<TextView>(R.id.text_see_ad)
 
         textAnswer.text = answer
-        textSeeAd.text =
-            "شما ${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER} یاقوت به دست آورده اید. برای به دست اوردن ${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER_AND_SEEING_ADS} یاقوت بیشتر تبلیغات ببینید."
+        textSeeAd.text ="شما ${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER} یاقوت به دست آوردهاید! با تماشای یک تبلیغ، ${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER_AND_SEEING_ADS} یاقوت کسب کنید."
 
         btnSeeAd.setOnClickListener {
             if (CheckNetworkConnection.isOnline(requireActivity())) {

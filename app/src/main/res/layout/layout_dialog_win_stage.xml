@@ -83,7 +83,7 @@
                         android:layout_marginEnd="@dimen/_5sdp"
                         android:layout_weight="2"
                         android:gravity="start"
-                        android:text="@string/txt_get_more_rubies_by_viewing_ad"
+                        tools:text="@string/txt_get_more_rubies_by_viewing_ad"
                         android:textSize="@dimen/_14sdp" />
 
                     <ImageView
