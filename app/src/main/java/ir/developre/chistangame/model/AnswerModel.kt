@@ -8,5 +8,6 @@ data class AnswerModel(
     var isShow: Boolean,
     var isHelp: Boolean = false,
     var characterHelp: Char,
-    var isClick: Boolean = true
+    var isClick: Boolean = true,
+//    var isFinishLevel: Boolean
 )

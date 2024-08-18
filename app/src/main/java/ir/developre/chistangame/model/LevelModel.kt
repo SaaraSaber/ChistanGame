@@ -16,7 +16,8 @@ data class LevelModel(
     val answer: String,
     val sizeAnswer: Int,
     val listAnswer: ArrayList<Char>,
-    val letters: ArrayList<Char>
+    val letters: ArrayList<Char>,
+    val isFinishedLevel:Boolean = false
 )
 
 class Converters {

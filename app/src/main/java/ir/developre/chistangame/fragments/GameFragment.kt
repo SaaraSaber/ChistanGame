@@ -47,7 +47,7 @@ import ir.developre.chistangame.my_interface.on_click.ClickOnLetter
 class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private lateinit var binding: FragmentGameBinding
     private lateinit var dataBase: AppDataBase
-    private lateinit var readData: List<LevelModel>
+    private lateinit var readDatabaseLevel: List<LevelModel>
     private lateinit var answer: String
     private var sizeAnswer: Int = 0
     private lateinit var listLetterAdapter: ArrayList<LetterModel>
@@ -76,6 +76,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private var coin100 = false
     private var coin150 = false
     private var coin300 = false
+    private var isFinishedLevel = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -90,6 +91,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.textNumberRubyHelp.text = Utils.NUMBER_OF_COIN_FOR_HELP.toString()
         dataBase = AppDataBase.getDatabase(requireActivity())
 
         Utils.isAllEditTextsFilled = false
@@ -192,16 +194,16 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     }
 
     private fun readDataFromDatabaseAndFillFields() {
-        readData = dataBase.levels().readDataLevel()
+        readDatabaseLevel = dataBase.levels().readDataLevel()
 
-        readData.forEach {
+        readDatabaseLevel.forEach {
             if (Utils.currentLevel == it.titleLevel) {
                 binding.textQuestion.text = it.question
                 answer = it.answer
                 sizeAnswer = it.sizeAnswer
                 listAnswer = it.listAnswer
                 listLetter = it.letters
-
+                isFinishedLevel = it.isFinishedLevel
                 sizeAnswer--
 
             }
@@ -279,10 +281,21 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         val newAnswer = answer.replace(" ", "")
         if (newAnswer.trim() == answerUser) {
             if (Utils.currentLevel != Utils.LAST_LEVEL) {
-                showDialogWin()
+                if (isFinishedLevel) {
+                    showDialogStageThatHasAlreadyBeenWon()
+                } else {
+                    showDialogWin()
+                }
                 playSoundEffectWinStage()
+
             } else {
-                showDialogFinalWin()
+                if (isFinishedLevel) {
+
+                } else {
+
+                    showDialogFinalWin()
+                }
+
                 playSoundEffectFinalWin()
             }
 
@@ -303,6 +316,44 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
                 playSoundEffectWrongAnswer()
 //                dialogNotEnoughCoin()
             }
+        }
+    }
+
+    @SuppressLint("MissingInflatedId")
+    private fun showDialogStageThatHasAlreadyBeenWon() {
+        dialogWin = Dialog(requireContext())
+        dialogWin.apply {
+            setContentView(R.layout.layout_dialog_stage_that_has_already_been_won)
+            window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            window!!.setGravity(Gravity.CENTER)
+            window!!.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+            )
+            val lp = window!!.attributes
+            lp.dimAmount = 0.7f
+            dialogWin.setCancelable(false)
+
+            val btnNextLevel = findViewById<View>(R.id.btn_next_level)
+            val btnReturn = findViewById<View>(R.id.btn_return)
+            val btnClose = findViewById<View>(R.id.btn_close_win)
+
+            btnReturn.setOnClickListener {
+                dialogWin.dismiss()
+                findNavController().popBackStack()
+            }
+
+            btnNextLevel.setOnClickListener {
+                refreshFragment()
+                dialogWin.dismiss()
+            }
+
+            btnClose.setOnClickListener {
+                dialogWin.dismiss()
+                findNavController().popBackStack()
+            }
+
+            show()
         }
     }
 
@@ -404,7 +455,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
             } else {
                 paymentConnection.disconnect()
                 dialogCustomShop.dismiss()
-               findNavController().popBackStack()
+                findNavController().popBackStack()
             }
         }
 
@@ -566,8 +617,11 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         val btnSeeAd = dialogWin.findViewById<View>(R.id.btn_see_ad)
         val btnClose = dialogWin.findViewById<View>(R.id.btn_close_win)
         val textAnswer = dialogWin.findViewById<TextView>(R.id.text_answer)
+        val textSeeAd = dialogWin.findViewById<TextView>(R.id.text_see_ad)
 
         textAnswer.text = answer
+        textSeeAd.text =
+            "شما ${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER} یاقوت به دست آورده اید. برای به دست اوردن ${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER_AND_SEEING_ADS} یاقوت بیشتر تبلیغات ببینید."
 
         btnSeeAd.setOnClickListener {
             if (CheckNetworkConnection.isOnline(requireActivity())) {
@@ -621,7 +675,7 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
     private fun updateData() {
         Utils.currentLevel += 1
         //update database
-        readData.forEach {
+        readDatabaseLevel.forEach {
             if (it.id == Utils.currentLevel) {
                 dataBase.levels().updateDataLevel(
                     LevelModel(
@@ -632,7 +686,23 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
                         answer = it.answer,
                         sizeAnswer = it.sizeAnswer,
                         listAnswer = it.listAnswer,
-                        letters = it.letters
+                        letters = it.letters,
+                        isFinishedLevel = it.isFinishedLevel
+                    )
+                )
+            }
+            if (it.id == Utils.currentLevel - 1) {
+                dataBase.levels().updateDataLevel(
+                    LevelModel(
+                        id = it.id,
+                        titleLevel = it.titleLevel,
+                        isLockLevel = false,
+                        question = it.question,
+                        answer = it.answer,
+                        sizeAnswer = it.sizeAnswer,
+                        listAnswer = it.listAnswer,
+                        letters = it.letters,
+                        isFinishedLevel = true
                     )
                 )
             }

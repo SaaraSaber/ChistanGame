@@ -1,6 +1,5 @@
 package ir.developre.chistangame.fragments
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -9,7 +8,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -77,7 +75,7 @@ class HomeFragment : Fragment() {
     private fun clickBtnShareApp() {
         binding.btnShareApp.setOnClickListener {
             // متنی که می‌خواهید ارسال کنید
-            val messageText = "${Utils.LINK_SHARED_APP}"
+            val messageText = "با نصب اپلیکیشن چیستان باز، به دنیایی از چالش های ذهنی قدم بگذارید و از حل معماهای جذاب لذت ببرید! آماده اید که هوش خود را محک بزنید؟\n\n${Utils.LINK_SHARED_APP}"
 
             // ایجاد Intent برای ارسال متن
             val intent = Intent(Intent.ACTION_SEND).apply {
@@ -273,7 +271,22 @@ class HomeFragment : Fragment() {
             .updateDataSetting(SettingModel(id = 1, playMusic = true, playVolume = true))
         val level = dataBase.levels().readDataLevel()
         level.forEach {
-            if (it.id != 1)
+            if (it.id == 1) {
+                dataBase.levels().updateDataLevel(
+                    LevelModel(
+                        id = it.id,
+                        titleLevel = it.titleLevel,
+                        isLockLevel = false,
+                        question = it.question,
+                        answer = it.answer,
+                        sizeAnswer = it.sizeAnswer,
+                        listAnswer = it.listAnswer,
+                        letters = it.letters,
+                        isFinishedLevel = false
+                    )
+                )
+            }
+            if (it.id != 1) {
                 dataBase.levels().updateDataLevel(
                     LevelModel(
                         id = it.id,
@@ -283,9 +296,11 @@ class HomeFragment : Fragment() {
                         answer = it.answer,
                         sizeAnswer = it.sizeAnswer,
                         listAnswer = it.listAnswer,
-                        letters = it.letters
+                        letters = it.letters,
+                        isFinishedLevel = false
                     )
                 )
+            }
         }
     }
 
@@ -340,27 +355,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    @SuppressLint("IntentReset")
     private fun sendProblemWithEmail() {
-//        val deviceModel = Build.MODEL
-//        val deviceMANUFACTURER = Build.MANUFACTURER
-//        val deviceSdk = Build.VERSION.SDK_INT
-//        val deviceBrand = Build.BRAND
-//        val deviceVersionCode = Build.VERSION.RELEASE
-//
-//        val emailAddress = requireContext().getString(R.string.address_email)
-//        val emailSubject = requireContext().getString(R.string.problem_in_game)
-//        val emailText =
-//            "مشکل خود را در این قسمت توضیح دهید\n\nمدل گوشی: $deviceModel\nبرند گوشی: $deviceMANUFACTURER\nسازنده گوشی: $deviceBrand\nSDK: $deviceSdk\nVersionCode: $deviceVersionCode\n\n"
-//
-//        val emailIntent = Intent(Intent.ACTION_SEND)
-//        emailIntent.data = Uri.parse("mailto:")
-//        emailIntent.setType("text/plain")
-//        emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf(emailAddress))
-//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, emailSubject)
-//        emailIntent.putExtra(Intent.EXTRA_TEXT, emailText)
-//        startActivity(Intent.createChooser(emailIntent, "Send email..."))
-
         val uri = Uri.parse("mailto:" + "saraaasaber77@gmail.com")
         val intent = Intent(Intent.ACTION_VIEW, uri)
         intent.putExtra(Intent.EXTRA_SUBJECT, "your_subject");
@@ -392,14 +387,12 @@ class HomeFragment : Fragment() {
             exitApp()
         }
 
-
         btnScoring.setOnClickListener { btnScoringApp() }
 
         dialogExitApp.show()
     }
 
     private fun exitApp() {
-        Log.i("exitApp", "exitApp33: ")
         requireActivity().overridePendingTransition(
             R.anim.exit_anim,
             0

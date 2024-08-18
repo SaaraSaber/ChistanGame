@@ -145,10 +145,11 @@
                         android:src="@drawable/pic_ruby" />
 
                     <TextView
+                        android:id="@+id/text_number_ruby_help"
                         style="@style/text_orange_dialog"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
+                        tools:text="10"
                         android:textColor="@color/planter" />
                 </LinearLayout>
             </LinearLayout>

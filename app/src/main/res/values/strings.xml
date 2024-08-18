@@ -21,6 +21,7 @@
     <string name="txt_description_delete_database_2">آیا مطمئن هستید؟</string>
     <string name="txt_felicitation">تبریک</string>
     <string name="txt_description_felicitation">تبریک شما به مرحله بعد راه یافتید</string>
+    <string name="txt_description_has_been_won">شما قبلا این مرحله را با موفقیت گذرانده اید .</string>
     <string name="txt_wrong_answer">جواب اشتباه است.</string>
     <string name="txt_get_more_rubies_by_viewing_ad">با مشاهده تبلیغ 2 برابر یاقوت دریافت کنید.</string>
     <string name="txt_viewing_ad">دیدن تبلیغ</string>
@@ -32,6 +33,8 @@
     <string name="txt_finish">پایان</string>
     <string name="txt_help">راهنما</string>
     <string name="txt_levels">مراحل</string>
+    <string name="txt_return">بازگشت</string>
+    <string name="txt_attention">توجه</string>
     <string name="problem_in_game">مشکل در بازی چیستان</string>
     <string name="address_email">saraaasaber77@gmail.com</string>
     <string name="wrong_answer">جواب اشتباه می باشد :(</string>
