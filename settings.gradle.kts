@@ -9,8 +9,8 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
-        jcenter()
-        maven { setUrl("https://jitpack.io")  }
+        //jcenter()
+        maven { setUrl("https://jitpack.io") }
     }
 }
 dependencyResolutionManagement {
@@ -18,11 +18,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter()
+        //jcenter()
         maven { setUrl("https://jitpack.io") }
     }
 }
 
 rootProject.name = "ChistanGame"
 include(":app")
- 

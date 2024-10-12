@@ -1843,6 +1843,2654 @@ class AppController : Application() {
             )
         )
 
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 101,
+                titleLevel = 101,
+                isLockLevel = true,
+                question = "آن چیست که اگر از آسمان بیفتد نمیشکند، ولی با دندان می شکند؟",
+                answer = "تخمه",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'ت',
+                    'خ',
+                    'م',
+                    'ه',
+                ),
+                letters = arrayListOf('چ', 'م', 'ه', 'د', 'د', 'خ', 'ی', 'ز', 'و', 'ت', 'ا', 'م')
+            )
+        )
+
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 102,
+                titleLevel = 102,
+                isLockLevel = true,
+                question = "آن چیست که در طول شبانه روز دست به کمر ایستاده؟ ",
+                answer = "آفتابه",
+                sizeAnswer = 6,
+                listAnswer = arrayListOf(
+                    'آ',
+                    'ف',
+                    'ت',
+                    'ا',
+                    'ب',
+                    'ه',
+                ),
+                letters = arrayListOf('ط', 'ب', 'س', 'ف', 'ت', 'ا', 'ی', 'ه', 'و', 'آ', 'ا', 'ح')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 103,
+                titleLevel = 103,
+                isLockLevel = true,
+                question = "کدام کلمه در فرهنگ لغت به اشتباه تلفظ شده است؟",
+                answer = "غلط",
+                sizeAnswer = 3,
+                listAnswer = arrayListOf(
+                    'غ',
+                    'ل',
+                    'ط',
+                ),
+                letters = arrayListOf('چ', 'م', 'ط', 'د', 'ت', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'ل')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 104,
+                titleLevel = 104,
+                isLockLevel = true,
+                question = "نه انگورم نه انار، هم انگورم هم در انار. زنجیر نیستم اما در زنجیرم. نخجیر نیستم اما در نخجیرم. آن چیست؟",
+                answer = "انجیر",
+                sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'ا',
+                    'ن',
+                    'ج',
+                    'ی',
+                    'ر',
+                ),
+                letters = arrayListOf('چ', 'م', 'ر', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'ج', 'ا', 'ن')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 105,
+                titleLevel = 105,
+                isLockLevel = true,
+                question = "دندانه های زیادی دارد، اما نمی تواند گاز بگیرد. آن چیست؟",
+                answer = "شانه",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'ش',
+                    'ا',
+                    'ن',
+                    'ه',
+                ),
+                letters = arrayListOf('چ', 'ر', 'ن', 'د', 'م', 'پ', 'ا', 'ز', 'و', 'ه', 'ت', 'ش')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 106,
+                titleLevel = 106,
+                isLockLevel = true,
+                question = "باید باز شود، اما قفل و کلیدی برای باز شدن آن نیست. آن چیست؟",
+                answer = "تخم مرغ",
+                sizeAnswer = 6,
+                listAnswer = arrayListOf(
+                    'ت',
+                    'خ',
+                    'م',
+                    'م',
+                    'ر',
+                    'غ'
+                ),
+                letters = arrayListOf('چ', 'ر', 'خ', 'د', 'م', 'پ', 'ی', 'ز', 'و', 'غ', 'ت', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 107,
+                titleLevel = 107,
+                isLockLevel = true,
+                question = "آن چیست که در زمستان زندگی می کند، تابستان می میرد، و ریشه های آن در بالایش است؟",
+                answer = "قندیل",
+                sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'ق',
+                    'ن',
+                    'د',
+                    'ی',
+                    'ل',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'ن', 'ی', 'ز', 'و', 'ل', 'ا', 'ق')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 108,
+                titleLevel = 108,
+                isLockLevel = true,
+                question = "کسی که آن را ساخته، آن را نمی خواهد. کسی که آن را خریده به آن نیازی ندارد. کسی که از آن استفاده کرده هرگز آن را ندیده. آن چیست؟",
+                answer = "تابوت",
+                sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'ت',
+                    'ا',
+                    'ب',
+                    'و',
+                    'ت',
+                ),
+                letters = arrayListOf('چ', 'ب', 'س', 'ا', 'د', 'پ', 'ت', 'ز', 'و', 'غ', 'ا', 'ت')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 109,
+                titleLevel = 109,
+                isLockLevel = true,
+                question = "با صدای من، مردان رویاپردازی می کنند یا پا به زمین می کوبند؛ با صدای من، زنان می خندند یا گاهی گریه می کنند.",
+                answer = "موسیقی",
+                sizeAnswer = 6,
+                listAnswer = arrayListOf(
+                    'م',
+                    'و',
+                    'س',
+                    'ی',
+                    'ق',
+                    'ی',
+                ),
+                letters = arrayListOf('چ', 'ی', 'س', 'ق', 'د', 'س', 'ی', 'ز', 'و', 'غ', 'و', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 110,
+                titleLevel = 110,
+                isLockLevel = true,
+                question = "یک دانه در کنج، یک دانه در خانه، هیچ در اتاق، و دو تا در دندان. آن چیست؟",
+                answer = "حرف ن",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'ح',
+                    'ر',
+                    'ف',
+                    'ن',
+                ),
+                letters = arrayListOf('ن', 'م', 'س', 'ف', 'د', 'پ', 'ی', 'ر', 'و', 'غ', 'ا', 'ح')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 111,
+                titleLevel = 111,
+                isLockLevel = true,
+                question = "آن چیست که برخی حیوانات در دهان و بعضی در دم دارند؟",
+                answer = "نیش",
+                sizeAnswer = 3,
+                listAnswer = arrayListOf(
+                    'ن',
+                    'ی',
+                    'ش',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'ش', 'ن', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 112,
+                titleLevel = 112,
+                isLockLevel = true,
+                question = "آن چیست كه خود ریسد و خود بافد جامه. پوست در پوست گرد یكدیگر؟",
+                answer = "عنكبوت",
+                sizeAnswer = 6,
+                listAnswer = arrayListOf(
+                    'ع',
+                    'ن',
+                    'ک',
+                    'ب',
+                    'و',
+                    'ت'
+                ),
+                letters = arrayListOf('ت', 'ب', 'س', 'ک', 'د', 'پ', 'ی', 'ز', 'و', 'ع', 'ا', 'ن')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 113,
+                titleLevel = 113,
+                isLockLevel = true,
+                question = "آن چیست گرد و كوچك، آویز و معلق. گرد است و دراز و در ندارد؟",
+                answer = "انگور",
+                sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'ا',
+                    'ن',
+                    'گ',
+                    'و',
+                    'ر',
+                ),
+                letters = arrayListOf('چ', 'ر', 'س', 'د', 'د', 'پ', 'گ', 'ز', 'و', 'غ', 'ا', 'ن')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 114,
+                titleLevel = 114,
+                isLockLevel = true,
+                question = "تمام فضای خانه را می گیرد، اما می تواند از سوراخ کلید بیرون رود. آن چیست؟ ",
+                answer = "دود",
+                sizeAnswer = 3,
+                listAnswer = arrayListOf(
+                    'د',
+                    'و',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 115,
+                titleLevel = 115,
+                isLockLevel = true,
+                question = "چه چیزی می تواند یک اتاق را پر کند اما فضایی را اشغال نمی کند؟",
+                answer = "روشنایی",
+                sizeAnswer = 7,
+                listAnswer = arrayListOf(
+                    'ر',
+                    'و',
+                    'ش',
+                    'ن',
+                    'ا',
+                    'ی',
+                    'ی',
+                ),
+                letters = arrayListOf('ی', 'ش', 'س', 'ا', 'د', 'پ', 'ن', 'ز', 'و', 'ی', 'ا', 'ر')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 116,
+                titleLevel = 116,
+                isLockLevel = true,
+                question = "هر چه آب در آن بریزند، پر نمی شود. آن چیست؟ ",
+                answer = "آبکش",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'آ',
+                    'ب',
+                    'ک',
+                    'ش',
+                ),
+                letters = arrayListOf('چ', 'ب', 'ش', 'د', 'آ', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'ک')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 117,
+                titleLevel = 117,
+                isLockLevel = true,
+                question = "آن چیست که خیال می کنیم ما او را می خوریم، اما در واقع اوست که ما را می خورد؟",
+                answer = "غصه",
+                sizeAnswer = 3,
+                listAnswer = arrayListOf(
+                    'غ',
+                    'ص',
+                    'ه',
+                ),
+                letters = arrayListOf('ه', 'م', 'س', 'ص', 'د', 'س', 'ق', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 118,
+                titleLevel = 118,
+                isLockLevel = true,
+                question = "در آسمان فقط یکی از آن هست اما در زمین بسیار زیاد!",
+                answer = "مشتری",
+                sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'م',
+                    'ش',
+                    'ت',
+                    'ر',
+                    'ی',
+                ),
+                letters = arrayListOf('چ', 'م', 'ج', 'د', 'د', 'ت', 'ی', 'ر', 'و', 'و', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 119,
+                titleLevel = 119,
+                isLockLevel = true,
+                question = "آن چیست که در رادیو و دریا مشترک و هردو آن را دارند؟",
+                answer = "موج",
+                sizeAnswer = 3,
+                listAnswer = arrayListOf(
+                    'م',
+                    'و',
+                    'ج',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 120,
+                titleLevel = 120,
+                isLockLevel = true,
+                question = "آن چه كشوری است كه در چشم ماست؟",
+                answer = "کره",
+                sizeAnswer = 3,
+                listAnswer = arrayListOf(
+                    'ک',
+                    'ر',
+                    'ه',
+                ),
+                letters = arrayListOf('ه', 'م', 'س', 'ر', 'د', 'پ', 'ی', 'ک', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 121,
+                titleLevel = 121,
+                isLockLevel = true,
+                question = "آن چیست كه هر چه آن را بیشتر بكشیم كوتاه تر می شود؟",
+                answer = "سیگار",
+                sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'س',
+                    'ی',
+                    'گ',
+                    'ا',
+                    'ر',
+                ),
+                letters = arrayListOf('گ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'ا', 'غ', 'ا', 'ر')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 122,
+                titleLevel = 122,
+                isLockLevel = true,
+                question = "آن چیست كه بی علم و دانش ،همه چیز را همانگونه كه هست آشكار می سازد؟",
+                answer = "آیینه",
+                sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'آ',
+                    'ی',
+                    'ی',
+                    'ن',
+                    'ه'
+                ),
+                letters = arrayListOf('ه', 'ی', 'س', 'د', 'د', 'آ', 'ی', 'ز', 'و', 'غ', 'ا', 'ن')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 123,
+                titleLevel = 123,
+                isLockLevel = true,
+                question = "آن چه گرد سبز رنگی است که اگر در آب بریزند،قرمز می شود؟",
+                answer = "حنا",
+                sizeAnswer = 3,
+                listAnswer = arrayListOf(
+                    'ح',
+                    'ن',
+                    'ا',
+                ),
+                letters = arrayListOf('چ', 'ن', 'س', 'د', 'د', 'پ', 'ا', 'ز', 'و', 'غ', 'ا', 'ح')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 124,
+                titleLevel = 124,
+                isLockLevel = true,
+                question = "از چوب ساخته شده، اما نمی توان آن را اره کرد. آن چیست؟",
+                answer = "خاک اره",
+                sizeAnswer = 6,
+                listAnswer = arrayListOf(
+                    'خ',
+                    'ا',
+                    'ک',
+                    'ا',
+                    'ر',
+                    'ه',
+                ),
+                letters = arrayListOf('ه', 'م', 'س', 'ر', 'د', 'ا', 'ی', 'ک', 'و', 'غ', 'ا', 'خ')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 125,
+                titleLevel = 125,
+                isLockLevel = true,
+                question = "در وسط “ تهران ” قطعا چه چیزی پیدا میشود؟",
+                answer = "حرف ر",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'ح',
+                    'ر',
+                    'ف',
+                    'ر',
+                ),
+                letters = arrayListOf('ت', 'ر', 'س', 'د', 'د', 'ف', 'ی', 'ر', 'و', 'غ', 'ا', 'ح')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 126,
+                titleLevel = 126,
+                isLockLevel = true,
+                question = "آن چیست که دوچشم دارد و وقتی انگشت به چشمانش فرو می کنی گوشهایش تیز می شود؟",
+                answer = "قیچی",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'ق',
+                    'ی',
+                    'چ',
+                    'ی',
+                ),
+                letters = arrayListOf('ی', 'م', 'چ', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'ق')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 127,
+                titleLevel = 127,
+                isLockLevel = true,
+                question = "کدام کشور است که اگر نام اولش را بردارید یک بیماری می شود؟",
+                answer = "کوبا",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'ک',
+                    'و',
+                    'ب',
+                    'ا',
+                ),
+                letters = arrayListOf('چ', 'م', 'ا', 'د', 'د', 'ب', 'ی', 'ز', 'و', 'غ', 'ا', 'ک')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 128,
+                titleLevel = 128,
+                isLockLevel = true,
+                question = "همه دنبال ام می گردند، ولی از رو به رو شدن با من تنفر دارند. برای برخی عذاب، و برای برخی تسکین ام. من چه هستم؟",
+                answer = "حقیقت",
+                sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'ح',
+                    'ق',
+                    'ی',
+                    'ق',
+                    'ت',
+                ),
+                letters = arrayListOf('ط', 'ت', 'س', 'د', 'د', 'ق', 'ی', 'ق', 'و', 'غ', 'ه', 'ح')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 129,
+                titleLevel = 129,
+                isLockLevel = true,
+                question = "آن چیست که روی آب می شکند، ولی هرگز روی خشکی نمی شکند؟",
+                answer = "موج",
+                sizeAnswer = 3,
+                listAnswer = arrayListOf(
+                    'م',
+                    'و',
+                    'ج',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'ج', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 130,
+                titleLevel = 130,
+                isLockLevel = true,
+                question = "آن چیست که قابل اندازه گیری هست، ولی قابل مشاهده نیست؟",
+                answer = "زمان",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'ز',
+                    'م',
+                    'ا',
+                    'ن',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'ن', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 131,
+                titleLevel = 131,
+                isLockLevel = true,
+                question = "آن چیست که خورشید می پزدش، دست می چیندش، پا بر آن گذاشته می شود، و خورده میشود؟",
+                answer = "انگور",
+                sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'ا',
+                    'ن',
+                    'گ',
+                    'و',
+                    'ر',
+                ),
+                letters = arrayListOf('چ', 'ر', 'س', 'گ', 'د', 'پ', 'ی', 'ن', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 132,
+                titleLevel = 132,
+                isLockLevel = true,
+                question = "دیده نمیشود، وزنی ندارد، ولی وقتی داخل یک بشکه میرود، آن را سبک تر میکند. آن چیست؟",
+                answer = "سوراخ",
+                sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'س',
+                    'و',
+                    'ر',
+                    'ا',
+                    'خ',
+                ),
+                letters = arrayListOf('خ', 'م', 'س', 'ر', 'د', 'پ', 'و', 'ز', 'و', 'غ', 'ا', 'س')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 133,
+                titleLevel = 133,
+                isLockLevel = true,
+                question = "اگر به صورت ام نگاه کنی، هیچ کجا ۱۳ نخواهی یافت. من چه هستم؟",
+                answer = "ساعت",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'س',
+                    'ا',
+                    'ع',
+                    'ت',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'ت', 'ی', 'ز', 'و', 'ع', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 134,
+                titleLevel = 134,
+                isLockLevel = true,
+                question = "چه چیزی میتواند به سراسر دنیا سفر کند در حالی که در یک گوشه نشسته است؟",
+                answer = "تمبر",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'ت',
+                    'م',
+                    'ب',
+                    'ر',
+                ),
+                letters = arrayListOf('چ', 'ر', 'س', 'د', 'ب', 'پ', 'ی', 'ز', 'و', 'ت', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 135,
+                titleLevel = 135,
+                isLockLevel = true,
+                question = "آن چیست که هر بار دوش میگیرد کوچکتر میشود؟",
+                answer = "صابون",
+                sizeAnswer = 5,
+                listAnswer = arrayListOf(
+                    'ص',
+                    'ا',
+                    'ب',
+                    'و',
+                    'ن',
+                ),
+                letters = arrayListOf('ب', 'م', 'ص', 'د', 'د', 'ا', 'ی', 'ز', 'و', 'غ', 'ا', 'ن')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 136,
+                titleLevel = 136,
+                isLockLevel = true,
+                question = "آن چه میوه ای است که هسته هایش بیرون آن است؟",
+                answer = "توت فرنگی",
+                sizeAnswer = 8,
+                listAnswer = arrayListOf(
+                    'ت',
+                    'و',
+                    'ت',
+                    'ف',
+                    'ر',
+                    'ن',
+                    'گ',
+                    'ی',
+                ),
+                letters = arrayListOf('ی', 'ن', 'گ', 'ر', 'ف', 'پ', 'ت', 'ز', 'و', 'غ', 'ا', 'ت')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 137,
+                titleLevel = 137,
+                isLockLevel = true,
+                question = "آن چیست که سفید است و مردم را می ترساند؟",
+                answer = "شبه",
+                sizeAnswer = 3,
+                listAnswer = arrayListOf(
+                    'ش',
+                    'ب',
+                    'ه',
+                ),
+                letters = arrayListOf('چ', 'ه', 'س', 'د', 'د', 'ش', 'ی', 'ز', 'و', 'ب', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 138,
+                titleLevel = 138,
+                isLockLevel = true,
+                question = "آن چیست که نمی گذارد قایق ها و کشتی ها در آب تکان بخورند؟",
+                answer = "لنگر",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'ل',
+                    'ن',
+                    'گ',
+                    'ر',
+                ),
+                letters = arrayListOf('ر', 'م', 'س', 'گ', 'د', 'پ', 'ی', 'ن', 'و', 'غ', 'ا', 'ل')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 139,
+                titleLevel = 139,
+                isLockLevel = true,
+                question = "آن چیست که هر چه بیشتر باشد، کمتر می بینید؟",
+                answer = "تاریکی",
+                sizeAnswer = 6,
+                listAnswer = arrayListOf(
+                    'ت',
+                    'ا',
+                    'ر',
+                    'ی',
+                    'ک',
+                    'ی',
+                ),
+                letters = arrayListOf('ی', 'م', 'س', 'ک', 'د', 'پ', 'ی', 'ر', 'و', 'غ', 'ا', 'ت')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 140,
+                titleLevel = 140,
+                isLockLevel = true,
+                question = "کدام یک از حبوبات را واروونه کنیم نام یکی از وعده های غذایی می شود؟",
+                answer = "ماش",
+                sizeAnswer = 3,
+                listAnswer = arrayListOf(
+                    'م',
+                    'ا',
+                    'ش',
+                ),
+                letters = arrayListOf('چ', 'م', 'ش', 'د', 'د', 'پ', 'ا', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 141,
+                titleLevel = 141,
+                isLockLevel = true,
+                question = "همیشه در حال آمدن است، اما هیچ گاه نمی رسد. آن چیست؟",
+                answer = "فردا",
+                sizeAnswer = 4,
+                listAnswer = arrayListOf(
+                    'ف',
+                    'ر',
+                    'د',
+                    'ا',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'ف', 'غ', 'ا', 'ر')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 142,
+                titleLevel = 142,
+                isLockLevel = true,
+                question = "آن چیست که گرد است بالا و پائین می پرد. می توانی پرتش کنی، می توانی بگیری اش. نباید به شیشه ها بکوبی اش؟",
+                answer = "توپ",
+                sizeAnswer = 3,
+                listAnswer = arrayListOf(
+                    'ت',
+                    'و',
+                    'پ',
+                ),
+                letters = arrayListOf('چ', 'پ', 'س', 'د', 'د', 'پ', 'ی', 'ت', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 143,
+                titleLevel = 143,
+                isLockLevel = true,
+                question = "لطفا صبوری کنید با من، در این دنیا تازه واردم. زیاد گریه میکنم، به من شیر بدین. همه به من لبخند می زنند، لطفا بغلم کنید. من چیستم؟",
+                answer = "نوزاد",
+                sizeAnswer =5,
+                listAnswer = arrayListOf(
+                    'ن',
+                    'و',
+                    'ز',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'ز', 'د', 'ا', 'پ', 'ن', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 144,
+                titleLevel = 144,
+                isLockLevel = true,
+                question = "آن چیست که خوش طعم و شیرین است؛ می توانی لیسش بزنی. هم در پیاله است و هم در قیف. یکی از طعم های اش طعم وانیلی ست؟",
+                answer = "بستنی",
+                sizeAnswer =5,
+                listAnswer = arrayListOf(
+                    'ب',
+                    'س',
+                    'ت',
+                    'ن',
+                    'ی',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'ن', 'د', 'ت', 'ی', 'ز', 'و', 'ب', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 145,
+                titleLevel = 145,
+                isLockLevel = true,
+                question = "آن چیست که چهار پا دارد اما دم ندارد. معمولا فقط شب ها صدایش را می شنوی؟",
+                answer = "قورباغه",
+                sizeAnswer = 7,
+                listAnswer = arrayListOf(
+                    'ق',
+                    'و',
+                    'ر',
+                    'ب',
+                    'ا',
+                    'غ',
+                    'ه',
+                ),
+                letters = arrayListOf('خ', 'ه', 'غ', 'د', 'غ', 'ق', 'ی', 'ر', 'و', 'غ', 'ا', 'ب')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 146,
+                titleLevel = 146,
+                isLockLevel = true,
+                question = "آن چیست كه پا و سر ندارد. جز نام دو جانور ندارد اندر شكمش ستارگانند. اندام ظریف چون صنوبر دارد؟",
+                answer = "خربزه",
+                sizeAnswer =5,
+                listAnswer = arrayListOf(
+                    'خ',
+                    'ر',
+                    'ب',
+                    'ز',
+                    'ه',
+                ),
+                letters = arrayListOf('ه', 'م', 'ب', 'د', 'د', 'ر', 'ی', 'ز', 'و', 'غ', 'ا', 'خ')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 147,
+                titleLevel = 147,
+                isLockLevel = true,
+                question = "وارد آن می شوی، ولی داخل آن نیستی؛ فضای زیادی دارد، ولی اتاق ندارد. کلیدهای زیادی دارد، ولی دری را نمی تواند باز کند. آن چیست؟",
+                answer = "کامپیوتر",
+                sizeAnswer =8,
+                listAnswer = arrayListOf(
+                    'ک',
+                    'ا',
+                    'م',
+                    'پ',
+                    'ی',
+                    'و',
+                    'ت',
+                    'ر',
+                ),
+                letters = arrayListOf('ر', 'م', 'ت', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'ک', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 148,
+                titleLevel = 148,
+                isLockLevel = true,
+                question = "سخت است ولی سنگ نیست تخم می گذارد ولی مرغ نیست چهار پا دارد ولی سگ نیست؟",
+                answer = "لاک پشت",
+                sizeAnswer = 6,
+                listAnswer = arrayListOf(
+                    'ل',
+                    'ا',
+                    'ک',
+                    'پ',
+                    'ش',
+                    'ت',
+                ),
+                letters = arrayListOf('ت', 'م', 'ش', 'د', 'د', 'پ', 'ی', 'ز', 'ل', 'غ', 'ا', 'ک')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 149,
+                titleLevel = 149,
+                isLockLevel = true,
+                question = "کدام حیوان است که اگر آن را از آخر به اول بخوانی پلید و بدیمن می شود؟",
+                answer = "موش",
+                sizeAnswer =3,
+                listAnswer = arrayListOf(
+                    'م',
+                    'و',
+                    'ش',
+                ),
+                letters = arrayListOf('چ', 'م', 'ش', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 150,
+                titleLevel = 150,
+                isLockLevel = true,
+                question = "آن کدام جانور است که دو حرف اولش تکراری است؟",
+                answer = "ببر",
+                sizeAnswer =3,
+                listAnswer = arrayListOf(
+                    'ب',
+                    'ب',
+                    'ر',
+                ),
+                letters = arrayListOf('ر', 'م', 'ب', 'د', 'د', 'ب', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        /*dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        dataBase.levels().saveDataLevel(
+            LevelModel(
+                id = 100,
+                titleLevel = 100,
+                isLockLevel = true,
+                question = "",
+                answer = "",
+                sizeAnswer =,
+                listAnswer = arrayListOf(
+                    'م',
+                    'غ',
+                    'ز',
+                    'ی',
+                    'م',
+                    'د',
+                    'ا',
+                    'د',
+                ),
+                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+            )
+        )
+        */
+
+
+
     }
 
     private fun insertDataToDbSetting() {
