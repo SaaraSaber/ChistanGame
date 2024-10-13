@@ -44,8 +44,8 @@ class AppController : Application() {
     private lateinit var sharedPreferencesGame: SharedPreferencesGame
 
     private fun saveEnterToAppForFirst() {
-//        sharedPreferencesGame = SharedPreferencesGame(this)
-//        sharedPreferencesGame.saveStatusFirst(true)
+        sharedPreferencesGame = SharedPreferencesGame(this)
+        sharedPreferencesGame.saveStatusFirst(true)
 
         insertDataToDbSetting()
         insertDataToDbLevels()
@@ -3013,8 +3013,8 @@ class AppController : Application() {
         )
         dataBase.levels().saveDataLevel(
             LevelModel(
-                id = 100,
-                titleLevel = 100,
+                id = 167,
+                titleLevel = 167,
                 isLockLevel = true,
                 question = "اون چه پرنده ایه که اگه بیوه بشه کچل میشه؟",
                 answer = "طاووس",

@@ -14,7 +14,7 @@ import ir.developre.chistangame.model.UserModel
 @Database(
     entities = [
         SettingModel::class, LevelModel::class, UserModel::class],
-    version = 4,
+    version = 5,
     exportSchema = true
 )
 
