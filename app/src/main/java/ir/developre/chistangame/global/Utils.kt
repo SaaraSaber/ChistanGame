@@ -15,7 +15,7 @@ object Utils {
     یکی به کارنت لول اضافه میشه و میره لول بعدی
      */
     var currentLevel = 0
-    const val LAST_LEVEL = 100
+    const val LAST_LEVEL = 200
 
     //................coin.................
 

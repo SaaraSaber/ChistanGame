@@ -289,12 +289,8 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
                 playSoundEffectWinStage()
 
             } else {
-                if (isFinishedLevel) {
 
-                } else {
-
-                    showDialogFinalWin()
-                }
+                showDialogFinalWin()
 
                 playSoundEffectFinalWin()
             }
@@ -620,7 +616,8 @@ class GameFragment : Fragment(), ClickOnLetter, ClickOnAnswer {
         val textSeeAd = dialogWin.findViewById<TextView>(R.id.text_see_ad)
 
         textAnswer.text = answer
-        textSeeAd.text ="شما ${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER} یاقوت به دست آوردهاید! با تماشای یک تبلیغ، ${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER_AND_SEEING_ADS} یاقوت کسب کنید."
+        textSeeAd.text =
+            "شما ${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER} یاقوت به دست آوردهاید! با تماشای یک تبلیغ، ${Utils.NUMBER_OF_COIN_FOR_CORRECT_ANSWER_AND_SEEING_ADS} یاقوت کسب کنید."
 
         btnSeeAd.setOnClickListener {
             if (CheckNetworkConnection.isOnline(requireActivity())) {
