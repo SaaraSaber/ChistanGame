@@ -1,15 +1,8 @@
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.android.*")
-                includeGroupByRegex("com\\.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        google()
         mavenCentral()
         gradlePluginPortal()
-        //jcenter()
         maven { setUrl("https://jitpack.io") }
     }
 }
@@ -18,10 +11,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        //jcenter()
         maven { setUrl("https://jitpack.io") }
     }
 }
 
 rootProject.name = "ChistanGame"
 include(":app")
+ 
