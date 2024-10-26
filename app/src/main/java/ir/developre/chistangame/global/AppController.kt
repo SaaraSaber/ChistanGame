@@ -771,7 +771,7 @@ class AppController : Application() {
                 id = 41,
                 titleLevel = 41,
                 isLockLevel = true,
-                question = "من یکی دارم، تو دو تا داری، شاه سه تا و پسر شاه نه تا!",
+                question = "من یکی دارم، تو دو تا داری، شاه سه تا و پسر شاه شش تا!",
                 answer = "نقطه",
                 sizeAnswer = 4,
                 listAnswer = arrayListOf(
@@ -931,15 +931,15 @@ class AppController : Application() {
                 titleLevel = 50,
                 isLockLevel = true,
                 question = "چیست که مال توست، ولی بیشتر بقیه بکار میبرندش؟",
-                answer = "اسمت",
+                answer = "اسمم",
                 sizeAnswer = 4,
                 listAnswer = arrayListOf(
                     'ا',
                     'س',
                     'م',
-                    'ت',
+                    'م',
                 ),
-                letters = arrayListOf('چ', 'م', 'س', 'ت', 'د', 'پ', 'ن', 'ف', 'و', 'س', 'ا', 'ش')
+                letters = arrayListOf('م', 'م', 'س', 'ت', 'د', 'پ', 'ن', 'ف', 'و', 'س', 'ا', 'ش')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -1866,18 +1866,15 @@ class AppController : Application() {
                 id = 102,
                 titleLevel = 102,
                 isLockLevel = true,
-                question = "آن چیست که در طول شبانه روز دست به کمر ایستاده؟ ",
-                answer = "آفتابه",
-                sizeAnswer = 6,
+                question = "مردم مرا می سازند، مرا ذخیره میکنند، من را تغییر میدهند، مرا بزرگ می کنند. من چیستم؟",
+                answer = "پول",
+                sizeAnswer = 3,
                 listAnswer = arrayListOf(
-                    'آ',
-                    'ف',
-                    'ت',
-                    'ا',
-                    'ب',
-                    'ه',
+                    'پ',
+                    'و',
+                    'ل'
                 ),
-                letters = arrayListOf('ط', 'ب', 'س', 'ف', 'ت', 'ا', 'ی', 'ه', 'و', 'آ', 'ا', 'ح')
+                letters = arrayListOf('ط', 'ب', 'س', 'ل', 'ت', 'ا', 'ی', 'ه', 'و', 'آ', 'ا', 'پ')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -2044,7 +2041,7 @@ class AppController : Application() {
                 titleLevel = 112,
                 isLockLevel = true,
                 question = "آن چیست كه خود ریسد و خود بافد جامه. پوست در پوست گرد یكدیگر؟",
-                answer = "عنكبوت",
+                answer = "عنکبوت",
                 sizeAnswer = 6,
                 listAnswer = arrayListOf(
                     'ع',
@@ -2149,17 +2146,16 @@ class AppController : Application() {
                 id = 118,
                 titleLevel = 118,
                 isLockLevel = true,
-                question = "در آسمان فقط یکی از آن هست اما در زمین بسیار زیاد!",
-                answer = "مشتری",
-                sizeAnswer = 5,
+                question = "آن چیست که از شهرها و زمینه ها عبور میکند، اما هرگز حرکت نمیکند؟",
+                answer = "جاده",
+                sizeAnswer = 4,
                 listAnswer = arrayListOf(
-                    'م',
-                    'ش',
-                    'ت',
-                    'ر',
-                    'ی',
+                    'ج',
+                    'ا',
+                    'د',
+                    'ه',
                 ),
-                letters = arrayListOf('چ', 'م', 'ج', 'د', 'د', 'ت', 'ی', 'ر', 'و', 'و', 'ا', 'م')
+                letters = arrayListOf('چ', 'م', 'ج', 'د', 'د', 'ت', 'د', 'ر', 'ه', 'و', 'ا', 'م')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -2175,7 +2171,7 @@ class AppController : Application() {
                     'و',
                     'ج',
                 ),
-                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
+                letters = arrayListOf('ج', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'م')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -3104,16 +3100,16 @@ class AppController : Application() {
                 id = 172,
                 titleLevel = 172,
                 isLockLevel = true,
-                question = "میتونی اسم یه نوع سبزی که توی این ۶ حرف پنهان شده رو حدس بزنی؟",
-                answer = "شوید",
+                question = "آن چیست که وقتی هوا گرم میشود لباس می پوشد، وقتی هوا سرد می شود لباسش را بیرون می آورد؟",
+                answer = "درخت",
                 sizeAnswer = 4,
                 listAnswer = arrayListOf(
-                    'ش',
-                    'و',
-                    'ی',
                     'د',
+                    'ر',
+                    'خ',
+                    'ت',
                 ),
-                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'غ', 'ا', 'ش')
+                letters = arrayListOf('ت', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'و', 'خ', 'ا', 'ر')
             )
         )
         dataBase.levels().saveDataLevel(
@@ -3445,16 +3441,15 @@ class AppController : Application() {
                 id = 191,
                 titleLevel = 191,
                 isLockLevel = true,
-                question = "یک بار می چرخم، آن چه بیرون است داخل نخواهد شد. یک بار دیگر می چرخم، آن چه داخل است بیرون نخواهد شد. من چه هستم؟",
-                answer = "کلید",
-                sizeAnswer = 4,
+                question = "آن چیست که هم ماه دارد و هم نان دارد و هم داروخانه؟",
+                answer = "قرص",
+                sizeAnswer = 3,
                 listAnswer = arrayListOf(
-                    'ک',
-                    'ل',
-                    'ی',
-                    'د',
+                    'ق',
+                    'ر',
+                    'ص',
                 ),
-                letters = arrayListOf('چ', 'م', 'س', 'د', 'د', 'پ', 'ی', 'ز', 'ل', 'غ', 'ا', 'ک')
+                letters = arrayListOf('چ', 'م', 'ص', 'د', 'ر', 'پ', 'ی', 'ق', 'ل', 'غ', 'ا', 'ک')
             )
         )
         dataBase.levels().saveDataLevel(
